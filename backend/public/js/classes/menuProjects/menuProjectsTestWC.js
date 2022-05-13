@@ -1,7 +1,7 @@
-
 class MenuProjectsTestWC extends HTMLElement {
   constructor() {
     super()
+   /*  this.attachShadow({ mode: "open" }) */
   }
   getTemplate() {
     const template = document.createElement("template")
@@ -64,6 +64,7 @@ class MenuProjectsTestWC extends HTMLElement {
   }
   render() {
     this.appendChild(this.getTemplate().content.cloneNode(true))
+    /* this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true)) */
   }
   connectedCallback() {
     this.render()
