@@ -1,0 +1,40 @@
+:root {
+  /* Colors */
+  --backgroundColorHeader: #2a2a2a;
+  --backgroundColorFooter: #333;
+  --colorTextHardGrey:rgb(112, 112, 112);
+  --colorTextSoftGrey: #ccc;
+  --colorTextSoftBlue: #337ab7;;
+  --blue: #0078f2;
+  --backgroundButtons: #fff;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+  border-radius:0px!important;
+}
+html, body {
+  font-size: 62.5%;
+  /* background-color:var(--backgroundColorHeader); */  
+  overflow: hidden;   
+}
+.map {
+  width: 100vw;
+  height: 100vh;
+}
+.mapboxgl-ctrl-logo, .mapboxgl-ctrl-bottom-right {
+  display: none !important;
+}
+
+.buttonPush {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 100px;
+  height: 30px;
+  z-index: 10;
+}
+

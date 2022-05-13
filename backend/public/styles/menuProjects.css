@@ -1,0 +1,40 @@
+.section_Tools--MenuOpen, .section_Tools--MenuClose {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 30px;
+  height: 30px;
+  background-color:var(--backgroundButtons);
+  z-index: 10;
+}
+
+.section_Tools--MenuClose {
+  display: none;
+}
+.section_Tools--MenuOpen:hover, .section_Tools--MenuClose:hover{
+  background-color:var(--colorTextSoftGrey); 
+  cursor: pointer;
+}
+
+.section_Tools_Container {
+  position: absolute;
+  top: 10px;
+  left: 45px;
+  background-color: rgba(255, 255, 255, 0.808);
+  display: none;
+}
+
+.section_Tools_Container ul, li, /* label, input, */ select  {
+  display: block;
+}
+.section_Tools_Container ul {
+  margin: 0px;
+  padding: 5px;
+}
+/* .section_Tools_Container label {
+  padding-left: 10px;
+}
+.section_Tools_Container input {
+  margin-left: 5px;
+}
+ */
