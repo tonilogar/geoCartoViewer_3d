@@ -8,21 +8,28 @@ class MenuTools extends HTMLElement {
   getTemplate() {
     const template = document.createElement("template")
     template.innerHTML = /*html */`
-      <svg id='toolsMenuOpen'  class='toolsMenuOpen' viewBox='0 0 92.833 92.833'>
-        <g fill='#030000' stroke='#000' stroke-dashoffset='300.69' stroke-linecap='round' stroke-linejoin='round'
-          stroke-miterlimit='.9' stroke-width='7.3832'>
-          <rect x='11.85' y='45.884' width='70.245' height='.026882' style='paint-order:markers fill stroke' />
-          <rect x='11.9' y='18.461' width='70.245' height='.026882' style='paint-order:markers fill stroke' />
-          <rect x='12.058' y='73.691' width='70.245' height='.026882' style='paint-order:markers fill stroke' />
-        </g>
-      </svg>
-      <svg id='toolsMenuClose' class='toolsMenuClose' viewBox='0 0 92.833 92.833'>
-        <path d='m14.451 14.313 63.763 64.176' fill='#1a1a1a' stroke='#1a1a1a' stroke-linecap='round' stroke-width='10.338' />
-        <path d='m78.236 14.398-63.706 64.063' fill='#1a1a1a' stroke='#1a1a1a' stroke-linecap='round'
-        stroke-linejoin='round' stroke-width='10.32' />
-      </svg>
-      <div id='toolsMenuContainer' class='toolsMenuContainer'>
-        <tools-menu-add-project></tools-menu-add-project>
+      <div class='toolsMenuOpen' title="Tools" >
+        <svg viewBox='0 0 92.833 92.833'>
+          <g fill='#030000' stroke='#000' stroke-dashoffset='300.69' stroke-linecap='round' stroke-linejoin='round'
+            stroke-miterlimit='.9' stroke-width='7.3832'>
+            <rect x='11.85' y='45.884' width='70.245' height='.026882' style='paint-order:markers fill stroke' />
+            <rect x='11.9' y='18.461' width='70.245' height='.026882' style='paint-order:markers fill stroke' />
+            <rect x='12.058' y='73.691' width='70.245' height='.026882' style='paint-order:markers fill stroke' />
+          </g>
+        </svg>
+      </div>
+      <div class='toolsMenuClose' title="Tools" >
+        <svg viewBox='0 0 92.833 92.833'>
+          <path d='m14.451 14.313 63.763 64.176' fill='#1a1a1a' stroke='#1a1a1a' stroke-linecap='round' stroke-width='10.338' />
+          <path d='m78.236 14.398-63.706 64.063' fill='#1a1a1a' stroke='#1a1a1a' stroke-linecap='round'
+            stroke-linejoin='round' stroke-width='10.32' />
+        </svg>
+      </div>
+      <div class='toolsMenuContainer'>
+        <add-project></add-project>
+        <change-background></change-background>
+        <add-raster></add-raster>
+        <add-vector></add-vector>
       </div>
       ${this.getStyles()}
       
@@ -33,16 +40,16 @@ class MenuTools extends HTMLElement {
   clickToolsMenu() {
     if (this.showHideTools) {
       /*  console.log('Click this.showHideTools=true') */
-      this.shadowRoot.getElementById('toolsMenuClose').style.display = 'block'
-      this.shadowRoot.getElementById('toolsMenuOpen').style.display = 'none'
-      this.shadowRoot.getElementById('toolsMenuContainer').style.display = 'block'
+      this.shadowRoot.querySelector('.toolsMenuClose').style.display = 'block'
+      this.shadowRoot.querySelector('.toolsMenuOpen').style.display = 'none'
+      this.shadowRoot.querySelector('.toolsMenuContainer').style.display = 'block'
       this.showHideTools = false
     }
     else {
       /* console.log('Click this.showHideTools=false') */
-      this.shadowRoot.getElementById('toolsMenuOpen').style.display = 'block'
-      this.shadowRoot.getElementById('toolsMenuClose').style.display = 'none'
-      this.shadowRoot.getElementById('toolsMenuContainer').style.display = 'none'
+      this.shadowRoot.querySelector('.toolsMenuOpen').style.display = 'block'
+      this.shadowRoot.querySelector('.toolsMenuClose').style.display = 'none'
+      this.shadowRoot.querySelector('.toolsMenuContainer').style.display = 'none'
       this.showHideTools = true
     }
   }
@@ -62,17 +69,17 @@ class MenuTools extends HTMLElement {
           display: none;
         }
         .toolsMenuOpen:hover, .toolsMenuClose:hover{
-          background-color:var(--colorTextSoftGrey); 
+          background-color:var(--colorSoftGrey); 
           cursor: pointer;
         }
 
         .toolsMenuContainer {
           position: absolute;
-          top: 5px;
-          left: 45px;
-          width: 400px;
-          height: 400px;
-          background-color: red;
+          top: 45px;
+          left: 5px;
+          width: 40px;
+          height: 100%;
+          background-color: var(--colorHardGrey);
           display: none;
         }
 
@@ -80,15 +87,15 @@ class MenuTools extends HTMLElement {
     `
   }
   render() {
-    /* this.appendChild(this.getTemplate().content.cloneNode(true))  */
-    this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true))
+    /* this.append(this.getTemplate().content.cloneNode(true))  */
+    this.shadowRoot.append(this.getTemplate().content.cloneNode(true))
   }
   connectedCallback() {
     this.render()
-    this.toolsMenuOpen = this.shadowRoot.getElementById("toolsMenuOpen")
+    this.toolsMenuOpen = this.shadowRoot.querySelector(".toolsMenuOpen")
     this.toolsMenuOpen.addEventListener("click", this.clickToolsMenu.bind(this))
 
-    this.toolsMenuClose = this.shadowRoot.getElementById("toolsMenuClose")
+    this.toolsMenuClose = this.shadowRoot.querySelector(".toolsMenuClose")
     this.toolsMenuClose.addEventListener("click", this.clickToolsMenu.bind(this))
   }
 }

@@ -2,10 +2,9 @@
   /* Colors */
   --backgroundColorHeader: #2a2a2a;
   --backgroundColorFooter: #333;
-  --colorTextHardGrey:rgb(112, 112, 112);
-  --colorTextSoftGrey: #ccc;
-  --colorTextSoftBlue: #337ab7;;
-  --blue: #0078f2;
+  --colorHardGrey:rgb(112, 112, 112);
+  --colorSoftGrey: #ccc;
+  --colorSoftGreen: #33b73ca9;
   --backgroundButtons: #fff;
 }
 * {
