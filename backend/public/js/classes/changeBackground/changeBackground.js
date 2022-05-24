@@ -26,7 +26,6 @@ class ChangeBackground extends HTMLElement {
           </g>
         </svg>
       </div>
-      <div id='container' class='container'></div>
       ${this.getStyles()}
       
     `
@@ -35,12 +34,12 @@ class ChangeBackground extends HTMLElement {
   
   clickMenu() {
     if(this.showHide) {
-      this.shadowRoot.querySelector('.container').style.display = 'block'
+      document.querySelector('.background_Container').style.display = 'block'
       this.shadowRoot.querySelector('.open').style.border = '5px solid  var(--colorSoftGreen)'
       this.showHide=false
     }
     else {
-      this.shadowRoot.querySelector('.container').style.display = 'none' 
+      document.querySelector('.background_Container').style.display = 'none' 
       this.shadowRoot.querySelector('.open').style.border = '5px solid var(--colorSoftGrey)'
       this.showHide=true
     }  
@@ -50,8 +49,9 @@ class ChangeBackground extends HTMLElement {
       <style>
         .open {
           position: absolute;
-          top: 45px;
-          left: 0px;
+          top: 50px;
+          left: 5px;
+          margin-bottom: 5px;
           width: 30px;
           height: 30px;
           background-color:var(--backgroundButtons);
@@ -63,15 +63,6 @@ class ChangeBackground extends HTMLElement {
           cursor: pointer;
         }
 
-        .container {
-          position: absolute;
-          top: 45px;
-          left: 45px;
-          width: 400px;
-          height: 400px;
-          background-color: var(--colorSoftGrey);
-          display: none;
-        }
       </style>
     `
   }

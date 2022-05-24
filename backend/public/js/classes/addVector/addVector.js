@@ -1,4 +1,4 @@
-class AddRaster extends HTMLElement {
+class AddVector extends HTMLElement {
   constructor() {
     super()
     this.attachShadow({ mode: "open" }) 
@@ -8,7 +8,7 @@ class AddRaster extends HTMLElement {
   getTemplate() {
     const template = document.createElement("template")
     template.innerHTML = /*html */`
-      <div class='open' title='Add project'>
+      <div class='open' title='Add vector'>
         <svg viewBox="0 0 650 650" >
           <g transform="matrix(5.1976 0 0 4.8555 26.444 26.635)">
             <path class="st0"
@@ -17,7 +17,6 @@ class AddRaster extends HTMLElement {
           <circle cx="485.42" cy="493.71" r="50.149" fill="#fff" stroke-width="1.2262" />
         </svg>
       </div>
-      <div id='container' class='container'></div>
       ${this.getStyles()}
       
     `
@@ -26,12 +25,12 @@ class AddRaster extends HTMLElement {
   
   clickMenu() {
     if(this.showHide) {
-      this.shadowRoot.querySelector('.container').style.display = 'block'
+      document.querySelector('.vector_Container').style.display = 'block'
       this.shadowRoot.querySelector('.open').style.border = '5px solid  var(--colorSoftGreen)'
       this.showHide=false
     }
     else {
-      this.shadowRoot.querySelector('.container').style.display = 'none' 
+      document.querySelector('.vector_Container').style.display =  'none' 
       this.shadowRoot.querySelector('.open').style.border = '5px solid var(--colorSoftGrey)'
       this.showHide=true
     }  
@@ -41,8 +40,9 @@ class AddRaster extends HTMLElement {
       <style>
         .open {
           position: absolute;
-          top: 90px;
-          left: 0px;
+          top: 140px;
+          left: 5px;
+          margin-bottom: 5px;
           width: 30px;
           height: 30px;
           background-color:var(--backgroundButtons);
@@ -54,15 +54,6 @@ class AddRaster extends HTMLElement {
           cursor: pointer;
         }
 
-        .container {
-          position: absolute;
-          top: 90px;
-          left: 45px;
-          width: 400px;
-          height: 400px;
-          background-color: var(--colorSoftGrey);
-          display: none;
-        }
       </style>
     `
   }
@@ -77,4 +68,4 @@ class AddRaster extends HTMLElement {
   }
 }
 
-customElements.define('add-raster', AddRaster)
+customElements.define('add-vector', AddVector)

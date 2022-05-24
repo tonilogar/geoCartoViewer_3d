@@ -21,7 +21,6 @@ class AddProject extends HTMLElement {
           <circle cx="485.42" cy="493.71" r="50.149" fill="#fff" stroke-width="1.2262" />
         </svg>
       </div>
-      <div id='container' class='container'></div>
       ${this.getStyles()}
       
     `
@@ -30,13 +29,11 @@ class AddProject extends HTMLElement {
 
   clickMenu() {
     if (this.showHide) {
-      this.shadowRoot.querySelector('.container').style.display = 'block'
       document.querySelector('.projects_Container').style.display = 'block'
       this.shadowRoot.querySelector('.open').style.border = '5px solid  var(--colorSoftGreen)'
       this.showHide = false
     }
     else {
-      this.shadowRoot.querySelector('.container').style.display = 'none'
       document.querySelector('.projects_Container').style.display = 'none'
       this.shadowRoot.querySelector('.open').style.border = '5px solid var(--colorSoftGrey)'
       this.showHide = true
@@ -46,7 +43,10 @@ class AddProject extends HTMLElement {
     return /*html */ `
       <style>
         .open {
-          position: relative;
+          position: absolute;
+          top: 5px;
+          left: 5px;
+          margin-bottom: 5px;
           width: 30px;
           height: 30px;
           background-color:var(--backgroundButtons);
@@ -56,14 +56,6 @@ class AddProject extends HTMLElement {
         .open:hover{
           background-color:var(--colorSoftGrey); 
           cursor: pointer;
-        }
-
-        .container {
-          position: relative;
-          top: -40px;
-          left: 45px;
-          background-color: var(--colorSoftGrey);
-          display: none;
         }
       </style>
     `

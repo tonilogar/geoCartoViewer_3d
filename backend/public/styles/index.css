@@ -1,6 +1,6 @@
 :root {
   /* Colors */
-  --backgroundColorHeader: #2a2a2a;
+  --backgroundColorHeader: #2a2a2a84;
   --backgroundColorFooter: #333;
   --colorHardGrey:rgb(112, 112, 112);
   --colorSoftGrey: #ccc;
@@ -21,49 +21,66 @@ html, body {
   overflow: hidden;   
 }
 
+.sectionLeft {
+  position:absolute;
+  top:0px;
+  left:0px;
+  padding-top: 5px;
+  width: 50px;
+  height: 100vh;
+  background-color: var(--backgroundColorHeader);
+}
 
 
-
-.projects_Container, .raster_Container, .vector_Container, .background_Container {
+.projects_Container{
   position: absolute;
+  top: 5px;
+  left: 50px;
   background-color: var(--colorSoftGrey);
   display: none;
 } 
-.projects_Container {
-  top: 45px;
-  left: 50px;
-} 
-.raster_Container {
-  top: 45px;
-  left: 50px;
-} 
-.vector_Container {
-  top: 45px;
-  left: 50px;
-} 
-.background_Container {
-  top: 45px;
-  left: 50px;
-} 
-.projects_Container ul, li, select, .raster_Container ul, li, select, 
-.vector_Container ul, li, select, .background_Container ul, li, select {
+.projects_Container ul, li, select {
   display: block;
 }
-.projects_Container ul, .raster_Container ul, 
-.vector_Container ul, .background_Container ul {
+.projects_Container ul {
   margin: 0px;
   padding: 5px;
 }
 
 
-.raster_Container {
+.background_Container{
   position: absolute;
-  top:300px;
-  left: 100px;
-  width: 200px;
-  height: 600px;
-  background-color: red;
+  width: 100px;
+  height: 100px;
+  top: 50px;
+  left: 50px;
+  background-color: var(--colorSoftGrey);
+  display: none;
 } 
+.raster_Container{
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 95px;
+  left: 50px;
+  background-color: var(--colorSoftGrey);
+  display: none;
+} 
+.vector_Container{
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 140px;
+  left: 50px;
+  background-color: var(--colorSoftGrey);
+  display: none;
+} 
+
+
+
+
+
+
 
 
 
