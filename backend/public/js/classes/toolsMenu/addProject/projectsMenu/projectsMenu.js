@@ -1,39 +1,51 @@
-import { ProjectsService } from '../projectsService/projectsService.js'
+import { ProjectsService } from './projectsService.js'
 const projectsService = new ProjectsService()
 
-class MenuProjects {
-  async renderMenuProjects() {
+class ProjectsMenu {
+  constructor({container}) {
+    this.container = container
+    
+  }
+
+  selectProject() {
+
+  }
+
+  async renderProjectsMenu() {
     const projects = await projectsService.getProjects()
-    const projectsContainer = document.getElementById('section_Tools_Container')
-    projectsContainer.innerHTML = ''
+    console.log('container ' + this.container + 
+                ' projects ' + projects)
+    const projectsContainer = document.getElementById(this.container)
+    
+    /* this.projectsContainer.innerHTML = '' */
     projects.forEach(element => {
 
-      const ul = document.createElement('ul')
-      section_Tools_Container.appendChild(ul)
-      const details = document.createElement('details')
+      let ul = document.createElement('ul')
+      projectsContainer.appendChild(ul)
+      let details = document.createElement('details')
       ul.appendChild(details)
 
-      const summary = document.createElement('summary')
-      const summaryText = document.createTextNode(element.title)
+      let summary = document.createElement('summary')
+      let summaryText = document.createTextNode(element.title)
       summary.appendChild(summaryText)
       details.appendChild(summary)
       if (element.subtitles) {
         element.subtitles.forEach(element => {
           /*  console.log(element.title01) */
-          const li = document.createElement('li')
-          const liText = document.createTextNode(element.title01)
+          let li = document.createElement('li')
+          let liText = document.createTextNode(element.title01)
           li.appendChild(liText)
           details.appendChild(li)
-          const select = document.createElement('select')
+          let select = document.createElement('select')
           select.setAttribute('onchange', 'selectOption(this)')
           li.appendChild(select)
-          const optionEmpty = document.createElement('option')
-          const optionTextEmpty = document.createTextNode('Select project')
+          let optionEmpty = document.createElement('option')
+          let optionTextEmpty = document.createTextNode('Select project')
           optionEmpty.appendChild(optionTextEmpty)
           select.appendChild(optionEmpty)
           element.projects.forEach(element => {
-            const option = document.createElement('option')
-            const optionText = document.createTextNode(element.titleProject)
+            let option = document.createElement('option')
+            let optionText = document.createTextNode(element.titleProject)
             option.appendChild(optionText)
             option.setAttribute('id', element.id)
             option.setAttribute('value', element.titleProject)
@@ -43,21 +55,21 @@ class MenuProjects {
       }
       else {
         console.log('There is not subtitles')
-        const li = document.createElement('li')
-        /* const liText = document.createTextNode(element.title)
+        let li = document.createElement('li')
+        /* let liText = document.createTextNode(element.title)
         li.appendChild(liText) */
         details.appendChild(li)
-        const select = document.createElement('select')
+        let select = document.createElement('select')
         select.setAttribute('onchange', 'selectOption(this)')
         li.appendChild(select)
-        const optionEmpty = document.createElement('option')
-        const optionTextEmpty = document.createTextNode('Select project')
+        let optionEmpty = document.createElement('option')
+        let optionTextEmpty = document.createTextNode('Select project')
         optionEmpty.appendChild(optionTextEmpty)
         select.appendChild(optionEmpty)
         if (element.projects) {
           element.projects.forEach(element => {
-            const option = document.createElement('option')
-            const optionText = document.createTextNode(element.titleProject)
+            let option = document.createElement('option')
+            let optionText = document.createTextNode(element.titleProject)
             option.appendChild(optionText)
             option.setAttribute('id', element.id)
             option.setAttribute('value', element.titleProject)
@@ -69,16 +81,9 @@ class MenuProjects {
         }
       }
     })
-    return projects
-  }
-  deconsteElement() {
-
-  }
-  clearElement(idElement) {
-    document.getElementById(idElement).reset()
 
   }
 }
 
 
-export { MenuProjects }
+export { ProjectsMenu }

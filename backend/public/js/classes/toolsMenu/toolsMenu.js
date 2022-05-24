@@ -50,6 +50,11 @@ class MenuTools extends HTMLElement {
       this.shadowRoot.querySelector('.toolsMenuOpen').style.display = 'block'
       this.shadowRoot.querySelector('.toolsMenuClose').style.display = 'none'
       this.shadowRoot.querySelector('.toolsMenuContainer').style.display = 'none'
+      /* document.querySelector('.projects_Container').style.display = 'none'
+      document.querySelector('.raster_Container').style.display = 'none'
+      document.querySelector('.vector_Container').style.display = 'none'
+      document.querySelector('.background_Container').style.display = 'none' */
+
       this.showHideTools = true
     }
   }

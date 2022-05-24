@@ -1,10 +1,14 @@
+
+import { ProjectsMenu } from './projectsMenu/projectsMenu.js'
+
 class AddProject extends HTMLElement {
   constructor() {
     super()
-    this.attachShadow({ mode: "open" }) 
+    this.attachShadow({ mode: "open" })
     this.showHide = true
+    this.container = 'container'
   }
-  
+
   getTemplate() {
     const template = document.createElement("template")
     template.innerHTML = /*html */`
@@ -23,19 +27,21 @@ class AddProject extends HTMLElement {
     `
     return template
   }
-  
+
   clickMenu() {
-    if(this.showHide) {
+    if (this.showHide) {
       this.shadowRoot.querySelector('.container').style.display = 'block'
+      document.querySelector('.projects_Container').style.display = 'block'
       this.shadowRoot.querySelector('.open').style.border = '5px solid  var(--colorSoftGreen)'
-      this.showHide=false
+      this.showHide = false
     }
     else {
-      this.shadowRoot.querySelector('.container').style.display = 'none' 
+      this.shadowRoot.querySelector('.container').style.display = 'none'
+      document.querySelector('.projects_Container').style.display = 'none'
       this.shadowRoot.querySelector('.open').style.border = '5px solid var(--colorSoftGrey)'
-      this.showHide=true
-    }  
-  } 
+      this.showHide = true
+    }
+  }
   getStyles() {
     return /*html */ `
       <style>
@@ -56,8 +62,6 @@ class AddProject extends HTMLElement {
           position: relative;
           top: -40px;
           left: 45px;
-          width: 400px;
-          height: 400px;
           background-color: var(--colorSoftGrey);
           display: none;
         }
@@ -67,7 +71,10 @@ class AddProject extends HTMLElement {
   render() {
     /* this.append(this.getTemplate().content.cloneNode(true))  */
     this.shadowRoot.append(this.getTemplate().content.cloneNode(true))
-  } 
+    const projectsMenu = new ProjectsMenu ({container: 'projects_Container'})
+    projectsMenu.renderProjectsMenu()
+    console.log(' render ' + this.container)
+  }
   connectedCallback() {
     this.render()
     this.open = this.shadowRoot.querySelector(".open")
