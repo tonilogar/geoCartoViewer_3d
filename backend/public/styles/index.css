@@ -1,6 +1,6 @@
 :root {
   /* Colors */
-  --backgroundColorHeader: #2a2a2a84;
+  --backgroundColorHeader: #2a2a2aa5;
   --backgroundColorFooter: #333;
   --colorHardGrey:rgb(112, 112, 112);
   --colorSoftGrey: #ccc;
@@ -20,7 +20,10 @@ html, body {
   /* background-color:var(--backgroundColorHeader); */  
   overflow: hidden;   
 }
-
+.map {
+  width: 100vw;
+  height: 100vh;
+}
 .sectionLeft {
   position:absolute;
   top:0px;
@@ -30,7 +33,6 @@ html, body {
   height: 100vh;
   background-color: var(--backgroundColorHeader);
 }
-
 
 .projects_Container{
   position: absolute;
@@ -91,14 +93,8 @@ html, body {
 
 
 
-.map {
-  width: 100vw;
-  height: 100vh;
-  z-index: 50!important;
-}
-tools-menu {
-  z-index: 100!important;
-}
+
+
 .mapboxgl-ctrl-logo, .mapboxgl-ctrl-bottom-right {
   display: none !important;
 }
