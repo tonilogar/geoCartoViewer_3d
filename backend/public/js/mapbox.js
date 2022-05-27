@@ -37,7 +37,7 @@ map.on('load', function () {
 })
 //Create demMap
 //Style cursor over de map
-map.getCanvas().style.cursor = "default" 
+map.getCanvas().style.cursor = "default"
 /* map.on("mouseenter", "clusters", () => {
   map.getCanvas().style.cursor = "pointer"
 })  */

@@ -6,6 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./styles/index.css" rel="stylesheet" />
+  <link href="./styles/sectionLeft.css" rel="stylesheet" />
+  <link href="./styles/sectionTop.css" rel="stylesheet" />
+  <link href="./styles/sectionRight.css" rel="stylesheet" />
+  <link href="./styles/sectionCoorZoomDegree.css" rel="stylesheet" />
   <link rel="shourtcut icon" href="./images/logoIcgcCutOpt.svg" type="image/x-icon">
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js"></script>
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet" />
@@ -18,23 +22,49 @@
   <title>Document</title>
 
   <script defer type="module" src="./js/main.js"></script>
+
 </head>
 
 <body>
   <div id='map' class='map'></div>
-  <section class="sectionLeft"></section>
-  <add-project> </add-project>
-  <change-background> </change-background>
-  <add-raster> </add-raster>
-  <add-vector> </add-vector>
-  
-  
-
+  <!--  Section left -->
+  <add-project></add-project>
+  <change-background></change-background>
+  <add-raster></add-raster>
+  <add-vector></add-vector>
   <div class="projects_Container" id="projects_Container"></div>
   <div class="background_Container" id="background_Container"></div>
   <div class="raster_Container" id="raster_Container"></div>
   <div class="vector_Container" id="vector_Container"></div>
+  <!--  Section left -->
+  <!--  Section top -->
+  <user-menu></user-menu>
+  <div class="geocoder_Container"></div>
+  <!--  Section top -->
+  <!--  Section right -->
+  <div class="geolocate_Container"></div>
+  <div class="NavigationControl_Container"></div>
+  <layers-container></layers-container>
+  <project-legends></project-legends>
+  <div class="layers_Container"></div>
+  <div class="legends_Container"></div>
   
+
+  <!--  Section right -->
+  <!--  Section coordinates -->
+  <div class="coordinates_Container"></div>
+  <div class="zoomDegree_Container"></div>
+  <div class="copyCoor_Container"></div>
+  <div class="cameraHeight_Container"></div>
+  <!--  Section coordinates -->
+ 
+
+
+
+
+
+
+
 
 
 
