@@ -11,6 +11,7 @@
   <link href="./styles/sectionRight.css" rel="stylesheet" />
   <link href="./styles/sectionCoorZoomDegree.css" rel="stylesheet" />
   <link rel="shourtcut icon" href="./images/logoIcgcCutOpt.svg" type="image/x-icon">
+  <!-- Mapbox libraries -->
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js"></script>
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet" />
   <script
@@ -18,7 +19,13 @@
   <link rel="stylesheet"
     href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
     type="text/css" />
-  <!-- <link rel="stylesheet" href="./styles/index.css" type="text/css" /> -->
+  <!-- Mapbox libraries -->
+  <!--The googleChart library.-->
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <!-- Jquery libraries -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
   <title>Document</title>
 
   <script defer type="module" src="./js/main.js"></script>
@@ -40,6 +47,7 @@
   <!--  Section top -->
   <user-menu></user-menu>
   <div class="geocoder_Container"></div>
+  <div class="user_Container"></div>
   <!--  Section top -->
   <!--  Section right -->
   <div class="geolocate_Container"></div>
@@ -48,43 +56,42 @@
   <project-legends></project-legends>
   <div class="layers_Container"></div>
   <div class="legends_Container"></div>
-  
-
   <!--  Section right -->
-  <!--  Section coordinates -->
+  <!--  Section coordinates zoom degreee -->
   <div class="coordinates_Container"></div>
   <div class="zoomDegree_Container"></div>
   <div class="copyCoor_Container"></div>
   <div class="cameraHeight_Container"></div>
-  <!--  Section coordinates -->
- 
+  <!--  Section coordinates  zoom degreee -->
+  <button class='buttonPoints' onclick="points()"></button>
 
 
 
 
 
-
-
-
-
-
-  <!-- <img src="./images/logoIcgcCutOpt.svg"/> -->
-  <!-- <menu-projects></menu-projects> -->
-
-
-  <!--  <div class='section_Tools_Container' id='section_Tools_Container'>
-    Create tools project menu with MenuProjects class into main.js 
-  </div>-->
-
-  <!-- section_Tools <<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+  <!-- Show id project select <<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
   <script>
     const selectOption = (s) => {
+
       if (s[s.selectedIndex].value !== 'Select project') {
-        console.log(s[s.selectedIndex].value); // get value
-        console.log(s[s.selectedIndex].id); // get id
+        console.log(s[s.selectedIndex].value + ' value')// get value
+        console.log(s[s.selectedIndex].id + ' id') // get id
+        points()
       }
     }
+
+
+    const points = () => {
+      console.log(' Add points')
+      /* delete points */
+      
+    }
   </script>
+  <script async src="./js/mapbox.js"></script>
+  <!-- <script async src="./js/pointsTest.js"></script>
+  <script async src="./js/chartTest.js"></script> -->
+
+
 </body>
 
 </html>

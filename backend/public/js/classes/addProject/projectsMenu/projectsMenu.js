@@ -1,4 +1,4 @@
-import { ProjectsService } from './projectsService.js'
+import { ProjectsService } from '../../projectsService/projectsService.js'
 const projectsService = new ProjectsService()
 
 class ProjectsMenu {
@@ -50,14 +50,16 @@ class ProjectsMenu {
             option.setAttribute('id', element.id)
             option.setAttribute('value', element.titleProject)
             select.appendChild(option)
+            console.log('id ' + element.id)
+            console.log('titleProject ' + element.titleProject)
+            console.log('legend ' + element.legend)
+            console.log('dataProject ' + element.dataProject)
           })
         })
       }
       else {
         console.log('There is not subtitles')
         let li = document.createElement('li')
-        /* let liText = document.createTextNode(element.title)
-        li.appendChild(liText) */
         details.appendChild(li)
         let select = document.createElement('select')
         select.setAttribute('onchange', 'selectOption(this)')
@@ -74,6 +76,10 @@ class ProjectsMenu {
             option.setAttribute('id', element.id)
             option.setAttribute('value', element.titleProject)
             select.appendChild(option)
+            console.log('id ' + element.id)
+            console.log('titleProject ' + element.titleProject)
+            console.log('legend ' + element.legend)
+            console.log('dataProject ' + element.dataProject)
           })
         }
         else {

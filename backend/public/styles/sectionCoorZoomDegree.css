@@ -2,7 +2,7 @@
   position: absolute;
   bottom: 45px;
   right: 5px;
-  width: 190px;
+  width: 210px;
   height: 25px;
   padding: 5px;
   background-color: var(--colorSoftGrey);
@@ -12,7 +12,7 @@
   position: absolute;
   bottom: 25px;
   right: 5px;
-  width: 190px;
+  width: 210px;
   height: 25px;
   padding: 5px;
   background-color: var(--colorSoftGrey);
@@ -22,7 +22,7 @@
   position: absolute;
   bottom: 5px;
   right: 5px;
-  width: 190px;
+  width: 210px;
   height: 25px;
   padding: 5px;
   background-color: var(--colorSoftGrey);

@@ -34,18 +34,62 @@ map.on('load', function () {
           'sky-atmosphere-sun-intensity': 15
       }
   })
+  //Change cursor mouse
+  map.getCanvas().style.cursor = "default"
+  map.on("mouseenter", "clusters", () => {
+    map.getCanvas().style.cursor = "pointer"
+  })
+  const geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    placeholder: 'toponym or Lat, long',
+    mapboxgl: mapboxgl
+  })
+  document.querySelector('.geocoder_Container').appendChild(geocoder.onAdd(map))
+
+  // Geolocate ////////////////////////////////////
+  const geolocate = new mapboxgl.GeolocateControl({
+    positionOptions: {
+      enableHighAccuracy: true
+    },
+    trackUserLocation: true
+  });
+  document.querySelector('.geolocate_Container').appendChild(geolocate.onAdd(map))
+  // Geolocate ////////////////////////////////////
+  // Controls navigation (zoom, rotation) /////////////
+  const controlNavigation = new mapboxgl.NavigationControl()
+  document.querySelector('.NavigationControl_Container').appendChild(controlNavigation.onAdd(map))
+  // Controls navigation (zoom, rotation) /////////////
+  // Show coordinates /////////////
+  document.querySelector('.coordinates_Container').innerHTML = `Lat: 00.0000 Long: 0.0000 `
+  map.on('mousemove', (e) => {
+    let lat = e.lngLat.lat.toFixed(4)
+    let lng = e.lngLat.lng.toFixed(4)
+    document.querySelector('.coordinates_Container').innerHTML = `Lat: ${lat} Long: ${lng}`
+  })
+  // Show coordinates /////////////
+  // Show zoom degree /////////////
+  document.querySelector('.zoomDegree_Container').innerHTML = `Zoom: 7.70 Degree: 00 º`
+  map.on('move', () => {
+    let zoom = map.getZoom().toFixed(2)
+    let degree = map.getPitch().toFixed(0)
+    document.querySelector('.zoomDegree_Container').innerHTML = `Zoom: ${zoom} Degree: ${degree} º`
+  })
+  // Show zoom degree /////////////
+  // Copy coordinates /////////////
+  document.querySelector('.copyCoor_Container').innerHTML = `Double click copy Lat Long`
+  map.on('dblclick', function (e) {
+    let lat = e.lngLat.lat.toFixed(4)
+    let lng = e.lngLat.lng.toFixed(4)
+    document.querySelector('.copyCoor_Container').innerHTML = `Lat: ${lat} Long: ${lng}`
+  })
+  // Copy coordinates /////////////
+  // Camera heigth ///////////////
+  let scale = new mapboxgl.ScaleControl({
+    width: 80,
+    unit: 'metric'
+    
+  })
+  document.querySelector('.cameraHeight_Container').appendChild(scale.onAdd(map))
+  // Camera heigth //////////////
 })
-//Create demMap
-//Style cursor over de map
-map.getCanvas().style.cursor = "default"
-/* map.on("mouseenter", "clusters", () => {
-  map.getCanvas().style.cursor = "pointer"
-})  */
-map.on('mousemove', (e) => {
-  /* console.log(e.lngLat.lng.toFixed(4) + ' Lng' )
-  console.log(e.lngLat.lat.toFixed(4) + ' Lat') */
-})
-map.on('move', () => {
- /*  console.log(map.getZoom().toFixed(2) + ' Zoom')
-  console.log(map.getPitch().toFixed(0) + ' Degree') */
-})
+

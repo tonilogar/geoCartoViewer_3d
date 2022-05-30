@@ -6,6 +6,15 @@ user-menu {
   margin-bottom: 5px;
  
  }
+ .user_Container {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 50px;
+  right: 150px;
+  background-color: var(--colorSoftGrey);
+  display: none; 
+} 
 .geocoder_Container{
   position: absolute;
   top: 5px;
