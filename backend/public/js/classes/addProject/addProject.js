@@ -1,6 +1,4 @@
 
-import { ProjectsMenu } from './projectsMenu/projectsMenu.js'
-
 class AddProject extends HTMLElement {
   constructor() {
     super()
@@ -61,10 +59,7 @@ class AddProject extends HTMLElement {
     `
   }
   render() {
-    /* this.append(this.getTemplate().content.cloneNode(true))  */
     this.shadowRoot.append(this.getTemplate().content.cloneNode(true))
-    const projectsMenu = new ProjectsMenu ({container: 'projects_Container'})
-    projectsMenu.renderProjectsMenu()
     console.log(' render ' + this.container)
   }
   connectedCallback() {

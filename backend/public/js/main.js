@@ -7,7 +7,18 @@ import "./classes/changeBackground/changeBackground.js"
 import "./classes/user/user.js"
 import "./classes/layersContainer/layersContainer.js"
 import "./classes/projectLegends/projectLegends.js"
+import { ProjectsMenu } from     './classes/projectsMenu/projectsMenu.js'
+import { ProjectsMenuTest } from     './classes/projectsMenu/projectsMenuTest.js'
+
+
 import { Points } from './classes/points/points.js'
+
+const projectsMenu = new ProjectsMenu ({container: 'projects_Container'})
+projectsMenu.renderProjectsMenu() 
+
+const projectsMenuTest = new ProjectsMenuTest ({container: 'projects_ContainerTest'})
+projectsMenuTest.renderProjectsMenu() 
+
 
 
 const points = new Points ({

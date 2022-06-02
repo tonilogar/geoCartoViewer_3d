@@ -1,13 +1,13 @@
-import { ProjectsService } from '../../projectsService/projectsService.js'
+import { ProjectsService } from '../projectsService/projectsService.js'
 const projectsService = new ProjectsService()
 
 class ProjectsMenu {
   constructor({container}) {
     this.container = container
-    /* this.open = document.querySelector(option)
-    this.open.addEventListener("click", this.clickMenu.bind(this))
-     */
+    this.clickMenu()
   }
+  
+  
 
   clickMenu() {
     console.log('clickMenu ')
