@@ -1,16 +1,22 @@
 import { ProjectsService } from '../../projectsService/projectsService.js'
 const projectsService = new ProjectsService()
 
-class ProjectsMenu {
+class ProjectsMenuWc extends HTMLElement{
   constructor({container}) {
+    super()
     this.container = container
-    /* this.open = document.querySelector(option)
-    this.open.addEventListener("click", this.clickMenu.bind(this))
-     */
+    this.attachShadow({ mode: "open" }) 
+    this.showHide = true
+    this.open
   }
-
-  clickMenu() {
-    console.log('clickMenu ')
+  getTemplate() {
+    const template = document.createElement("template")
+    const projects = await projectsService.getProjects()
+     
+      this.getStyles()
+      
+   
+    return template
   }
 
   async renderProjectsMenu() {
@@ -96,4 +102,4 @@ class ProjectsMenu {
 }
 
 
-export { ProjectsMenu }
+customElements.define('add-raster-wc', ProjectsMenuWc)

@@ -3,6 +3,7 @@ class AddRaster extends HTMLElement {
     super()
     this.attachShadow({ mode: "open" }) 
     this.showHide = true
+    this.open
   }
   
   getTemplate() {

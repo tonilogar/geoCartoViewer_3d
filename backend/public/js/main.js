@@ -24,14 +24,14 @@ const points = new Points ({
   valueVelMax : 15
   })
 
-points.renderPoints()
+/* points.renderPoints() */
 
 
 const addRaster = document.createElement('add-raster')
 addRaster.setAttribute('class', 'addRasterPepe')
 document.body.appendChild(addRaster)
 
-
+console.log(document.querySelector('.open') + ' select')
 /* const mapbox = new Mapbox({
   nameIdHtml :  'map',
   style : 'https://geoserveis.icgc.cat/contextmaps/hibrid.json',
