@@ -24,6 +24,11 @@ class AddRaster extends HTMLElement {
     return template
   }
   
+  handleEvent(event) {
+    if (event.type === "click")
+      this.clickMenu();
+  }
+
   clickMenu() {
     if(this.showHide) {
       document.querySelector('.raster_Container').style.display = 'block'
@@ -65,7 +70,7 @@ class AddRaster extends HTMLElement {
   connectedCallback() {
     this.render()
     this.open = this.shadowRoot.querySelector(".open")
-    this.open.addEventListener("click", this.clickMenu.bind(this))
+    this.open.addEventListener("click", this)
   }
 }
 

@@ -5,86 +5,60 @@ const projectsService = new ProjectsService()
 class ProjectsMenuTest {
   constructor({ container }) {
     this.container = container
-   
+    this.openFunction = document.querySelector(".selectOption")
+    this.openFunction.addEventListener("click", this.clickMenu.bind(this))
   }
 
   clickMenu(s) {
-    
-    console.log( s + 'clickMenu')
+    console.log('clickMenu')
   }
 
 
   async renderProjectsMenu() {
-
-    const projects = await projectsService.getProjects()
     const projectsContainer = document.getElementById(this.container)
+    projectsContainer.innerHTML = ''
+    let ul = document.createElement('ul')
+    projectsContainer.append(ul)
+    let details = document.createElement('details')
+    ul.append(details)
+    let summary = document.createElement('summary')
+    let summaryText = document.createTextNode('summaryText')
+    summary.append(summaryText)
+    details.append(summary)
+    let li = document.createElement('li')
+    let liText = document.createTextNode('liText')
+    li.append(liText)
+    details.append(li)
+    let select = document.createElement('select')
+    select.setAttribute('class', 'selectOption')
+    li.append(select)
 
-    projects.forEach(element => {
+    let optionEmpty = document.createElement('option')
+    let optionTextEmpty = document.createTextNode('Select project')
+    optionEmpty.append(optionTextEmpty)
+    select.append(optionEmpty)
 
-      let ul = document.createElement('ul')
-      projectsContainer.append(ul)
-      let details = document.createElement('details')
-      ul.append(details)
+    let option_01 = document.createElement('option')
+    let optionText_01 = document.createTextNode('option_01')
+    option_01.append(optionText_01)
+    select.append(option_01)
 
-      let summary = document.createElement('summary')
-      let summaryText = document.createTextNode(element.title)
-      summary.append(summaryText)
-      details.append(summary)
-      if (element.subtitles) {
-        element.subtitles.forEach(element => {
-          let li = document.createElement('li')
-          let liText = document.createTextNode(element.title01)
-          li.append(liText)
-          details.append(li)
-          let select = document.createElement('select')
-          select.setAttribute('class', 'select')
-          /* select.setAttribute('onchange', 'selectOption(this)') */
-          li.append(select)
-          let optionEmpty = document.createElement('option')
-          let optionTextEmpty = document.createTextNode('Select project')
-          optionEmpty.append(optionTextEmpty)
-          select.append(optionEmpty)
-          element.projects.forEach(element => {
-            let option = document.createElement('option')
-            let optionText = document.createTextNode(element.titleProject)
-            option.append(optionText)
-            option.setAttribute('id', element.id)
-            option.setAttribute('value', element.titleProject)
-            select.append(option)
-          })
-        })
-      }
-      else {
-        let li = document.createElement('li')
-        details.append(li)
-        let select = document.createElement('select')
-        select.setAttribute('class', 'select')
-        /* select.setAttribute('onchange', 'selectOption(this)') */
-        li.append(select)
-        let optionEmpty = document.createElement('option')
-        let optionTextEmpty = document.createTextNode('Select project')
-        optionEmpty.append(optionTextEmpty)
-        select.append(optionEmpty)
-        if (element.projects) {
-          element.projects.forEach(element => {
-            let option = document.createElement('option')
-            let optionText = document.createTextNode(element.titleProject)
-            option.append(optionText)
-            option.setAttribute('id', element.id)
-            option.setAttribute('value', element.titleProject)
-            select.append(option)
-          })
-        }
-        else {
-          console.log('There is not projects')
-        }
-      }
-    })
-    
-    this.open = document.querySelector(".select")
-    this.open.addEventListener("change", this.clickMenu.bind(this))
+    let option_02 = document.createElement('option')
+    let optionText_02 = document.createTextNode('option_02')
+    option_02.append(optionText_02)
+    select.append(option_02)
 
+    let option_03 = document.createElement('option')
+    let optionText_03 = document.createTextNode('option_03')
+    option_03.append(optionText_03)
+    select.append(option_03)
 
+    let option_04 = document.createElement('option')
+    let optionText_04 = document.createTextNode('option_04')
+    option_04.append(optionText_04)
+    select.append(option_04)
+
+    console.log('ProjectsMenuTest')
   }
 }
 

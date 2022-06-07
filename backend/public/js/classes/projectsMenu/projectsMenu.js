@@ -4,22 +4,16 @@ const projectsService = new ProjectsService()
 class ProjectsMenu {
   constructor({container}) {
     this.container = container
-    this.clickMenu()
   }
   
-  
-
   clickMenu() {
     console.log('clickMenu ')
   }
 
   async renderProjectsMenu() {
     const projects = await projectsService.getProjects()
-   /*  console.log('container ' + this.container + 
-                ' projects ' + projects) */
     const projectsContainer = document.getElementById(this.container)
-    
-    /* this.projectsContainer.innerHTML = '' */
+    projectsContainer.innerHTML = '' 
     projects.forEach(element => {
 
       let ul = document.createElement('ul')

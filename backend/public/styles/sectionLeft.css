@@ -1,8 +1,12 @@
 .projects_ContainerTest {
   position: absolute;
+  width: 110px;
   top: 300px;
   left: 150px;
   background-color: blue;
+}
+.projects_ContainerTest ul, li, select {
+  display: block;
 }
 .div_01 {
   width: 50px;
