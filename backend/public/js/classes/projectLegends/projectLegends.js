@@ -24,7 +24,12 @@ class ProjectLegends extends HTMLElement {
     `
     return template
   }
-  
+   
+  handleEvent(event) {
+    if (event.type === "click")
+      this.clickMenu();
+  }
+
   clickMenu() {
     if(this.showHide) {
       document.querySelector('.legends_Container').style.display = 'block'
@@ -66,7 +71,7 @@ class ProjectLegends extends HTMLElement {
   connectedCallback() {
     this.render()
     this.open = this.shadowRoot.querySelector(".open")
-    this.open.addEventListener("click", this.clickMenu.bind(this))
+    this.open.addEventListener("click", this)
   }
 }
 

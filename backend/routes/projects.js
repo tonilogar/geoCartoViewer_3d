@@ -9,4 +9,10 @@ router.get('/', async (req, res) => {
 }) 
 
 
+router.get('/:id', async (req, res) => {
+  const projects = await project.findById(req.params.id)
+  res.json(projects)
+  console.log(res.json(projects) )
+})  
+
 module.exports = router

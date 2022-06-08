@@ -5,6 +5,11 @@ class ChangeBackground extends HTMLElement {
     this.showHide = true
   }
   
+  handleEvent(event) {
+    if (event.type === "click")
+      this.clickMenu();
+  }
+
   getTemplate() {
     const template = document.createElement("template")
     template.innerHTML = /*html */`
@@ -73,7 +78,7 @@ class ChangeBackground extends HTMLElement {
   connectedCallback() {
     this.render()
     this.open = this.shadowRoot.querySelector(".open")
-    this.open.addEventListener("click", this.clickMenu.bind(this))
+    this.open.addEventListener("click", this)
   }
 }
 

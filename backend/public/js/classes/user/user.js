@@ -22,6 +22,11 @@ class User extends HTMLElement {
     return template
   }
   
+  handleEvent(event) {
+    if (event.type === "click")
+      this.clickMenu();
+  }
+
   clickMenu() {
     if(this.showHide) {
       document.querySelector('.user_Container').style.display = 'block'
@@ -60,7 +65,7 @@ class User extends HTMLElement {
   connectedCallback() {
     this.render()
     this.open = this.shadowRoot.querySelector(".open")
-    this.open.addEventListener("click", this.clickMenu.bind(this))
+    this.open.addEventListener("click", this)
   }
 }
 

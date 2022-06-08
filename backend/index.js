@@ -28,6 +28,8 @@ app.use(cors())
 
 
 // Midleware multer
+app.use(express.urlencoded({extended: false}))
+app.use(express.json())
 /* const storage = multer.diskStorage({
   destination: path.join(__dirname, 'public/uploads'),
   filename(req, file, cb) {
@@ -40,10 +42,10 @@ app.use(multer({storage}).single('image')) */
 // Routes
 /* app.use(require('./routes/projects')) */
 app.use('/api/projects', require('./routes/projects')) // Cuando entre en el navegador me mostrara los datos de el metodo get de routes/projects.js me muestre 
-                                                       // http://localhost:3000/api/projects en esta direccion vere los datos que me manda el metodo get
+                                                       // http://localhost:4000/api/projects en esta direccion vere los datos que me manda el metodo get
 
 // Static files
-app.use(express.static(path.join(__dirname, 'public')))// En la direccion http://localhost:3000 me mostrara los ficheros estaticos index.html etc..
+app.use(express.static(path.join(__dirname, 'public')))// En la direccion http://localhost:4000 me mostrara los ficheros estaticos index.html etc..
 
 
 // Start the server

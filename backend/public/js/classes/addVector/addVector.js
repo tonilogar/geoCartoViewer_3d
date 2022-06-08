@@ -23,6 +23,11 @@ class AddVector extends HTMLElement {
     return template
   }
   
+  handleEvent(event) {
+    if (event.type === "click")
+      this.clickMenu();
+  }
+
   clickMenu() {
     if(this.showHide) {
       document.querySelector('.vector_Container').style.display = 'block'
@@ -64,7 +69,7 @@ class AddVector extends HTMLElement {
   connectedCallback() {
     this.render()
     this.open = this.shadowRoot.querySelector(".open")
-    this.open.addEventListener("click", this.clickMenu.bind(this))
+    this.open.addEventListener("click", this)
   }
 }
 

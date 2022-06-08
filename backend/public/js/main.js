@@ -7,17 +7,18 @@ import "./classes/changeBackground/changeBackground.js"
 import "./classes/user/user.js"
 import "./classes/layersContainer/layersContainer.js"
 import "./classes/projectLegends/projectLegends.js"
-import { ProjectsMenu } from     './classes/projectsMenu/projectsMenu.js'
-import { ProjectsMenuTest } from     './classes/projectsMenu/projectsMenuTest.js'
-
+import { ProjectsMenu } from     './classes/projectsMenu/projectsMenu.js' 
+import { ArrayProjects } from     './classes/createArrayProjects/createArrayProjects.js' 
+/* import { ProjectsMenuTest } from     './classes/projectsMenu/projectsMenuTest.js'
+const projectsMenuTest = new ProjectsMenuTest ({container: 'projects_ContainerTest'}) */
 
 import { Points } from './classes/points/points.js'
 
 const projectsMenu = new ProjectsMenu ({container: 'projects_Container'})
 projectsMenu.renderProjectsMenu() 
 
-const projectsMenuTest = new ProjectsMenuTest ({container: 'projects_ContainerTest'})
-projectsMenuTest.renderProjectsMenu() 
+
+const arrayProjects = new ArrayProjects ()
 
 
 
@@ -35,14 +36,10 @@ const points = new Points ({
   valueVelMax : 15
   })
 
-/* points.renderPoints() */
+points.renderPoints()
 
 
-const addRaster = document.createElement('add-raster')
-addRaster.setAttribute('class', 'addRasterPepe')
-document.body.appendChild(addRaster)
 
-console.log(document.querySelector('.open') + ' select')
 /* const mapbox = new Mapbox({
   nameIdHtml :  'map',
   style : 'https://geoserveis.icgc.cat/contextmaps/hibrid.json',

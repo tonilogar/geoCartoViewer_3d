@@ -77,16 +77,24 @@
       if (s[s.selectedIndex].value !== 'Select project') {
         console.log(s[s.selectedIndex].value + ' value')// get value
         console.log(s[s.selectedIndex].id + ' id') // get id
-        points()
+        s.value = 'Select project'
+        
       }
-      
-    }
 
+    }
+   const clickMenu = (event) => {
+      if (event.value !== 'Select project') {
+        console.log(event[event.selectedIndex].className + ' event class ')
+        console.log(event.value + ' event value')
+        console.log(event[event.selectedIndex].id + ' event id')
+        /* event.value = 'Select project' */
+      }
+    }
 
     const points = () => {
       console.log(' Add points')
       /* delete points */
-      
+
     }
   </script>
   <script async src="./js/mapbox.js"></script>
