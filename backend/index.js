@@ -20,30 +20,23 @@ require('./database');
 // Settings
 app.set('port', process.env.PORT || 3000) // Choose number port
 
-// Midlewares
+// middlewares
 app.use(morgan('dev'))
-app.use(express.urlencoded({extended: false})) // Cuando reciba datos de un formulario express los entendera
-app.use(express.json()) // Cuando reciba un json express los entendera
-app.use(cors())
-
-
-// Midleware multer
-app.use(express.urlencoded({extended: false}))
-app.use(express.json())
-/* const storage = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: path.join(__dirname, 'public/uploads'),
   filename(req, file, cb) {
-    cb(null, new Date().getTime() + path.extname(file.originalname));
+      cb(null, new Date().getTime() + path.extname(file.originalname));
   }
 })
-app.use(multer({storage}).single('image')) */
-// Midleware multer
+app.use(multer({storage}).single('image'))//This middleware works with image files
+app.use(express.urlencoded({extended: false}))//This middleware lets to read data from forms like json 
+app.use(express.json())
+app.use(cors())
 
 // Routes
-/* app.use(require('./routes/projects')) */
 app.use('/api/projects', require('./routes/projects')) // Cuando entre en el navegador me mostrara los datos de el metodo get de routes/projects.js me muestre 
                                                        // http://localhost:4000/api/projects en esta direccion vere los datos que me manda el metodo get
-
+app.use('/api/users', require('./routes/users'))
 // Static files
 app.use(express.static(path.join(__dirname, 'public')))// En la direccion http://localhost:4000 me mostrara los ficheros estaticos index.html etc..
 

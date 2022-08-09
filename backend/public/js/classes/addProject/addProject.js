@@ -65,7 +65,6 @@ class AddProject extends HTMLElement {
   }
   render() {
     this.shadowRoot.append(this.getTemplate().content.cloneNode(true))
-    console.log(' render ' + this.container)
   }
   connectedCallback() {
     this.render()

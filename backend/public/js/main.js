@@ -7,21 +7,37 @@ import "./classes/changeBackground/changeBackground.js"
 import "./classes/user/user.js"
 import "./classes/layersContainer/layersContainer.js"
 import "./classes/projectLegends/projectLegends.js"
-import { ProjectsMenu } from     './classes/projectsMenu/projectsMenu.js' 
-import { ArrayProjects } from     './classes/createArrayProjects/createArrayProjects.js' 
-/* import { ProjectsMenuTest } from     './classes/projectsMenu/projectsMenuTest.js'
-const projectsMenuTest = new ProjectsMenuTest ({container: 'projects_ContainerTest'}) */
+import { ProjectsMenu } from './classes/projectsMenu/projectsMenu.js'  
+import { CreateArrayProjects } from './classes/createArrayProjects/createArrayProjects.js' 
 
-import { Points } from './classes/points/points.js'
 
+//Create menu from dataBase
 const projectsMenu = new ProjectsMenu ({container: 'projects_Container'})
-projectsMenu.renderProjectsMenu() 
+/* projectsMenu.renderProjectsMenu() */ 
+projectsMenu.renderProjectsMenu_01()
+//Create menu from dataBase
 
 
-const arrayProjects = new ArrayProjects ()
+const createArrayProjects = new CreateArrayProjects ()
+
+let objectPromise = createArrayProjects.cArrayProjects() 
+console.log(objectPromise + ' cArrayProjects()')
 
 
+/* import { BasicClass } from './basicClass.js'
+const newClass = new BasicClass ({
+  id: '00000000',
+  titleProject: 'titleProject',
+  dataProject: 'dataProject',
+  legend: 'legend'
+})
 
+console.log(newClass.id + ' data')
+newClass.id = '111111'
+console.log(newClass.id + ' data') */
+
+/* 
+import { Points } from './classes/points/points.js'
 const points = new Points ({
   projectName : "CAT_S1_LOS_A030_202012_202112_Epsg_4326_wgs_84", 
   type : "vector", 
@@ -36,7 +52,7 @@ const points = new Points ({
   valueVelMax : 15
   })
 
-points.renderPoints()
+points.renderPoints() */
 
 
 
@@ -51,9 +67,5 @@ points.renderPoints()
 mapbox.createImageMap() */
 
 
-
-
-
- 
 
 

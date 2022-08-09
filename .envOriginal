@@ -1,0 +1,2 @@
+MONGODB_URI=mongodb://localhost/dataBaseProjects
+PORT=4000

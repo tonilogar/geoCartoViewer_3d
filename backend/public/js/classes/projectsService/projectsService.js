@@ -6,8 +6,9 @@ class ProjectsService {
 
   async getProjects() {
     const response = await fetch(this.URI);
-    const books = await response.json();
-    return books;
+    console.log(response, ' response')
+    const projects = await response.json();
+    return projects
   }
 
   

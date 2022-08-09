@@ -11,6 +11,7 @@ const map = new mapboxgl.Map({
   maxZoom: 25,
   minZoom: 1.65,
   zoom: zoom,
+  projection: 'globe'
 })
 //Create imageMap
 //Create demMap
@@ -23,7 +24,8 @@ map.on('load', function () {
   })
   // add the DEM source as a terrain layer with exaggerated height
   map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
-
+  // Set the default atmosphere style
+  map.setFog({});
   // add a sky layer that will show when the map is highly pitched
   map.addLayer({
       'id': 'sky',

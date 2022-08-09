@@ -1,5 +1,5 @@
 
-class Project {
+class BasicClass {
   constructor({id, titleProject, dataProject, legend}) {
     this.id = id
     this.titleProject = titleProject
@@ -7,9 +7,10 @@ class Project {
     this.legend = legend
   }
 
-  returnData() {
-    this.id = 123456789
+  returnData(data) {
+    this.titleProject = data
+    console.log(this.titleProject + ' this.titleProject')
   }
 }
 
-export { Project }
+export { BasicClass }
