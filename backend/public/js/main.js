@@ -13,8 +13,7 @@ import { CreateArrayProjects } from './classes/createArrayProjects/createArrayPr
 
 //Create menu from dataBase
 const projectsMenu = new ProjectsMenu ({container: 'projects_Container'})
-/* projectsMenu.renderProjectsMenu() */ 
-projectsMenu.renderProjectsMenu_01()
+projectsMenu.renderProjectsMenu()
 //Create menu from dataBase
 
 
