@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>ICGC cartographic geological viewer 3D</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <link rel="shourtcut icon" href="./images/logoIcgcCutOpt.svg" type="image/x-icon">
+  <link rel="stylesheet" href="./css/index.css" type="text/css" />
+  <!-- Mapbox libraries -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet" />
+  <script
+    src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+  <link rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
+    type="text/css" />
+  <!--MapBox v2 does not work with the inspect. For the moment. 
+    <script src='https://mapbox-gl-inspect.lukasmartinelli.ch/dist/mapbox-gl-inspect.min.js'></script>
+    <link href='https://mapbox-gl-inspect.lukasmartinelli.ch/dist/mapbox-gl-inspect.css' rel='stylesheet' />  -->
+  <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
+  <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+  <!--The googleChart library.-->
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <!-- Jquery libraries -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body>
+  <div id='map' class='map'></div>
+  <!-- section__Tools <<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+  <svg id='section__Tools--MenuOpen' onclick='functionMenuOpen()' class='section__Tools--MenuOpen'
+    viewBox='0 0 92.833 92.833'>
+    <g fill='#030000' stroke='#000' stroke-dashoffset='300.69' stroke-linecap='round' stroke-linejoin='round'
+      stroke-miterlimit='.9' stroke-width='7.3832'>
+      <rect x='11.85' y='45.884' width='70.245' height='.026882' style='paint-order:markers fill stroke' />
+      <rect x='11.9' y='18.461' width='70.245' height='.026882' style='paint-order:markers fill stroke' />
+      <rect x='12.058' y='73.691' width='70.245' height='.026882' style='paint-order:markers fill stroke' />
+    </g>
+  </svg>
+  <svg id='section__Tools--MenuClose' onclick='functionMenuClose()' class='section__Tools--MenuClose'
+    viewBox='0 0 92.833 92.833'>
+    <path d='m14.451 14.313 63.763 64.176' fill='#1a1a1a' stroke='#1a1a1a' stroke-linecap='round'
+      stroke-width='10.338' />
+    <path d='m78.236 14.398-63.706 64.063' fill='#1a1a1a' stroke='#1a1a1a' stroke-linecap='round'
+      stroke-linejoin='round' stroke-width='10.32' />
+  </svg>
+  <div class='section__Tools__Container' id='section__Tools__Container'>
+    <ul>Subsidences:
+      <li>Catalunya 2021
+        <input list='subCat_2021' id='valueOptions_2021' onchange='selectOption_2021()' placeholder='Select option' />
+        <datalist id='subCat_2021'>
+          <option value='LOS Ascending'>
+          <option value='LOS Descending'>
+          <option value='Up-Down'>
+          <option value='Est-West'>
+        </datalist>
+      </li>
+      <li>Catalunya 2016-2021
+        <input list='subCat_2016-2021' id='valueOptions_2016_2021' onchange='selectOption_2016_2021()'
+          placeholder='Select option' />
+        <datalist id='subCat_2016-2021'>
+          <option value='LOS Ascending'>
+          <option value='LOS Descending'>
+          <option value='Up-Down'>
+          <option value='Est-West'>
+        </datalist>
+      </li>
+      <li>M Capela 201907-202105
+        <input list='subMina_201907-202105' />
+        <datalist id='subMina_201907-202105'>
+          <option value='LOS Ascending'>
+          <option value='LOS Descending'>
+          <option value='Up-Down'>
+          <option value='Est-West'>
+        </datalist>
+      </li>
+      <li>Projects subsidences
+        <input list='subprojects' />
+        <datalist id='subprojects'>
+          <option value='Bucharest Upward movement 201701-202012'>
+          <option value='Cambrils Upward movement 201601-202112'>
+        </datalist>
+      </li>
+    </ul>
+    <ul>Farmstart:
+      <input list='farmstart' />
+      <datalist id='farmstart'>
+        <option value='Farmstart 2016'>
+        <option value='Farmstart 2017'>
+        <option value='Farmstart 2018'>
+        <option value='Farmstart 2019'>
+        <option value='Farmstart 2020'>
+      </datalist>
+    </ul>
+    <ul>Ndvi:
+      <input list='ndvi' />
+      <datalist id='ndvi'>
+        <option value='Ndvi 2016'>
+        <option value='Ndvi 2017'>
+        <option value='Ndvi 2018'>
+        <option value='Ndvi 2019'>
+        <option value='Ndvi 2020'>
+      </datalist>
+    </ul>
+    <ul>Lidar:
+      <input list='lidar' />
+      <datalist id='lidar'>
+        <option value='Lidar 2016'>
+        <option value='Lidar 2017'>
+        <option value='Lidar 2018'>
+        <option value='Lidar 2019'>
+        <option value='Lidar 2020'>
+      </datalist>
+    </ul>
+  </div>
+  <!-- section__Tools <<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+  <!-- section__Widgets <<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+  <svg id='section__Widgets--User' class='section__Widgets--User' viewBox='0 0 650 650'>
+    <circle cx='313.65' cy='176.65' r='101.73' fill='none' stroke='#000' stroke-dashoffset='300.69'
+      stroke-linecap='square' stroke-linejoin='round' stroke-width='40' style='paint-order:markers fill stroke' />
+    <ellipse cx='320.3' cy='592.76' rx='192.43' ry='232.06' fill='none' stroke='#000' stroke-dashoffset='300.69'
+      stroke-linecap='square' stroke-linejoin='round' stroke-width='45.481' style='paint-order:markers fill stroke' />
+  </svg>
+  <div id='section__Widgets--search' class='section__Widgets--search'></div>
+  <div id='section__Widgets--cNavigation' class='section__Widgets--cNavigation'></div>
+  <div id='section__Widgets--geo' class='section__Widgets--geo'></div>
+  <!-- section__Widgets <<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+  <svg class='section__Widgets--Info' id='section__Widgets--Info' viewBox='0 0 650 650' onclick='showHideInfo()'>
+    <g style='font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal'
+      aria-label='i'>
+      <path
+        d='m311.59 548.74q-22.057 0-37.711-15.298-15.298-15.654-15.298-37.711v-209.9q0-22.057 15.654-37.711 16.009-15.654 37.355-15.654h0.71153q21.346 0 36.999 15.654t15.654 37.711v209.9q0 22.057-15.654 37.711t-36.999 15.298zm49.095-400.59q0 23.125-16.365 39.134-16.009 16.009-38.422 16.009-22.769 0-38.422-16.009-15.654-16.009-16.009-39.134 0-23.125 16.009-38.778 15.654-16.009 38.422-15.654 22.057 0 38.422 15.298 16.365 15.654 16.365 39.134z'
+        stroke-width='18.215'
+        style='font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal' />
+    </g>
+  </svg>
+  <div class='section__Widgets--Info--Legent' id='section__Widgets--Info--Legent'>
+    <img id='legend_ASC_15' class='legend_ASC_15' src='./images/Llegenda_ASC_15.jpg' alt='legend_ASC_15'>
+    <img id='legend_DESC_15' class='legend_DESC_15' src='./images/Llegenda_DESC_15.jpg' alt='legend_DESC_15'>
+    <img id='legend_UD_15' class='legend_UD_15' src='./images/Llegenda_UD_15.jpg' alt='legend_UD_15'>
+    <img id='legend_EW_15' class='legend_EW_15' src='./images/Llegenda_EW_15.jpg' alt='legend_EW_15'>
+    <img id='legend_ASC_6' class='legend_ASC_6' src='./images/Llegenda_ASC_6.jpg' alt='legend_ASC_6'>
+    <img id='legend_DESC_6' class='legend_DESC_6' src='./images/Llegenda_DESC_6.jpg' alt='legend_DESC_6'>
+    <img id='legend_UD_6' class='legend_UD_6' src='./images/Llegenda_UD_6.jpg' alt='legend_UD_6'>
+    <img id='legend_EW_6' class='legend_EW_6' src='./images/Llegenda_EW_6.jpg' alt='legend_EW_6'>
+  </div>
+  <!-- section__Widgets <<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+  <svg class='section__Widgets--Layers' id='section__Widgets--Layers' onclick='showHideLayers()' viewBox='0 0 650 650'>
+    <g transform='matrix(1.8871 0 0 2.06 47.852 24.525)'>
+      <g fill='#010002'>
+        <path
+          d='m289.44 79.226-135.78-60.547c-3.291-1.474-7.054-1.474-10.356 0l-135.78 60.547c-4.427 1.974-7.354 6.315-7.522 11.161s2.431 9.377 6.712 11.661l135.78 72.405c1.871 1.006 3.932 1.496 5.983 1.496 2.061 0 4.112-0.495 5.994-1.496l135.78-72.405c4.281-2.284 6.886-6.81 6.712-11.661s-3.095-9.186-7.522-11.161zm-140.96 69.61-106.85-56.98 106.85-47.646 106.86 47.646z' />
+        <path
+          d='m278.28 133.4-129.79 69.228-129.79-69.228c-6.217-3.318-13.908-0.968-17.198 5.232-3.302 6.201-0.968 13.897 5.227 17.198l135.78 72.421c1.871 1.001 3.932 1.496 5.983 1.496 2.061 0 4.112-0.495 5.994-1.496l135.78-72.421c6.195-3.301 8.528-10.998 5.227-17.198s-10.998-8.544-17.204-5.232z' />
+        <path
+          d='m278.28 183.06-129.79 69.218-129.79-69.218c-6.217-3.318-13.908-0.957-17.198 5.232-3.302 6.201-0.968 13.897 5.227 17.198l135.78 72.416c1.871 1.001 3.932 1.496 5.983 1.496 2.061 0 4.112-0.495 5.994-1.496l135.78-72.416c6.195-3.301 8.528-10.998 5.227-17.198-3.307-6.19-10.987-8.55-17.204-5.232z' />
+      </g>
+    </g>
+  </svg>
+  <div class='section__Widgets--Layers--Data' id='section__Widgets--Layers--Data'>
+    <div id='layer_ASC_15' class='layer_ASC_15'> <input onclick="check()" type="checkbox" id='layer_ASC_15_Input'
+        class='layer_ASC_15_Input' checked> <a id='layer_ASC_15_A' class='layer_ASC_15_A'
+        onclick="mainLayer_2021_Asc()">Catalunya 2021 ASC </a><span onclick="closeLayer_2021_Asc()">X</span></div>
+    <div id='layer_DESC_15' class='layer_DESC_15'><input onclick="check()" type="checkbox" id='layer_DESC_15_Input'
+        class='layer_DESC_15_Input' checked> <a id='layer_DESC_15_A' class='layer_DESC_15_A'
+        onclick="mainLayer_2021_Desc()">Catalunya 2021 DESC </a><span onclick="closeLayer_2021_Desc()">X</span></div>
+    <div id='layer_UD_15' class='layer_UD_15'> <input onclick="check()" type="checkbox" id='layer_UD_15_Input'
+        class='layer_UD_15_Input' checked> <a id='layer_UD_15_A' class='layer_UD_15_A'
+        onclick="mainLayer_2021_Ud()">Catalunya 2021 UD </a><span onclick="closeLayer_2021_Ud()">X</span></div>
+    <div id='layer_EW_15' class='layer_EW_15'> <input onclick="check()" type="checkbox" id='layer_EW_15_Input'
+        class='layer_EW_15_Input' checked> <a id='layer_EW_15_A' class='layer_EW_15_A'
+        onclick="mainLayer_2021_Ew()">Catalunya 2021 EW </a><span onclick="closeLayer_2021_Ew()">X</span></div>
+    <div id='layer_ASC_6' class='layer_ASC_6'> <input onclick="check()" type="checkbox" id='layer_ASC_6_Input'
+        class='layer_ASC_6_Input' checked> <a id='layer_ASC_6_A' class='layer_ASC_6_A'
+        onclick="mainLayer_2016_2021_Asc()">Catalunya 2016-2021 ASC </a><span
+        onclick="closeLayer_2016_2021_Asc()">X</span></div>
+    <div id='layer_DESC_6' class='layer_DESC_6'> <input onclick="check()" type="checkbox" id='layer_DESC_6_Input'
+        class='layer_DESC_6_Input' checked> <a id='layer_DESC_6_A' class='layer_DESC_6_A'
+        onclick="mainLayer_2016_2021_Desc()">Catalunya 2016-2021 DESC </a><span
+        onclick="closeLayer_2016_2021_Desc()">X</span></div>
+    <div id='layer_UD_6' class='layer_UD_6'> <input onclick="check()" type="checkbox" id='layer_UD_6_Input'
+        class='layer_UD_6_Input' checked> <a id='layer_UD_6_A' class='layer_UD_6_A'
+        onclick="mainLayer_2016_2021_Ud()">Catalunya 2016-2021 UD </a><span onclick="closeLayer_2016_2021_Ud()">X</span>
+    </div>
+    <div id='layer_EW_6' class='layer_EW_6'> <input onclick="check()" type="checkbox" id='layer_EW_6_Input'
+        class='layer_EW_6_Input' checked> <a id='layer_EW_6_A' class='layer_EW_6_A'
+        onclick="mainLayer_2016_2021_Ew()">Catalunya 2016-2021 EW </a><span onclick="closeLayer_2016_2021_Ew()">X</span>
+    </div>
+  </div>
+  <div class='widgetCameraHeight' id='widgetCameraHeight'></div>
+  <div class='widgetCopyCoordinates' id='widgetCopyCoordinates'>Double click copy the ground coordinates</div>
+  <div class='widgetCoordinates' id='widgetCoordinates' placeholder='Double'></div>
+  <!-- section__Widgets <<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+  <!-- section__Chart <<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+  <div class='chart__Div' id='chart__Div'>
+    <div class='chart__Div__Title' id='chart__Div__Title'>
+      <div class='chart__Div__Title_Close' id='chart__Div__Title_Close' onclick='closeX()'><span>X</span></div>
+    </div>
+    <div class='chart__Div__View' id='chart__Div__View'></div>
+  </div>
+  <!-- section__Chart <<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+  <script>
+    
+    const layersShow = []
+    let layersShowFilter = []
+    let result 
+    const functionMenuOpen = () => {
+      document.getElementById('section__Tools--MenuOpen').style.display = 'none'
+      document.getElementById('section__Tools--MenuClose').style.display = 'block'
+      document.getElementById('section__Tools__Container').style.display = 'block'
+    }
+    const functionMenuClose = () => {
+      document.getElementById('section__Tools--MenuClose').style.display = 'none'
+      document.getElementById('section__Tools--MenuOpen').style.display = 'block'
+      document.getElementById('section__Tools__Container').style.display = 'none'
+    }
+    const showHideInfo = () => {
+      if (document.getElementById('section__Widgets--Info--Legent').style.display == 'block') {
+        document.getElementById('section__Widgets--Info--Legent').style.display = 'none'
+      }
+      else {
+        document.getElementById('section__Widgets--Info--Legent').style.display = 'block'
+        console.log('ShowInfo')
+      }
+    }
+
+    const showHideLayers = () => {
+      if (document.getElementById('section__Widgets--Layers--Data').style.display == 'block') {
+        document.getElementById('section__Widgets--Layers--Data').style.display = 'none'
+      }
+      else {
+        document.getElementById('section__Widgets--Layers--Data').style.display = 'block'
+        console.log('ShowLayers')
+      }
+
+    }
+    function removeItemFromArr ( data, item ) {
+        var i = data.indexOf( item );
+ 
+        if ( i !== -1 ) {
+          data.splice( i, 1 );
+        }
+      }
+    const closeLayer_2021_Asc = () => {
+      document.getElementById('layer_ASC_15').style.display = 'none'
+      console.log('closeLayer_2021_Asc')
+      map.setLayoutProperty('CAT_S1_LOS_A030_202012_202112_Epsg_4326_wgs_84',    'visibility', 'none')
+      map.setLayoutProperty('CAT_S1_LOS_A132_202012_202112_32631_4326',        'visibility', 'none')
+      
+      removeItemFromArr( result, 'CAT_S1_LOS_A030_202012_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( result, 'CAT_S1_LOS_A132_202012_202112_32631_4326' );
+
+      result.forEach((value) => {
+        map.setLayoutProperty(value,    'visibility', 'visible')
+      });
+
+    }
+    const closeLayer_2021_Desc = () => {
+      document.getElementById('layer_DESC_15').style.display = 'none'
+      console.log('closeLayer_2021_Esc')
+      map.setLayoutProperty('CAT_S1_LOS_D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+      map.setLayoutProperty('CAT_S1_LOS_D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+      
+      removeItemFromArr( result, 'CAT_S1_LOS_D037_202012_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( result, 'CAT_S1_LOS_D110_202012_202112_Epsg_4326_wgs_84' );
+
+      result.forEach((value) => {
+        map.setLayoutProperty(value,    'visibility', 'visible')
+      });
+
+    }
+    const closeLayer_2021_Ud = () => {
+      document.getElementById('layer_UD_15').style.display = 'none'
+      console.log('closeLayer_2021_Ud')
+      map.setLayoutProperty('CAT_S1_UD_A030D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+      map.setLayoutProperty('CAT_S1_UD_A132D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+      map.setLayoutProperty('CAT_S1_UD_A132D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+
+      removeItemFromArr( result, 'CAT_S1_UD_A030D110_202012_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( result, 'CAT_S1_UD_A132D037_202012_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( result, 'CAT_S1_UD_A132D110_202012_202112_Epsg_4326_wgs_84' );
+
+      result.forEach((value) => {
+        map.setLayoutProperty(value,    'visibility', 'visible')
+      });
+    }
+    const closeLayer_2021_Ew = () => {
+      document.getElementById('layer_EW_15').style.display = 'none'
+      console.log('closeLayer_2021_Ew')
+      map.setLayoutProperty('CAT_S1_EW_A030D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+      map.setLayoutProperty('CAT_S1_EW_A132D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+      map.setLayoutProperty('CAT_S1_EW_A132D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+
+      removeItemFromArr( result, 'CAT_S1_EW_A030D110_202012_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( result, 'CAT_S1_EW_A132D037_202012_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( result, 'CAT_S1_EW_A132D110_202012_202112_Epsg_4326_wgs_84' );
+
+      result.forEach((value) => {
+        map.setLayoutProperty(value,    'visibility', 'visible')
+      });
+        
+    }
+    const closeLayer_2016_2021_Asc = () => {
+      document.getElementById('layer_ASC_6').style.display = 'none'
+      console.log('closeLayer_2016_2021_Asc')
+      map.setLayoutProperty('CAT_S1_LOS_A030_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+      map.setLayoutProperty('CAT_S1_LOS_A132_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+
+      removeItemFromArr( result, 'CAT_S1_LOS_A030_201601_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( result, 'CAT_S1_LOS_A132_201601_202112_Epsg_4326_wgs_84' );
+     
+
+      result.forEach((value) => {
+        map.setLayoutProperty(value,    'visibility', 'visible')
+      });
+    }
+    const closeLayer_2016_2021_Desc = () => {
+      document.getElementById('layer_DESC_6').style.display = 'none'
+      console.log('closeLayer_2016_2021_Desc')
+      map.setLayoutProperty('CAT_S1_LOS_D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+      map.setLayoutProperty('CAT_S1_LOS_D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+
+      removeItemFromArr( result, 'CAT_S1_LOS_D037_201601_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( result, 'CAT_S1_LOS_D110_201601_202112_Epsg_4326_wgs_84' );
+     
+
+      result.forEach((value) => {
+        map.setLayoutProperty(value,    'visibility', 'visible')
+      });
+    }
+    const closeLayer_2016_2021_Ud = () => {
+      document.getElementById('layer_UD_6').style.display = 'none'
+      console.log('closeLayer_2016_2021_Ud')
+      map.setLayoutProperty('CAT_S1_UD_A030D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+      map.setLayoutProperty('CAT_S1_UD_A132D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+      map.setLayoutProperty('CAT_S1_UD_A132D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')  
+
+      removeItemFromArr( result, 'CAT_S1_UD_A030D110_201601_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( result, 'CAT_S1_UD_A132D037_201601_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( result, 'CAT_S1_UD_A132D110_201601_202112_Epsg_4326_wgs_84' );
+     
+
+      result.forEach((value) => {
+        map.setLayoutProperty(value,    'visibility', 'visible')
+      });
+    }
+    const closeLayer_2016_2021_Ew = () => {
+      document.getElementById('layer_EW_6').style.display = 'none'
+      console.log('closeLayer_2016_2021_Ew_6')
+      map.setLayoutProperty('CAT_S1_EW_A030D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+      map.setLayoutProperty('CAT_S1_EW_A132D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+      map.setLayoutProperty('CAT_S1_EW_A132D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+
+      removeItemFromArr( result, 'CAT_S1_EW_A030D110_201601_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( result, 'CAT_S1_EW_A132D037_201601_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( result, 'CAT_S1_EW_A132D110_201601_202112_Epsg_4326_wgs_84' );
+     
+
+      result.forEach((value) => {
+        map.setLayoutProperty(value,    'visibility', 'visible')
+      });
+    }
+    const mainLayer_2016_2021 = (mbTiles_01, mbTiles_02, mbTiles_03) => {
+      map.setLayoutProperty(mbTiles_01,    'visibility', 'visible')
+      map.setLayoutProperty(mbTiles_02,        'visibility', 'visible')
+      map.setLayoutProperty(mbTiles_03,        'visibility', 'visible')
+      map.setPaintProperty(mbTiles_01,    'circle-color', [
+            "case",
+            ["<", ["get", "VEL"], -6], "rgba(226,26,28, 1)",
+            [">=", ["get", "VEL"], -6] && ["<=", ["get", "VEL"], -5], "rgba(239,117,16, 1)",
+            [">=", ["get", "VEL"], -5] && ["<=", ["get", "VEL"], -4], "rgba(250,209,5, 1)",
+            [">=", ["get", "VEL"], -4] && ["<=", ["get", "VEL"], -3], "rgba(255,243,24, 1)",
+            [">=", ["get", "VEL"], -3] && ["<=", ["get", "VEL"], -2], "rgba(174,255,0, 1)",
+            /* [">=", ["get", "VEL"], -3]  && ["<=", ["get", "VEL"], 3], "rgba(4,255,0, 1)", */
+            [">=", ["get", "VEL"], 2] && ["<=", ["get", "VEL"], 3], "rgba(2,255,130, 1)",
+            [">=", ["get", "VEL"], 3] && ["<=", ["get", "VEL"], 4], "rgba(1,255,203, 1)",
+            [">=", ["get", "VEL"], 4] && ["<=", ["get", "VEL"], 5], "rgba(1,210,251, 1)",
+            [">=", ["get", "VEL"], 5] && ["<=", ["get", "VEL"], 6], "rgba(0,121,246, 1)",
+            [">", ["get", "VEL"], 6], "rgba(1,32,244, 1)",
+            "rgba(4,255,0, 1)" //Range between -3 y 3 
+        ])
+      map.setPaintProperty(mbTiles_01,    'circle-radius', 6)
+      map.setPaintProperty(mbTiles_02,    'circle-color', [
+            "case",
+            ["<", ["get", "VEL"], -6], "rgba(226,26,28, 1)",
+            [">=", ["get", "VEL"], -6] && ["<=", ["get", "VEL"], -5], "rgba(239,117,16, 1)",
+            [">=", ["get", "VEL"], -5] && ["<=", ["get", "VEL"], -4], "rgba(250,209,5, 1)",
+            [">=", ["get", "VEL"], -4] && ["<=", ["get", "VEL"], -3], "rgba(255,243,24, 1)",
+            [">=", ["get", "VEL"], -3] && ["<=", ["get", "VEL"], -2], "rgba(174,255,0, 1)",
+            /* [">=", ["get", "VEL"], -3]  && ["<=", ["get", "VEL"], 3], "rgba(4,255,0, 1)", */
+            [">=", ["get", "VEL"], 2] && ["<=", ["get", "VEL"], 3], "rgba(2,255,130, 1)",
+            [">=", ["get", "VEL"], 3] && ["<=", ["get", "VEL"], 4], "rgba(1,255,203, 1)",
+            [">=", ["get", "VEL"], 4] && ["<=", ["get", "VEL"], 5], "rgba(1,210,251, 1)",
+            [">=", ["get", "VEL"], 5] && ["<=", ["get", "VEL"], 6], "rgba(0,121,246, 1)",
+            [">", ["get", "VEL"], 6], "rgba(1,32,244, 1)",
+            "rgba(4,255,0, 1)" //Range between -3 y 3 
+        ])
+      map.setPaintProperty(mbTiles_02,    'circle-radius', 6)
+      map.setPaintProperty(mbTiles_03,    'circle-color', [
+            "case",
+            ["<", ["get", "VEL"], -6], "rgba(226,26,28, 1)",
+            [">=", ["get", "VEL"], -6] && ["<=", ["get", "VEL"], -5], "rgba(239,117,16, 1)",
+            [">=", ["get", "VEL"], -5] && ["<=", ["get", "VEL"], -4], "rgba(250,209,5, 1)",
+            [">=", ["get", "VEL"], -4] && ["<=", ["get", "VEL"], -3], "rgba(255,243,24, 1)",
+            [">=", ["get", "VEL"], -3] && ["<=", ["get", "VEL"], -2], "rgba(174,255,0, 1)",
+            /* [">=", ["get", "VEL"], -3]  && ["<=", ["get", "VEL"], 3], "rgba(4,255,0, 1)", */
+            [">=", ["get", "VEL"], 2] && ["<=", ["get", "VEL"], 3], "rgba(2,255,130, 1)",
+            [">=", ["get", "VEL"], 3] && ["<=", ["get", "VEL"], 4], "rgba(1,255,203, 1)",
+            [">=", ["get", "VEL"], 4] && ["<=", ["get", "VEL"], 5], "rgba(1,210,251, 1)",
+            [">=", ["get", "VEL"], 5] && ["<=", ["get", "VEL"], 6], "rgba(0,121,246, 1)",
+            [">", ["get", "VEL"], 6], "rgba(1,32,244, 1)",
+            "rgba(4,255,0, 1)" //Range between -3 y 3  
+        ])
+      map.setPaintProperty(mbTiles_03,    'circle-radius', 6)
+    }
+    const mainLayer_2021 = (mbTiles_01, mbTiles_02, mbTiles_03) => {
+      map.setLayoutProperty(mbTiles_01,    'visibility', 'visible')
+      map.setLayoutProperty(mbTiles_02,        'visibility', 'visible')
+      map.setLayoutProperty(mbTiles_03,        'visibility', 'visible')
+      map.setPaintProperty(mbTiles_01,    'circle-color', [
+            "case",
+            ["<", ["get", "VEL"], -15], "rgba(226,26,28, 1)",
+            [">=", ["get", "VEL"], -15] && ["<=", ["get", "VEL"], -12], "rgba(239,117,16, 1)",
+            [">=", ["get", "VEL"], -12] && ["<=", ["get", "VEL"], -9], "rgba(250,209,5, 1)",
+            [">=", ["get", "VEL"], -9] && ["<=", ["get", "VEL"], -6], "rgba(255,243,24, 1)",
+            [">=", ["get", "VEL"], -6] && ["<=", ["get", "VEL"], -3], "rgba(174,255,0, 1)",
+            /* [">=", ["get", "VEL"], -3]  && ["<=", ["get", "VEL"], 3], "rgba(4,255,0, 1)", */
+            [">=", ["get", "VEL"], 3] && ["<=", ["get", "VEL"], 6], "rgba(2,255,130, 1)",
+            [">=", ["get", "VEL"], 6] && ["<=", ["get", "VEL"], 9], "rgba(1,255,203, 1)",
+            [">=", ["get", "VEL"], 9] && ["<=", ["get", "VEL"], 12], "rgba(1,210,251, 1)",
+            [">=", ["get", "VEL"], 12] && ["<=", ["get", "VEL"], 15], "rgba(0,121,246, 1)",
+            [">", ["get", "VEL"], 15], "rgba(1,32,244, 1)",
+            "rgba(4,255,0, 1)" //Range between -3 y 3 
+        ])
+      map.setPaintProperty(mbTiles_01,    'circle-radius', 6)
+      map.setPaintProperty(mbTiles_02,    'circle-color', [
+            "case",
+            ["<", ["get", "VEL"], -15], "rgba(226,26,28, 1)",
+            [">=", ["get", "VEL"], -15] && ["<=", ["get", "VEL"], -12], "rgba(239,117,16, 1)",
+            [">=", ["get", "VEL"], -12] && ["<=", ["get", "VEL"], -9], "rgba(250,209,5, 1)",
+            [">=", ["get", "VEL"], -9] && ["<=", ["get", "VEL"], -6], "rgba(255,243,24, 1)",
+            [">=", ["get", "VEL"], -6] && ["<=", ["get", "VEL"], -3], "rgba(174,255,0, 1)",
+            /* [">=", ["get", "VEL"], -3]  && ["<=", ["get", "VEL"], 3], "rgba(4,255,0, 1)", */
+            [">=", ["get", "VEL"], 3] && ["<=", ["get", "VEL"], 6], "rgba(2,255,130, 1)",
+            [">=", ["get", "VEL"], 6] && ["<=", ["get", "VEL"], 9], "rgba(1,255,203, 1)",
+            [">=", ["get", "VEL"], 9] && ["<=", ["get", "VEL"], 12], "rgba(1,210,251, 1)",
+            [">=", ["get", "VEL"], 12] && ["<=", ["get", "VEL"], 15], "rgba(0,121,246, 1)",
+            [">", ["get", "VEL"], 15], "rgba(1,32,244, 1)",
+            "rgba(4,255,0, 1)" //Range between -3 y 3 
+        ])
+      map.setPaintProperty(mbTiles_02,    'circle-radius', 6)
+      map.setPaintProperty(mbTiles_03,    'circle-color', [
+            "case",
+            ["<", ["get", "VEL"], -15], "rgba(226,26,28, 1)",
+            [">=", ["get", "VEL"], -15] && ["<=", ["get", "VEL"], -12], "rgba(239,117,16, 1)",
+            [">=", ["get", "VEL"], -12] && ["<=", ["get", "VEL"], -9], "rgba(250,209,5, 1)",
+            [">=", ["get", "VEL"], -9] && ["<=", ["get", "VEL"], -6], "rgba(255,243,24, 1)",
+            [">=", ["get", "VEL"], -6] && ["<=", ["get", "VEL"], -3], "rgba(174,255,0, 1)",
+            /* [">=", ["get", "VEL"], -3]  && ["<=", ["get", "VEL"], 3], "rgba(4,255,0, 1)", */
+            [">=", ["get", "VEL"], 3] && ["<=", ["get", "VEL"], 6], "rgba(2,255,130, 1)",
+            [">=", ["get", "VEL"], 6] && ["<=", ["get", "VEL"], 9], "rgba(1,255,203, 1)",
+            [">=", ["get", "VEL"], 9] && ["<=", ["get", "VEL"], 12], "rgba(1,210,251, 1)",
+            [">=", ["get", "VEL"], 12] && ["<=", ["get", "VEL"], 15], "rgba(0,121,246, 1)",
+            [">", ["get", "VEL"], 15], "rgba(1,32,244, 1)",
+            "rgba(4,255,0, 1)" //Range between -3 y 3 
+        ])
+      map.setPaintProperty(mbTiles_03,    'circle-radius', 6)
+    }
+    const mainLayer_2021_Asc = () => {
+      document.getElementById('layer_ASC_15_A').style.backgroundColor = 'green'
+      document.getElementById('layer_DESC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_UD_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_EW_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_ASC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_DESC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_UD_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_EW_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      console.log('mainLayer_2021_Asc')
+      document.getElementById('legend_ASC_15').style.display = 'block'
+      document.getElementById('legend_DESC_15').style.display = 'none'
+      document.getElementById('legend_UD_15').style.display = 'none'
+      document.getElementById('legend_EW_15').style.display = 'none'
+      document.getElementById('legend_ASC_6').style.display = 'none'
+      document.getElementById('legend_DESC_6').style.display = 'none'
+      document.getElementById('legend_UD_6').style.display = 'none'
+      document.getElementById('legend_EW_6').style.display = 'none'  
+      layersShowFilter = [...result]
+      /* removeItemFromArr( layersShowFilter, 'CAT_S1_LOS_A030_202012_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( layersShowFilter, 'CAT_S1_LOS_A132_202012_202112_32631_4326' ); */
+      console.log(layersShowFilter + ' layersShowFilter mainLayer ' + layersShowFilter.length + ' main layer numero elementos')
+
+      layersShowFilter.forEach((value) => {
+        map.setPaintProperty(value,    'circle-color', 'rgba(255, 157, 157, 0.39)')
+        map.setPaintProperty(value,    'circle-radius', 3)
+      });
+
+      mainLayer_2021('CAT_S1_LOS_A030_202012_202112_Epsg_4326_wgs_84', 'CAT_S1_LOS_A132_202012_202112_32631_4326', 'CAT_S1_LOS_A030_202012_202112_Epsg_4326_wgs_84')
+         
+    }
+    const mainLayer_2021_Desc = () => {
+      document.getElementById('layer_ASC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_DESC_15_A').style.backgroundColor = 'green'
+      document.getElementById('layer_UD_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_EW_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_ASC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_DESC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_UD_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_EW_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      console.log('mainLayer_2021_Desc')
+      document.getElementById('legend_ASC_15').style.display = 'none'
+      document.getElementById('legend_DESC_15').style.display = 'block'
+      document.getElementById('legend_UD_15').style.display = 'none'
+      document.getElementById('legend_EW_15').style.display = 'none'
+      document.getElementById('legend_ASC_6').style.display = 'none'
+      document.getElementById('legend_DESC_6').style.display = 'none'
+      document.getElementById('legend_UD_6').style.display = 'none'
+      document.getElementById('legend_EW_6').style.display = 'none'
+      layersShowFilter = [...result]
+      /* removeItemFromArr( layersShowFilter, 'CAT_S1_LOS_D037_202012_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( layersShowFilter, 'CAT_S1_LOS_D110_202012_202112_Epsg_4326_wgs_84' ); */
+      console.log(layersShowFilter + ' layersShowFilter mainLayer ' + layersShowFilter.length + ' main layer numero elementos')
+
+      layersShowFilter.forEach((value) => {
+        map.setPaintProperty(value,    'circle-color', 'rgba(255, 157, 157, 0.39)')
+        map.setPaintProperty(value,    'circle-radius', 3)
+      });
+      mainLayer_2021('CAT_S1_LOS_D037_202012_202112_Epsg_4326_wgs_84', 'CAT_S1_LOS_D110_202012_202112_Epsg_4326_wgs_84', 'CAT_S1_LOS_D110_202012_202112_Epsg_4326_wgs_84')
+
+    }
+    const mainLayer_2021_Ud = () => {
+      document.getElementById('layer_ASC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_DESC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_UD_15_A').style.backgroundColor = 'green'
+      document.getElementById('layer_EW_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_ASC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_DESC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_UD_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_EW_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      console.log('mainLayer_2021_Ud')
+      document.getElementById('legend_ASC_15').style.display = 'none'
+      document.getElementById('legend_DESC_15').style.display = 'none'
+      document.getElementById('legend_UD_15').style.display = 'block'
+      document.getElementById('legend_EW_15').style.display = 'none'
+      document.getElementById('legend_ASC_6').style.display = 'none'
+      document.getElementById('legend_DESC_6').style.display = 'none'
+      document.getElementById('legend_UD_6').style.display = 'none'
+      document.getElementById('legend_EW_6').style.display = 'none'
+      layersShowFilter = [...result]
+      /* removeItemFromArr( layersShowFilter, 'CAT_S1_UD_A030D110_202012_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( layersShowFilter, 'CAT_S1_UD_A132D037_202012_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( layersShowFilter, 'CAT_S1_UD_A132D110_202012_202112_Epsg_4326_wgs_84' ); */
+      console.log(layersShowFilter + ' layersShowFilter mainLayer ' + layersShowFilter.length + ' main layer numero elementos')
+
+      layersShowFilter.forEach((value) => {
+        map.setPaintProperty(value,    'circle-color', 'rgba(255, 157, 157, 0.39)')
+        map.setPaintProperty(value,    'circle-radius', 3)
+      });
+      mainLayer_2021('CAT_S1_UD_A030D110_202012_202112_Epsg_4326_wgs_84', 'CAT_S1_UD_A132D037_202012_202112_Epsg_4326_wgs_84', 'CAT_S1_UD_A132D110_202012_202112_Epsg_4326_wgs_84')
+
+
+    }
+    const mainLayer_2021_Ew = () => {
+      document.getElementById('layer_ASC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_DESC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_UD_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_EW_15_A').style.backgroundColor = 'green'
+      document.getElementById('layer_ASC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_DESC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_UD_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_EW_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      console.log('mainLayer_2021_Ew')
+      document.getElementById('legend_ASC_15').style.display = 'none'
+      document.getElementById('legend_DESC_15').style.display = 'none'
+      document.getElementById('legend_UD_15').style.display = 'none'
+      document.getElementById('legend_EW_15').style.display = 'block'
+      document.getElementById('legend_ASC_6').style.display = 'none'
+      document.getElementById('legend_DESC_6').style.display = 'none'
+      document.getElementById('legend_UD_6').style.display = 'none'
+      document.getElementById('legend_EW_6').style.display = 'none'
+      layersShowFilter = [...result]
+      /* removeItemFromArr( layersShowFilter, 'CAT_S1_EW_A030D110_202012_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( layersShowFilter, 'CAT_S1_EW_A132D037_202012_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( layersShowFilter, 'CAT_S1_EW_A132D110_202012_202112_Epsg_4326_wgs_84' ); */
+      console.log(layersShowFilter + ' layersShowFilter mainLayer ' + layersShowFilter.length + ' main layer numero elementos')
+
+      layersShowFilter.forEach((value) => {
+        map.setPaintProperty(value,    'circle-color', 'rgba(255, 157, 157, 0.39)')
+        map.setPaintProperty(value,    'circle-radius', 3)
+      });
+      mainLayer_2021('CAT_S1_EW_A030D110_202012_202112_Epsg_4326_wgs_84', 'CAT_S1_EW_A132D037_202012_202112_Epsg_4326_wgs_84', 'CAT_S1_EW_A132D110_202012_202112_Epsg_4326_wgs_84')
+
+
+    }
+    const mainLayer_2016_2021_Asc = () => {
+      document.getElementById('layer_ASC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_DESC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_UD_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_EW_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_ASC_6_A').style.backgroundColor = 'green'
+      document.getElementById('layer_DESC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_UD_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_EW_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      console.log('mainLayer_2016__2021_Asc')
+      document.getElementById('legend_ASC_15').style.display = 'none'
+      document.getElementById('legend_DESC_15').style.display = 'none'
+      document.getElementById('legend_UD_15').style.display = 'none'
+      document.getElementById('legend_EW_15').style.display = 'none'
+      document.getElementById('legend_ASC_6').style.display = 'block'
+      document.getElementById('legend_DESC_6').style.display = 'none'
+      document.getElementById('legend_UD_6').style.display = 'none'
+      document.getElementById('legend_EW_6').style.display = 'none'
+      layersShowFilter = [...result]
+      /* removeItemFromArr( layersShowFilter, 'CAT_S1_LOS_A030_201601_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( layersShowFilter, 'CAT_S1_LOS_A132_201601_202112_Epsg_4326_wgs_84' ); */
+      console.log(layersShowFilter + ' layersShowFilter mainLayer ' + layersShowFilter.length + ' main layer numero elementos')
+
+      layersShowFilter.forEach((value) => {
+        map.setPaintProperty(value,    'circle-color', 'rgba(255, 157, 157, 0.39)')
+        map.setPaintProperty(value,    'circle-radius', 3)
+      });
+      mainLayer_2016_2021('CAT_S1_LOS_A030_201601_202112_Epsg_4326_wgs_84', 'CAT_S1_LOS_A030_201601_202112_Epsg_4326_wgs_84', 'CAT_S1_LOS_A132_201601_202112_Epsg_4326_wgs_84')
+
+      
+    }
+    const mainLayer_2016_2021_Desc = () => {
+      document.getElementById('layer_ASC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_DESC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_UD_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_EW_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_ASC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_DESC_6_A').style.backgroundColor = 'green'
+      document.getElementById('layer_UD_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_EW_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      console.log('mainLayer_2016_2021_Desc')
+      document.getElementById('legend_ASC_15').style.display = 'none'
+      document.getElementById('legend_DESC_15').style.display = 'none'
+      document.getElementById('legend_UD_15').style.display = 'none'
+      document.getElementById('legend_EW_15').style.display = 'none'
+      document.getElementById('legend_ASC_6').style.display = 'none'
+      document.getElementById('legend_DESC_6').style.display = 'block'
+      document.getElementById('legend_UD_6').style.display = 'none'
+      document.getElementById('legend_EW_6').style.display = 'none'
+      layersShowFilter = [...result]
+     /*  removeItemFromArr( layersShowFilter, 'CAT_S1_LOS_D037_201601_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( layersShowFilter, 'CAT_S1_LOS_D110_201601_202112_Epsg_4326_wgs_84' ); */
+      console.log(layersShowFilter + ' layersShowFilter mainLayer ' + layersShowFilter.length + ' main layer numero elementos')
+
+      layersShowFilter.forEach((value) => {
+        map.setPaintProperty(value,    'circle-color', 'rgba(255, 157, 157, 0.39)')
+        map.setPaintProperty(value,    'circle-radius', 3)
+      });
+      mainLayer_2016_2021('CAT_S1_LOS_D037_201601_202112_Epsg_4326_wgs_84', 'CAT_S1_LOS_D037_201601_202112_Epsg_4326_wgs_84', 'CAT_S1_LOS_D110_201601_202112_Epsg_4326_wgs_84')
+
+     
+
+    }
+    const mainLayer_2016_2021_Ud = () => {
+      document.getElementById('layer_ASC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_DESC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_UD_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_EW_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_ASC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_DESC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_UD_6_A').style.backgroundColor = 'green'
+      document.getElementById('layer_EW_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      console.log('mainLayer_2016__2021_Ud')
+      document.getElementById('legend_ASC_15').style.display = 'none'
+      document.getElementById('legend_DESC_15').style.display = 'none'
+      document.getElementById('legend_UD_15').style.display = 'none'
+      document.getElementById('legend_EW_15').style.display = 'none'
+      document.getElementById('legend_ASC_6').style.display = 'none'
+      document.getElementById('legend_DESC_6').style.display = 'none'
+      document.getElementById('legend_UD_6').style.display = 'block'
+      document.getElementById('legend_EW_6').style.display = 'none'
+      layersShowFilter = [...result]
+      /* removeItemFromArr( layersShowFilter, 'CAT_S1_UD_A030D110_201601_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( layersShowFilter, 'CAT_S1_UD_A132D037_201601_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( layersShowFilter, 'CAT_S1_UD_A132D110_201601_202112_Epsg_4326_wgs_84' ); */
+      console.log(layersShowFilter + ' layersShowFilter mainLayer ' + layersShowFilter.length + ' main layer numero elementos')
+
+      layersShowFilter.forEach((value) => {
+        map.setPaintProperty(value,    'circle-color', 'rgba(255, 157, 157, 0.39)')
+        map.setPaintProperty(value,    'circle-radius', 3)
+      });
+      mainLayer_2016_2021('CAT_S1_UD_A030D110_201601_202112_Epsg_4326_wgs_84', 'CAT_S1_UD_A132D037_201601_202112_Epsg_4326_wgs_84', 'CAT_S1_UD_A132D110_201601_202112_Epsg_4326_wgs_84')
+
+     
+    }
+    const mainLayer_2016_2021_Ew = () => {
+      document.getElementById('layer_ASC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_DESC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_UD_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_EW_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_ASC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_DESC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_UD_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_EW_6_A').style.backgroundColor = 'green'
+      console.log('mainLayer_2016__2021_Ew_6')
+      document.getElementById('legend_ASC_15').style.display = 'none'
+      document.getElementById('legend_DESC_15').style.display = 'none'
+      document.getElementById('legend_UD_15').style.display = 'none'
+      document.getElementById('legend_EW_15').style.display = 'none'
+      document.getElementById('legend_ASC_6').style.display = 'none'
+      document.getElementById('legend_DESC_6').style.display = 'none'
+      document.getElementById('legend_UD_6').style.display = 'none'
+      document.getElementById('legend_EW_6').style.display = 'block'
+      layersShowFilter = [...result]
+      /* removeItemFromArr( layersShowFilter, 'CAT_S1_EW_A030D110_201601_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( layersShowFilter, 'CAT_S1_EW_A132D037_201601_202112_Epsg_4326_wgs_84' );
+      removeItemFromArr( layersShowFilter, 'CAT_S1_EW_A132D110_201601_202112_Epsg_4326_wgs_84' ); */
+      console.log(layersShowFilter + ' layersShowFilter mainLayer ' + layersShowFilter.length + ' main layer numero elementos')
+
+      layersShowFilter.forEach((value) => {
+        map.setPaintProperty(value,    'circle-color', 'rgba(255, 157, 157, 0.39)')
+        map.setPaintProperty(value,    'circle-radius', 3)
+      });
+      mainLayer_2016_2021('CAT_S1_EW_A030D110_201601_202112_Epsg_4326_wgs_84', 'CAT_S1_EW_A132D037_201601_202112_Epsg_4326_wgs_84', 'CAT_S1_EW_A132D110_201601_202112_Epsg_4326_wgs_84')
+
+     
+    }
+    const check = () => {
+      console.log('check')
+    }
+
+
+    
+    const selectOption_2021 = () => {
+      document.getElementById('layer_ASC_15_A').style.backgroundColor =   'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_DESC_15_A').style.backgroundColor =  'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_UD_15_A').style.backgroundColor =    'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_EW_15_A').style.backgroundColor =    'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_ASC_6_A').style.backgroundColor =    'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_DESC_6_A').style.backgroundColor =   'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_UD_6_A').style.backgroundColor =     'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_EW_6_A').style.backgroundColor =     'rgba(180, 180, 180, 0.178)'
+      var valueOption = document.getElementById('valueOptions_2021').value
+      if (valueOption == 'LOS Ascending') {
+        document.getElementById('legend_ASC_15').style.display =  'block'
+        document.getElementById('legend_DESC_15').style.display = 'none'
+        document.getElementById('legend_UD_15').style.display =   'none'
+        document.getElementById('legend_EW_15').style.display =   'none'
+        document.getElementById('legend_ASC_6').style.display =   'none'
+        document.getElementById('legend_DESC_6').style.display =  'none'
+        document.getElementById('legend_UD_6').style.display =    'none'
+        document.getElementById('legend_EW_6').style.display =    'none'
+
+        document.getElementById('layer_ASC_15').style.display = 'flex'
+        document.getElementById('layer_ASC_15_A').style.backgroundColor =   'green'
+        document.getElementById('layer_DESC_15_A').style.backgroundColor =  'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_UD_15_A').style.backgroundColor =    'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_EW_15_A').style.backgroundColor =    'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_ASC_6_A').style.backgroundColor =    'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_DESC_6_A').style.backgroundColor =   'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_UD_6_A').style.backgroundColor =     'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_EW_6_A').style.backgroundColor =     'rgba(180, 180, 180, 0.178)'
+        
+
+        map.setLayoutProperty('CAT_S1_LOS_A030_202012_202112_Epsg_4326_wgs_84',    'visibility', 'visible')
+        map.setLayoutProperty('CAT_S1_LOS_A132_202012_202112_32631_4326',          'visibility', 'visible')
+        map.setLayoutProperty('CAT_S1_LOS_D037_202012_202112_Epsg_4326_wgs_84',    'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D110_202012_202112_Epsg_4326_wgs_84',    'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A030D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A030D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A030_201601_202112_Epsg_4326_wgs_84',    'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A132_201601_202112_Epsg_4326_wgs_84',    'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D037_201601_202112_Epsg_4326_wgs_84',    'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D110_201601_202112_Epsg_4326_wgs_84',    'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A030D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A030D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        layersShow.push('CAT_S1_LOS_A030_202012_202112_Epsg_4326_wgs_84')
+        layersShow.push('CAT_S1_LOS_A132_202012_202112_32631_4326')
+
+        const dataArr = new Set(layersShow);
+        result = [...dataArr];
+        console.log(layersShow + ' layerShow ' + layersShow.length + result + ' dataArr result ' + result.length + ' dataArr result LENGTH ')
+      }
+      else if (valueOption == 'LOS Descending') {
+        document.getElementById('legend_ASC_15').style.display = 'none'
+        document.getElementById('legend_DESC_15').style.display = 'block'
+        document.getElementById('legend_UD_15').style.display = 'none'
+        document.getElementById('legend_EW_15').style.display = 'none'
+        document.getElementById('legend_ASC_6').style.display = 'none'
+        document.getElementById('legend_DESC_6').style.display = 'none'
+        document.getElementById('legend_UD_6').style.display = 'none'
+        document.getElementById('legend_EW_6').style.display = 'none'
+
+
+        document.getElementById('layer_DESC_15').style.display = 'flex'
+        document.getElementById('layer_ASC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_DESC_15_A').style.backgroundColor = 'green'
+        document.getElementById('layer_UD_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_EW_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_ASC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_DESC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_UD_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_EW_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+
+        map.setLayoutProperty('CAT_S1_LOS_A030_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A132_202012_202112_32631_4326', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'visible')
+        map.setLayoutProperty('CAT_S1_LOS_D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'visible')
+        map.setLayoutProperty('CAT_S1_UD_A030D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A030D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A030_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A132_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A030D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A030D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        layersShow.push('CAT_S1_LOS_D037_202012_202112_Epsg_4326_wgs_84')
+        layersShow.push('CAT_S1_LOS_D110_202012_202112_Epsg_4326_wgs_84')
+        
+        const dataArr = new Set(layersShow);
+        result = [...dataArr];
+        console.log(layersShow + ' layerShow ' + layersShow.length + result + ' dataArr result ' + result.length + ' dataArr result LENGTH ')
+        
+      }
+      else if (valueOption == 'Est-West') {
+        document.getElementById('legend_ASC_15').style.display = 'none'
+        document.getElementById('legend_DESC_15').style.display = 'none'
+        document.getElementById('legend_UD_15').style.display = 'none'
+        document.getElementById('legend_EW_15').style.display = 'block'
+        document.getElementById('legend_ASC_6').style.display = 'none'
+        document.getElementById('legend_DESC_6').style.display = 'none'
+        document.getElementById('legend_UD_6').style.display = 'none'
+        document.getElementById('legend_EW_6').style.display = 'none'
+
+        document.getElementById('layer_EW_15').style.display = 'flex'
+        document.getElementById('layer_ASC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_DESC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_UD_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_EW_15_A').style.backgroundColor = 'green'
+        document.getElementById('layer_ASC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_DESC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_UD_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_EW_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+
+
+        map.setLayoutProperty('CAT_S1_LOS_A030_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A132_202012_202112_32631_4326', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A030D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A030D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'visible')
+        map.setLayoutProperty('CAT_S1_EW_A132D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'visible')
+        map.setLayoutProperty('CAT_S1_EW_A132D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'visible')
+        map.setLayoutProperty('CAT_S1_LOS_A030_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A132_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A030D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A030D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        layersShow.push('CAT_S1_EW_A030D110_202012_202112_Epsg_4326_wgs_84')
+        layersShow.push('CAT_S1_EW_A132D037_202012_202112_Epsg_4326_wgs_84')
+        layersShow.push('CAT_S1_EW_A132D110_202012_202112_Epsg_4326_wgs_84')
+        
+        
+        const dataArr = new Set(layersShow);
+        result = [...dataArr];
+        console.log(layersShow + ' layerShow ' + layersShow.length + result + ' dataArr result ' + result.length + ' dataArr result LENGTH ')
+      }
+      else if (valueOption == 'Up-Down') {
+        document.getElementById('legend_ASC_15').style.display = 'none'
+        document.getElementById('legend_DESC_15').style.display = 'none'
+        document.getElementById('legend_UD_15').style.display = 'block'
+        document.getElementById('legend_EW_15').style.display = 'none'
+        document.getElementById('legend_ASC_6').style.display = 'none'
+        document.getElementById('legend_DESC_6').style.display = 'none'
+        document.getElementById('legend_UD_6').style.display = 'none'
+        document.getElementById('legend_EW_6').style.display = 'none'
+
+
+        document.getElementById('layer_UD_15').style.display = 'flex'
+        document.getElementById('layer_ASC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_DESC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_UD_15_A').style.backgroundColor = 'green'
+        document.getElementById('layer_EW_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_ASC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_DESC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_UD_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_EW_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+
+        map.setLayoutProperty('CAT_S1_LOS_A030_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A132_202012_202112_32631_4326', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A030D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'visible')
+        map.setLayoutProperty('CAT_S1_UD_A132D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'visible')
+        map.setLayoutProperty('CAT_S1_UD_A132D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'visible')
+        map.setLayoutProperty('CAT_S1_EW_A030D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A030_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A132_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A030D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A030D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        layersShow.push('CAT_S1_UD_A030D110_202012_202112_Epsg_4326_wgs_84')
+        layersShow.push('CAT_S1_UD_A132D037_202012_202112_Epsg_4326_wgs_84')
+        layersShow.push('CAT_S1_UD_A132D110_202012_202112_Epsg_4326_wgs_84')
+       
+        const dataArr = new Set(layersShow);
+        result = [...dataArr];
+        console.log(layersShow + ' layerShow ' + layersShow.length + result + ' dataArr result ' + result.length + ' dataArr result LENGTH ')
+      }
+      document.getElementById('valueOptions_2021').value = ''
+      layersShowFilter = layersShow.filter((item,index)=>{
+          return layersShow.indexOf(item) === index;
+        })
+        console.log(layersShow + ' layerShow ' + layersShow.length + 'filtrar ' + layersShowFilter + ' numero elementos ' + layersShowFilter.length)
+        console.log(result.length + ' RESULT') 
+      }
+
+    const selectOption_2016_2021 = () => {
+      document.getElementById('layer_ASC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_DESC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_UD_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_EW_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_ASC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_DESC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_UD_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      document.getElementById('layer_EW_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+      var valueOption = document.getElementById('valueOptions_2016_2021').value
+      if (valueOption == 'LOS Ascending') {
+        document.getElementById('legend_ASC_15').style.display = 'none'
+        document.getElementById('legend_DESC_15').style.display = 'none'
+        document.getElementById('legend_UD_15').style.display = 'none'
+        document.getElementById('legend_EW_15').style.display = 'none'
+        document.getElementById('legend_ASC_6').style.display = 'block'
+        document.getElementById('legend_DESC_6').style.display = 'none'
+        document.getElementById('legend_UD_6').style.display = 'none'
+        document.getElementById('legend_EW_6').style.display = 'none'
+
+
+        document.getElementById('layer_ASC_6').style.display = 'flex'
+        document.getElementById('layer_ASC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_DESC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_UD_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_EW_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_ASC_6_A').style.backgroundColor = 'green'
+        document.getElementById('layer_DESC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_UD_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_EW_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+
+
+        map.setLayoutProperty('CAT_S1_LOS_A030_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A132_202012_202112_32631_4326', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A030D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A030D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A030_201601_202112_Epsg_4326_wgs_84', 'visibility', 'visible')
+        map.setLayoutProperty('CAT_S1_LOS_A132_201601_202112_Epsg_4326_wgs_84', 'visibility', 'visible')
+        map.setLayoutProperty('CAT_S1_LOS_D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A030D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A030D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        layersShow.push('CAT_S1_LOS_A030_201601_202112_Epsg_4326_wgs_84')
+        layersShow.push('CAT_S1_LOS_A132_201601_202112_Epsg_4326_wgs_84')
+        
+        const dataArr = new Set(layersShow);
+        result = [...dataArr];
+        console.log(layersShow + ' layerShow ' + layersShow.length + result + ' dataArr result ' + result.length + ' dataArr result LENGTH ')
+      }
+      else if (valueOption == 'LOS Descending') {
+        document.getElementById('legend_ASC_15').style.display = 'none'
+        document.getElementById('legend_DESC_15').style.display = 'none'
+        document.getElementById('legend_UD_15').style.display = 'none'
+        document.getElementById('legend_EW_15').style.display = 'none'
+        document.getElementById('legend_ASC_6').style.display = 'none'
+        document.getElementById('legend_DESC_6').style.display = 'block'
+        document.getElementById('legend_UD_6').style.display = 'none'
+        document.getElementById('legend_EW_6').style.display = 'none'
+
+
+        document.getElementById('layer_DESC_6').style.display = 'flex'
+        document.getElementById('layer_ASC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_DESC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_UD_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_EW_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_ASC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_DESC_6_A').style.backgroundColor = 'green'
+        document.getElementById('layer_UD_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_EW_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+
+
+        map.setLayoutProperty('CAT_S1_LOS_A030_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A132_202012_202112_32631_4326', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A030D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A030D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A030_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A132_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'visible')
+        map.setLayoutProperty('CAT_S1_LOS_D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'visible')
+        map.setLayoutProperty('CAT_S1_UD_A030D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A030D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        layersShow.push('CAT_S1_LOS_D037_201601_202112_Epsg_4326_wgs_84')
+        layersShow.push('CAT_S1_LOS_D110_201601_202112_Epsg_4326_wgs_84')
+       
+        const dataArr = new Set(layersShow);
+        result = [...dataArr];
+        console.log(layersShow + ' layerShow ' + layersShow.length + result + ' dataArr result ' + result.length + ' dataArr result LENGTH ')
+      }
+      else if (valueOption == 'Est-West') {
+        document.getElementById('legend_ASC_15').style.display = 'none'
+        document.getElementById('legend_DESC_15').style.display = 'none'
+        document.getElementById('legend_UD_15').style.display = 'none'
+        document.getElementById('legend_EW_15').style.display = 'none'
+        document.getElementById('legend_ASC_6').style.display = 'none'
+        document.getElementById('legend_DESC_6').style.display = 'none'
+        document.getElementById('legend_UD_6').style.display = 'none'
+        document.getElementById('legend_EW_6').style.display = 'block'
+
+
+        document.getElementById('layer_EW_6').style.display = 'flex'
+        document.getElementById('layer_ASC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_DESC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_UD_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_EW_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_ASC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_DESC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_UD_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_EW_6_A').style.backgroundColor = 'green'
+
+
+        map.setLayoutProperty('CAT_S1_LOS_A030_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A132_202012_202112_32631_4326', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A030D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A030D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A030_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A132_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A030D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A030D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'visible')
+        map.setLayoutProperty('CAT_S1_EW_A132D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'visible')
+        map.setLayoutProperty('CAT_S1_EW_A132D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'visible')
+        layersShow.push('CAT_S1_EW_A030D110_201601_202112_Epsg_4326_wgs_84')
+        layersShow.push('CAT_S1_EW_A132D037_201601_202112_Epsg_4326_wgs_84')
+        layersShow.push('CAT_S1_EW_A132D110_201601_202112_Epsg_4326_wgs_84')
+        
+        const dataArr = new Set(layersShow);
+        result = [...dataArr];
+        console.log(layersShow + ' layerShow ' + layersShow.length + result + ' dataArr result ' + result.length + ' dataArr result LENGTH ')
+      }
+      else if (valueOption == 'Up-Down') {
+        document.getElementById('legend_ASC_15').style.display = 'none'
+        document.getElementById('legend_DESC_15').style.display = 'none'
+        document.getElementById('legend_UD_15').style.display = 'none'
+        document.getElementById('legend_EW_15').style.display = 'none'
+        document.getElementById('legend_ASC_6').style.display = 'none'
+        document.getElementById('legend_DESC_6').style.display = 'none'
+        document.getElementById('legend_UD_6').style.display = 'block'
+        document.getElementById('legend_EW_6').style.display = 'none'
+
+
+        document.getElementById('layer_UD_6').style.display = 'flex'
+        document.getElementById('layer_ASC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_DESC_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_UD_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_EW_15_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_ASC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_DESC_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+        document.getElementById('layer_UD_6_A').style.backgroundColor = 'green'
+        document.getElementById('layer_EW_6_A').style.backgroundColor = 'rgba(180, 180, 180, 0.178)'
+
+        map.setLayoutProperty('CAT_S1_LOS_A030_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A132_202012_202112_32631_4326', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A030D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A132D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A030D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D037_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D110_202012_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A030_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_A132_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_LOS_D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_UD_A030D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'visible')
+        map.setLayoutProperty('CAT_S1_UD_A132D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'visible')
+        map.setLayoutProperty('CAT_S1_UD_A132D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'visible')
+        map.setLayoutProperty('CAT_S1_EW_A030D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D037_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        map.setLayoutProperty('CAT_S1_EW_A132D110_201601_202112_Epsg_4326_wgs_84', 'visibility', 'none')
+        layersShow.push('CAT_S1_UD_A030D110_201601_202112_Epsg_4326_wgs_84')
+        layersShow.push('CAT_S1_UD_A132D037_201601_202112_Epsg_4326_wgs_84')
+        layersShow.push('CAT_S1_UD_A132D110_201601_202112_Epsg_4326_wgs_84')
+        
+        const dataArr = new Set(layersShow);
+        result = [...dataArr];
+        console.log(layersShow + ' layerShow ' + layersShow.length + result + ' dataArr result ' + result.length + ' dataArr result LENGTH ')
+      
+
+      }
+      document.getElementById('valueOptions_2016_2021').value = ''
+      layersShowFilter = layersShow.filter((item,index)=>{
+          return layersShow.indexOf(item) === index;
+        })
+        console.log(layersShow + ' layerShow ' + layersShow.length + 'filtrar ' + layersShowFilter + ' numero elementos ' + layersShowFilter.length)
+        console.log(result.length + ' RESULT') 
+      }
+ 
+  </script>
+  <script async src="./js/mapbox.js"></script>
+  <script async src="./js/pointsTest.js"></script>
+  <script async src="./js/chartTest.js"></script>
+
+
+</body>
+
+</html>
