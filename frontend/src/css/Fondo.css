@@ -1,0 +1,10 @@
+.fondo {
+    position: absolute;
+    top: 500px;
+    right: 500px;
+    width: 500px;
+    height: 500px;
+    background-color: brown;
+    z-index: 1000;
+    background-color: blue;
+}

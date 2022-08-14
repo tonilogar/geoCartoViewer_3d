@@ -1,0 +1,8 @@
+.perspective_2d_3d, .perspective_3d_2d {
+  position: absolute;
+  top:177px;
+  right: 5px;
+}
+.perspective_2d_3d {
+  display: none;
+}
