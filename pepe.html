@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset=utf-8 />
+  <title>JS Bin</title>
+</head>
+
+<body>
+
+  <script>
+    function showOptions(s) {
+      console.log(s[s.selectedIndex].value); // get value
+      console.log(s[s.selectedIndex].id); // get id
+    }
+  </script>
+
+  <select onchange="showOptions(this)">
+    <option value="b1" id="idb1">Option1</option>
+    <option value="b2" id="idb2">Option2</option>
+  </select>
+  <ul>
+    <li>Catalunya 2016-2021
+      <select onchange="showOptions(this)" placeholder="select">
+        <option hidden selected>Selecciona una opción</option>
+        <option id="1" value='LOS Ascending'>LOS Ascending</option>
+        <option id="2" value='LOS Descending'>LOS Descending</option>
+        <option id="3" value='Up-Down'>Up-Down</option>
+        <option id="4" value='Est-West'>Est-West</option>
+      </select>
+    </li>
+  </ul>
+</body>
+
+</html>
