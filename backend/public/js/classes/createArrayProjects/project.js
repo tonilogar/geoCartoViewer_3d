@@ -1,7 +1,9 @@
 
 class Project {
-  constructor({id, titleProject, dataProject, legend}) {
+  constructor({id, projectType, subTitleProject, titleProject, dataProject, legend}) {
     this.id = id
+    this.projectType = projectType
+    this.subTitleProject = subTitleProject
     this.titleProject = titleProject
     this.dataProject = dataProject
     this.legend = legend

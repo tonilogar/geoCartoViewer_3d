@@ -1,5 +1,5 @@
 import { ProjectsService } from '../projectsService/projectsService.js'
-import { formatData } from './formater.js'
+import { formatData } from './formatterData.js'
 const projectsService = new ProjectsService()
 
 class ProjectsMenu {
@@ -13,7 +13,9 @@ class ProjectsMenu {
   }
   async renderProjectsMenu() {
     const data = await projectsService.getProjects()
+    //console.log(data, 'data')
     const projects = formatData(data)
+    //console.log(projects, 'projects')
     const projectsContainer = document.getElementById(this.container)
     projectsContainer.innerHTML = ''
     projects.forEach(element => {
