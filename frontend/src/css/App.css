@@ -1,0 +1,62 @@
+:root {
+  /* Colors */
+  --backgroundColorHeader: #2a2a2a;
+  --backgroundColorFooter: #333;
+  --colorTextHardGrey:rgb(112, 112, 112);
+  --colorTextSoftGrey: #ccc;
+  --colorTextSoftBlue: #337ab7;;
+  --blue: #0078f2;
+  --backgroundButtons: #fff;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+}
+html, body {
+  font-size: 62.5%;
+  /* background-color:var(--backgroundColorHeader); */  
+  overflow: hidden; 
+} 
+.map {
+  width: 100vw;
+  height: 100vh;
+}
+li, ul, p, a {
+  text-decoration: none;
+  list-style: none;
+}
+.mapboxgl-ctrl-logo, .mapboxgl-ctrl-bottom-right {
+  display: none !important;
+}
+
+.info, .layers, .perspective_2d_3d, .perspective_3d_2d, 
+.tools, .tools--MenuOpen, .tools--MenuClose, .tools--Projects, .user svg  {
+  width: 30px;
+  height: 30px;
+  background-color:var(--backgroundButtons);
+}
+
+svg:hover, p:hover, .catchCoordinates:hover,.mapboxgl-ctrl-zoom-out:hover, 
+.mapboxgl-ctrl-zoom-in:hover, .mapboxgl-ctrl-compass:hover,
+.copiedCoordinates:hover, .mapboxgl-ctrl-scale:hover, .coordinates:hover, 
+.mapboxgl-ctrl-geolocate:hover {
+  background-color:var(--colorTextSoftGrey) !important; 
+  cursor: pointer; 
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

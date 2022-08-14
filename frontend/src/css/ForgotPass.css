@@ -1,0 +1,8 @@
+.formForgotPass {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+.formForgotPass a, .formForgotPass input, .formForgotPass button {
+    margin: 5px;
+  }

@@ -1,0 +1,10 @@
+.children {
+    position: absolute;
+    top: 700px;
+    right: 700px;
+    width: 100px;
+    height: 100px;
+    background-color: brown;
+    z-index: 1000;
+    background-color: rgb(255, 21, 0);
+}

@@ -1,0 +1,13 @@
+.tools--MenuOpen, .tools--MenuClose {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+.tools--MenuClose {
+  display: none;
+}
+.tools--Projects {
+  position: absolute;
+  top: 40px;
+  left: 5px;
+}

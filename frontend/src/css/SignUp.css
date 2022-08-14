@@ -1,0 +1,8 @@
+.formSignUp {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+.formSignUp a, .formSignUp input, .formSignUp button {
+  margin: 5px;
+}

@@ -1,0 +1,119 @@
+.map-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.mapboxgl-ctrl-geocoder {
+  position: absolute !important;
+  top: -4px !important;
+  right: -5px !important;
+  border-radius: 0px !important;
+}
+.mapboxgl-ctrl-geocoder--input {
+  height: 30px !important;
+ }
+ .mapboxgl-ctrl-geocoder--icon {
+  position: absolute !important;
+  top: 5px !important;
+  left: 0px !important;
+  width: 30px !important;
+}
+.mapboxgl-ctrl-geocoder--icon-close {
+  position: absolute !important;
+  top: 0px !important;
+  left: -25px !important;
+  width: 30px !important;
+}
+.mapboxgl-ctrl-zoom-in {
+  position: absolute !important;
+  top: 35px !important;
+  right: -5px !important;
+  width: 30px !important;
+  background-color: white !important;
+  border-radius: 4px !important;
+  border-radius: 0px !important;
+}
+.mapboxgl-ctrl-zoom-out {
+  position: absolute !important;
+  top: 64px !important;
+  right: -5px !important;
+  width: 30px !important;
+  background-color: white !important;
+  border-radius: 4px !important;
+  border-radius: 0px !important;
+}
+.mapboxgl-ctrl-zoom-out:hover, .mapboxgl-ctrl-zoom-in:hover, .mapboxgl-ctrl-compass:hover {
+  background-color:var(--colorTextSoftGrey); 
+}
+
+.mapboxgl-ctrl-compass {
+  position: absolute !important;
+  top: 93px !important;
+  right: -5px !important;
+  width: 30px !important;
+  background-color: white !important;
+  border-radius: 4px !important;
+  border-radius: 0px !important;
+}
+
+.mapboxgl-ctrl-geolocate {
+  position: absolute !important;
+  top: 120px !important;
+  right: -5px !important;
+  width: 30px !important;
+  background-color: white !important;
+}
+.mapboxgl-ctrl-scale {
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  background-color: white !important;
+  border-radius: 4px !important;
+  border: none !important;
+  width: 65px !important;
+  height: 25px !important;
+  font-size: 15px !important;
+  border-radius: 0px !important;
+  margin: 0px !important;
+}
+
+.catchCoordinates {
+  position: absolute;
+  bottom: 95px;
+  right: 30px;
+  width: 155px;
+  height: 40px;
+  background-color:var(--backgroundButtons); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 8px; 
+}
+.copiedCoordinates{
+  position: absolute;
+  bottom: 55px;
+  right: 5px;
+  width: 200px;
+  height: 45px;
+  background-color:var(--backgroundButtons); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 8px;
+}
+.coordinates{
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 200px;
+  height: 45px;
+  background-color:var(--backgroundButtons); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 8px;
+  display: grid;
+}
