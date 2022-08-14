@@ -1,0 +1,32 @@
+.containerTools {
+  position: absolute;
+  top: 6px;
+  left: 5px;
+}
+
+.toolsOpen:hover, .toolsClose:hover  {
+  background-color:var(--colorTextSoftGrey); 
+  cursor: pointer;
+}
+
+.toolsOpen, .toolsClose {
+  width: 30px;
+  height: 30px;
+  background-color:var(--backgroundButtons);
+}
+
+.toolsClose {
+  width: 30px;
+  height: 30px;
+  background-color:var(--backgroundButtons);
+  display: none;
+}
+
+
+
+
+
+
+
+
+

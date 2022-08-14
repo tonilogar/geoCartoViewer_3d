@@ -1,0 +1,35 @@
+.user {
+  position: absolute;
+  top: 6px;
+  right: 250px;
+  width: 30px;
+  height: 50px;
+}
+.userSvg {
+  width: 30px;
+  height: 30px;
+}
+.userSvg:hover  {
+  background-color:var(--colorTextSoftGrey); 
+  cursor: pointer;
+}
+
+.userUl {
+  display: none;
+  position: absolute;
+  width: 100px;
+  top: 40px; 
+  margin: 0px;
+  padding: 0px;
+}
+.userUl a {
+  text-decoration: none;
+  color: white;
+}
+
+.user:hover .userUl, .userUl:hover { 
+  display: block;   
+}
+
+
+

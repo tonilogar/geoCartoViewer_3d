@@ -1,0 +1,19 @@
+.readJson {
+  position: absolute;
+  top: 60px;
+  left: 50px;
+  width: 200px;
+  height: 200px;
+  background-color: red; 
+}
+.ulReact {
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+}
+/* var rElmLi1 = React.createElement('li', {id:'li1'}, 'one');
+var rElmLi2 = React.createElement('li', {id:'li2'}, 'two');
+var rElmLi3 = React.createElement('li', {id:'li3'}, 'three');
+
+//create <ul> React element and add child React <li> elements to it
+var reactElementUl = React.createElement('ul', {className:'myList'}, rElmLi1,rElmLi2,rElmLi3); */

@@ -1,0 +1,12 @@
+.longLatZoomDegree {
+  position: absolute;
+  bottom: 3px;
+  right: 5px;
+  width: 210px;
+  margin-bottom: 2px;
+  background-color:var(--backgroundButtons); 
+  color: black;
+  padding: 2px;
+}
+
+

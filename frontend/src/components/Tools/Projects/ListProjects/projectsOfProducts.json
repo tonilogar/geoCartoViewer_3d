@@ -1,0 +1,156 @@
+[
+   {
+      "Subsidences": [
+         {
+            "Catalonia 2021": [
+               {
+                  "id": "1",
+                  "titleProject": "LOS Ascending",
+                  "dataProject": [
+                     "CAT_S1_LOS_A030_202012_202112.csv",
+                     "CAT_S1_LOS_A132_202012_202112.csv"
+                  ],
+                  "legend": "./dades/legends/Llegenda_ASC_15.png"
+               },
+               {
+                  "id": "2",
+                  "titleProject": "LOS Descending",
+                  "dataProject": [
+                     "CAT_S1_LOS_D037_202012_202112.csv",
+                     "CAT_S1_LOS_D110_202012_202112.csv"
+                  ],
+                  "legend": "./dades/legends/Llegenda_DESC_15.png"
+               },
+               {
+                  "id": "3",
+                  "titleProject": "Up-Down",
+                  "dataProject": [
+                     "CAT_S1_UD_A030D110_202012_202112.csv",
+                     "CAT_S1_UD_A132D037_202012_202112.csv",
+                     "CAT_S1_UD_A132D110_202012_202112.csv"
+                  ],
+                  "legend": "./dades/legends/Llegenda_UD_15.png"
+               },
+               {
+                  "id": "4",
+                  "titleProject": "Ew movement",
+                  "dataProject": [
+                     "CAT_S1_EW_A030D110_202012_202112.csv",
+                     "CAT_S1_EW_A132D037_202012_202112.csv",
+                     "CAT_S1_EW_A132D110_202012_202112.csv"
+                  ],
+                  "legend": "./dades/legends/Llegenda_EW_15.png"
+               }
+            ]
+         },
+         {
+            "Catalonia 2016-2021": [
+               {
+                  "id": "5",
+                  "titleProject": "LOS Ascending",
+                  "dataProject": [
+                     "CAT_S1_LOS_A030_201601_202112.csv",
+                     "CAT_S1_LOS_A132_201601_202112.csv"
+                  ],
+                  "legend": "./dades/legends/Llegenda_ASC_6.png"
+               },
+               {
+                  "id": "6",
+                  "titleProject": "LOS Descending",
+                  "dataProject": [
+                     "CAT_S1_LOS_D037_201601_202112.csv",
+                     "CAT_S1_LOS_D110_201601_202112.csv"
+                  ],
+                  "legend": "./dades/legends/Llegenda_DESC_6.png"
+               },
+               {
+                  "id": "7",
+                  "titleProject": "Up-Down",
+                  "dataProject": [
+                     "CAT_S1_UD_A030D110_201601_202112.csv",
+                     "CAT_S1_UD_A132D037_201601_202112.csv",
+                     "CAT_S1_UD_A132D110_201601_202112.csv"
+                  ],
+                  "legend": "./dades/legends/Llegenda_UD_6.png"
+               },
+               {
+                  "id": "8",
+                  "titleProject": "Est-West",
+                  "dataProject": [
+                     "CAT_S1_EW_A030D110_201601_202112.csv",
+                     "CAT_S1_EW_A132D037_201601_202112.csv",
+                     "CAT_S1_EW_A132D110_201601_202112.csv"
+                  ],
+                  "legend": "./dades/legends/Llegenda_EW_6.png"
+               }
+            ]
+         },
+         {
+            "Mina Capela 201907-202105": [
+               {
+                  "id": "9",
+                  "titleProject": "Up-Downt",
+                  "dataProject": [
+                     "MINA_CAPELA_S1_UD_A078D041_201907_202101.csv"
+                  ],
+                  "legend": "./dades/legends/MINA_CAPELA_S1_UD_A078D041_201907_202101.png"
+               },
+               {
+                  "id": "10",
+                  "titleProject": "Est-West",
+                  "dataProject": [
+                     "MINA_CAPELA_S1_EW_A078D041_201907_202101.csv"
+                  ],
+                  "legend": "./dades/legends/MINA_CAPELA_S1_EW_A078D041_201907_202101.png"
+               }
+            ]
+         },
+         {
+            "id": "11",
+            "titleProject": "Bucharest Up-Downt 201701-202012",
+            "dataProject": [
+               "BUCHAREST_S1_LOS_D109_201701_202012.csv"
+            ],
+            "legend": "./dades/legends/BUCHAREST_S1_LOS_D109_201701_202012.png"
+         }
+      ]
+   },
+   {
+      "Farmstart": [
+         {
+            "id": "12",
+            "titleProject": "Farmstart 2016",
+            "dataProject": [
+               "Farmstart 2016.tif"
+            ],
+            "legend": "./dades/legends/Farmstart 2016.png"
+         },
+         {
+            "id": "13",
+            "titleProject": "Farmstart 2017",
+            "dataProject": [
+               "Farmstart 2017.tif"
+            ],
+            "legend": "./dades/legends/Farmstart 2017.png"
+         },
+         {
+            "id": "14",
+            "titleProject": "Farmstart 2018",
+            "dataProject": [
+               "Farmstart 2018.tif"
+            ],
+            "legend": "./dades/legends/Farmstart 2018.png"
+         },
+         {
+            "id": "15",
+            "titleProject": "Farmstart 2019",
+            "dataProject": [
+               "Farmstart 2019.tif"
+            ],
+            "legend": "./dades/legends/Farmstart 2019.png"
+         }
+      ]
+   }
+   
+
+]

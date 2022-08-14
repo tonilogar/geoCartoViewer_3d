@@ -1,0 +1,16 @@
+.containerPerspective {
+  position: absolute;
+  top:254px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  background-color:var(--backgroundButtons);
+}
+.view_3D:hover, .view_2D:hover  {
+  background-color:var(--colorTextSoftGrey); 
+  cursor: pointer;
+}
+
+.view_2D {
+  display: none;
+}
