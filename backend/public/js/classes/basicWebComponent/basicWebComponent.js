@@ -6,15 +6,22 @@ class BWComponent extends HTMLElement {
     this.showHide = true
     this.container = 'container'
   }
+  static get observedAttributes() {
+    return ["title", "parrafo", "img", "positionx", "positiony"];
+  }
+  attributeChangedCallback(attr, oldVal, newVal) {
+    if (oldVal !== newVal) {
+      this[attr] = newVal
+    }
+  }
 
   getTemplate() {
     const template = document.createElement("template")
     template.innerHTML = /*html */`
       <div class='open' title='Add project'>
-        <slot name="image"></slot>
+        <img src=${this.img} />
       </div>
       ${this.getStyles()}
-      
     `
     return template
   }
@@ -38,8 +45,12 @@ class BWComponent extends HTMLElement {
   }
   getStyles() {
     return /*html */ `
-      <style>
-        @import './css/bwcomponent.css'
+    <style>
+      @import './css/style.css';
+       .open {
+          top: ${this.positionx};
+          left: ${this.positiony};
+        }
       </style>
     `
   }

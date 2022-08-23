@@ -7,6 +7,15 @@ class AddProject extends HTMLElement {
     this.container = 'container'
   }
 
+  static get observedAttributes() {
+    return ["title", "parrafo", "img", "positionx", "positiony"];
+  }
+  attributeChangedCallback(attr, oldVal, newVal) {
+    if (oldVal !== newVal) {
+      this[attr] = newVal
+    }
+  }
+  
   getTemplate() {
     const template = document.createElement("template")
     template.innerHTML = /*html */`
