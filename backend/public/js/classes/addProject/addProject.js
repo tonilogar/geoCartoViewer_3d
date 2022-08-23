@@ -20,7 +20,6 @@ class AddProject extends HTMLElement {
         </svg>
       </div>
       ${this.getStyles()}
-      
     `
     return template
   }

@@ -39,21 +39,7 @@ class BWComponent extends HTMLElement {
   getStyles() {
     return /*html */ `
       <style>
-        .open {
-          position: absolute;
-          top: 5px;
-          left: 100px;
-          margin-bottom: 5px;
-          width: 30px;
-          height: 30px;
-          background-color:var(--backgroundButtons);
-          border: 5px solid var(--colorSoftGrey);
-        }
-
-        .open:hover{
-          background-color:var(--colorSoftGrey); 
-          cursor: pointer;
-        }
+        @import './css/bwcomponent.css'
       </style>
     `
   }
