@@ -35,10 +35,14 @@
 <body>
   <div id='map' class='map'></div>
   <!--  Section left -->
+  <b-wcomponent>
+    <img slot="image" src="./menuOp.svg"></img>
+  </b-wcomponent>
   <add-project></add-project>
   <change-background></change-background>
   <add-raster></add-raster>
   <add-vector></add-vector>
+  <div class="basicWC_Container" id="basicWC_Container" ></div>
   <div class="projects_Container" id="projects_Container" ></div>
   <div class="background_Container" id="background_Container"></div>
   <div class="raster_Container" id="raster_Container"></div>
@@ -71,19 +75,7 @@
 
 
   <!-- Show id project select <<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
-  <script>
-    const selectOption = (s) => {
-
-      if (s[s.selectedIndex].value !== 'Select project') {
-        console.log(s[s.selectedIndex].value + ' value')// get value
-        console.log(s[s.selectedIndex].id + ' id') // get id
-        s.value = 'Select project'
-        
-      }
-
-    }
-   
-  </script>
+  
   <script async src="./js/mapbox.js"></script>
   <!-- <script async src="./js/pointsTest.js"></script>
   <script async src="./js/chartTest.js"></script> -->

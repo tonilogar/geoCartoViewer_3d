@@ -43,8 +43,19 @@
   position: absolute;
   width: 100px;
   height: 100px;
-  top: 140px;
+  top: 100px;
   left: 50px;
+  background-color: var(--colorSoftGrey);
+  display: none;
+} 
+
+
+.basicWC_Container{
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 40px;
+  left: 140px;
   background-color: var(--colorSoftGrey);
   display: none;
 } 

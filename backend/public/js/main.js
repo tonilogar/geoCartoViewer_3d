@@ -8,8 +8,8 @@ import "./classes/user/user.js"
 import "./classes/layersContainer/layersContainer.js"
 import "./classes/projectLegends/projectLegends.js"
 import { ProjectsMenu } from './classes/projectsMenu/projectsMenu.js'  
-import { CreateArrayProjects } from './classes/createArrayProjects/createArrayProjects.js' 
-
+//import { CreateArrayProjects } from './classes/createArrayProjects/createArrayProjects.js' 
+import "./classes/basicWebComponent/basicWebComponent.js"
 
 //Create menu from dataBase
 const projectsMenu = new ProjectsMenu ({container: 'projects_Container'})
@@ -17,10 +17,8 @@ projectsMenu.renderProjectsMenu()
 //Create menu from dataBase
 
 
-const createArrayProjects = new CreateArrayProjects ()
 
-let objectPromise = createArrayProjects.cArrayProjects() 
-console.log(objectPromise + ' cArrayProjects()')
+
 
 
 /* import { BasicClass } from './basicClass.js'

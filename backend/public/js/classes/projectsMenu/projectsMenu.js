@@ -1,6 +1,8 @@
 import { ProjectsService } from '../projectsService/projectsService.js'
 import { formatData } from './formatterData.js'
+//import {changeElement} from './signal.js'
 const projectsService = new ProjectsService()
+
 
 class ProjectsMenu {
   constructor({ container }) {
@@ -8,9 +10,14 @@ class ProjectsMenu {
     
   }
 
-  clickMenu() {
-    console.log('clickMenu ')
+  changeElement(s) {
+    if (s[s.selectedIndex].value !== 'Select project') {
+      console.log(s[s.selectedIndex].value + ' value')// get value
+      console.log(s[s.selectedIndex].id + ' id') // get id
+      s.value = 'Select project' 
+    }
   }
+  
   async renderProjectsMenu() {
     const data = await projectsService.getProjects()
     //console.log(data, 'data')
@@ -37,7 +44,9 @@ class ProjectsMenu {
           li.appendChild(liText)
           details.appendChild(li)
           const select = document.createElement('select')
-          select.setAttribute('onchange', 'selectOption(this)')
+          //select.setAttribute('onchange', 'selectOption(this)')
+          //select.addEventListener("change", (e)=>changeElement(e.target))//Alex's code import function from outside the class
+          select.addEventListener("change", (e)=>this.changeElement(e.target))
           li.appendChild(select)
           const optionEmpty = document.createElement('option')
           const optionTextEmpty = document.createTextNode('Select project')
@@ -60,7 +69,9 @@ class ProjectsMenu {
         li.appendChild(liText) */
         details.appendChild(li)
         const select = document.createElement('select')
-        select.setAttribute('onchange', 'selectOption(this)')
+        //select.setAttribute('onchange', 'selectOption(this)')
+        //select.addEventListener("change", (e)=>changeElement(e.target))//Alex's code import function from outside the class
+        select.addEventListener("change", (e)=>this.changeElement(e.target))//call function into the class
         li.appendChild(select)
         const optionEmpty = document.createElement('option')
         const optionTextEmpty = document.createTextNode('Select project')

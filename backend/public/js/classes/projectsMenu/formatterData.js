@@ -1,9 +1,13 @@
+//arrow function with parameters call another arrow function with parameters
 const createGroupDataBy =
-  (groupKey = "projectType") =>
-    (data = []) => {
-      const groupedData = {};
+  (groupKey = "projectType") =>//create string groupKey = "projectType"
+    (data = []) => { //create array data empty
+      const groupedData = {};//create object
+      
       data.forEach((item) => {
+        //console.log(item, 'item')
         const key = item?.[groupKey];
+        console.log(key, 'key')
         if (!key) return;
         groupedData[key] = [...(groupedData[key] ?? []), item];
       });
@@ -13,6 +17,7 @@ const createGroupDataBy =
 const groupByProjectType = createGroupDataBy("projectType");
 const groupByTitleProject = createGroupDataBy("titleProject");
 
+//console.log(groupByProjectType, 'groupByProjectType')
 const formatObject = ({
   data = {},
   titleName = "title",
