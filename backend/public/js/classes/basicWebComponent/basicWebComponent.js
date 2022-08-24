@@ -4,10 +4,10 @@ class BWComponent extends HTMLElement {
     super()
     this.attachShadow({ mode: "open" })
     this.showHide = true
-    this.container = 'container'
+    this.container = this.getAttribute('container')
   }
   static get observedAttributes() {
-    return ["title", "parrafo", "img", "positionx", "positiony"];
+    return ['img','title', 'container', 'ptop', 'pright', 'pbottom', 'pleft'];
   }
   attributeChangedCallback(attr, oldVal, newVal) {
     if (oldVal !== newVal) {
@@ -18,7 +18,7 @@ class BWComponent extends HTMLElement {
   getTemplate() {
     const template = document.createElement("template")
     template.innerHTML = /*html */`
-      <div class='open' title='Add project'>
+      <div class='open' title=${this.title} >
         <img src=${this.img} />
       </div>
       ${this.getStyles()}
@@ -33,12 +33,12 @@ class BWComponent extends HTMLElement {
 
   clickMenu() {
     if (this.showHide) {
-      document.querySelector('.basicWC_Container').style.display = 'block'
+      document.querySelector(this.container).style.display = 'block'
       this.shadowRoot.querySelector('.open').style.border = '5px solid  var(--colorSoftGreen)'
       this.showHide = false
     }
     else {
-      document.querySelector('.basicWC_Container').style.display = 'none'
+      document.querySelector(this.container).style.display = 'none'
       this.shadowRoot.querySelector('.open').style.border = '5px solid var(--colorSoftGrey)'
       this.showHide = true
     }
@@ -48,8 +48,10 @@ class BWComponent extends HTMLElement {
     <style>
       @import './css/style.css';
        .open {
-          top: ${this.positionx};
-          left: ${this.positiony};
+          top: ${this.ptop};
+          right: ${this.pright};
+          bottom: ${this.pleft};
+          left: ${this.pbottom};
         }
       </style>
     `

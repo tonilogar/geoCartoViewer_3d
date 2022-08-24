@@ -5,15 +5,15 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="./styles/index.css" rel="stylesheet" />
-  <link href="./styles/sectionLeft.css" rel="stylesheet" />
-  <link href="./styles/sectionTop.css" rel="stylesheet" />
-  <link href="./styles/sectionRight.css" rel="stylesheet" />
-  <link href="./styles/sectionCoorZoomDegree.css" rel="stylesheet" />
+  <link href="./css/index.css" rel="stylesheet" />
+  <link href="./css/sectionLeft.css" rel="stylesheet" />
+  <link href="./css/sectionTop.css" rel="stylesheet" />
+  <link href="./css/sectionRight.css" rel="stylesheet" />
+  <link href="./css/sectionCoorZoomDegree.css" rel="stylesheet" />
   <link rel="shourtcut icon" href="./images/logoIcgcCutOpt.svg" type="image/x-icon">
   <!-- Mapbox libraries -->
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css" rel="stylesheet">
-<script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
   <script
     src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
   <link rel="stylesheet"
@@ -26,7 +26,7 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-  <title>Document</title>
+  <title>ICGC cartographic viewer</title>
 
   <script defer type="module" src="./js/main.js"></script>
 
@@ -35,35 +35,66 @@
 <body>
   <div id='map' class='map'></div>
   <!--  Section left -->
-  <!-- <b-wcomponent img= "./addProject.svg"></b-wcomponent> -->
   <b-wcomponent img="./images/addProject.svg"
-                size="100px"
-                positionx="200px"
-                positiony="200px">
-  </b-wcomponent>
-  <add-project></add-project>
-  <change-background></change-background>
-  <add-raster></add-raster>
-  <add-vector></add-vector>
+                title="Add_project"
+                ptop="5px"
+                pleft="5px"
+                container=".projects_Container">
+  </b-wcomponent><!-- button addProject -->
+  <b-wcomponent img="./images/changeBackground.svg"
+                title="Background"
+                ptop="50px"
+                pleft="5px"
+                container=".background_Container">
+  </b-wcomponent><!-- button change-background -->
+  <b-wcomponent img="./images/changeBackground.svg"
+                title="Add_raster"
+                ptop="95px"
+                pleft="5px"
+                container=".raster_Container">
+  </b-wcomponent><!-- button add raster -->
+  <b-wcomponent img="./images/changeBackground.svg"
+                title="Add_vector"
+                ptop="140px"
+                pleft="5px"
+                container=".vector_Container">
+  </b-wcomponent><!-- button add vector -->
+ 
   <div class="basicWC_Container" id="basicWC_Container" ></div>
   <div class="projects_Container" id="projects_Container" ></div>
   <div class="background_Container" id="background_Container"></div>
   <div class="raster_Container" id="raster_Container"></div>
   <div class="vector_Container" id="vector_Container"></div>
-  <!--  Section left -->
+  <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!--  Section top -->
-  <user-menu></user-menu>
+  <!-- <user-menu></user-menu> -->
+  <b-wcomponent img="./images/user.svg"
+                title="User"
+                ptop="5px"
+                pright="210px"
+                container=".user_Container">
+  </b-wcomponent><!-- button user -->
   <div class="geocoder_Container"></div>
   <div class="user_Container"></div>
-  <!--  Section top -->
+  <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!--  Section right -->
   <div class="geolocate_Container"></div>
   <div class="NavigationControl_Container"></div>
-  <layers-container></layers-container>
-  <project-legends></project-legends>
+  <b-wcomponent img="./images/layers.svg"
+                title="Layers"
+                ptop="170px"
+                pright="5px"
+                container=".layers_Container">
+  </b-wcomponent><!-- button layers -->
+  <b-wcomponent img="./images/legends.svg"
+                title="Info"
+                ptop="215px"
+                pright="5px"
+                container=".legends_Container">
+  </b-wcomponent><!-- button info -->
   <div class="layers_Container"></div>
   <div class="legends_Container"></div>
-  <!--  Section right -->
+  <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!--  Section coordinates zoom degreee -->
   <div class="coordinates_Container"></div>
   <div class="zoomDegree_Container"></div>
