@@ -1,5 +1,6 @@
 /* import "./mapbox.js"  */
-import "./classes/basicWebComponent/basicWebComponent.js"
+import "./webComponents/basicWebComponent.js"
+import "./webComponents/subsidencesProject.js"
 import { ProjectsMenu } from './classes/projectsMenu/projectsMenu.js'  
 
 
@@ -27,7 +28,7 @@ console.log(newClass.id + ' data') */
 
  
 /* import { Points } from './classes/points/points.js'
-const points = new Points ({
+let points = new Points ({
   projectName : "CAT_S1_LOS_A030_202012_202112_Epsg_4326_wgs_84", 
   type : "vector", 
   pathTiles : "http://seinterferdev01:8080/data/CAT_S1_LOS_A030_202012_202112_Epsg_4326_wgs_84-f-pf-pk-o/{z}/{x}/{y}.pbf", 
@@ -41,9 +42,11 @@ const points = new Points ({
   valueVelMax : 15
   })
 
-points.renderPoints() */
+points.renderPoints()  */
 
 
+
+ 
 
 
 

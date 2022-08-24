@@ -7,7 +7,7 @@ class BWComponent extends HTMLElement {
     this.container = this.getAttribute('container')
   }
   static get observedAttributes() {
-    return ['img','title', 'container', 'ptop', 'pright', 'pbottom', 'pleft'];
+    return ['img', 'title', 'container', 'ptop', 'pright', 'pbottom', 'pleft'];
   }
   attributeChangedCallback(attr, oldVal, newVal) {
     if (oldVal !== newVal) {
