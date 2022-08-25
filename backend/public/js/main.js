@@ -1,8 +1,8 @@
-/* import "./mapbox.js"  */
+//import "./mapbox.js" 
 import "./webComponents/basicWebComponent.js"
 import "./webComponents/subsidencesProject.js"
 import { ProjectsMenu } from './classes/projectsMenu/projectsMenu.js'  
-
+import { Points } from './classes/points/points.js'
 
 //Create menu from dataBase
 const projectsMenu = new ProjectsMenu ({container: 'projects_Container'})
@@ -27,7 +27,7 @@ newClass.id = '111111'
 console.log(newClass.id + ' data') */
 
  
-/* import { Points } from './classes/points/points.js'
+
 let points = new Points ({
   projectName : "CAT_S1_LOS_A030_202012_202112_Epsg_4326_wgs_84", 
   type : "vector", 
@@ -42,9 +42,11 @@ let points = new Points ({
   valueVelMax : 15
   })
 
-points.renderPoints()  */
+points.renderPoints() 
 
-
+points.hidePoints()
+points = null
+console.log(points)
 
  
 

@@ -14,17 +14,16 @@ class Points {
     this.size = size
     this.valueVelMin = valueVelMin
     this.valueVelMax = valueVelMax
-
   }
-  async renderPoints() {
-    
-    await map.addSource(this.projectName, {
+  
+  renderPoints() {
+     map.addSource(this.projectName, {
       "type": this.type,
       "tiles": [this.pathTiles],
       "minzoom": this.minZoom,
       "maxzoom": this.maxZoom
     })
-    await map.addLayer({
+     map.addLayer({
       "id": this.projectId,
       "source": this.projectName,
       "source-layer": this.projectName,
@@ -50,8 +49,17 @@ class Points {
           "rgba(4,255,0, 1)" //Range between -3 y 3 
         ]
       }
-    })
-    
+    }
+    )
+    /* console.log(map) */
+    //this.hidePoints()
   }
+
+  hidePoints() {
+    map.setLayoutProperty(this.projectName,    'visibility', 'none')
+    console.log(map)
+  }
+  
+
 }
 export { Points } 

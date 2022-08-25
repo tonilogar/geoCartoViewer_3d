@@ -7,7 +7,7 @@ const createGroupDataBy =
       data.forEach((item) => {
         //console.log(item, 'item')
         const key = item?.[groupKey];
-        console.log(key, 'key')
+        //console.log(key, 'key')
         if (!key) return;
         groupedData[key] = [...(groupedData[key] ?? []), item];
       });
