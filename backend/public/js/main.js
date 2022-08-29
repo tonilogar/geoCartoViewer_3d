@@ -7,10 +7,14 @@ import { Points } from './classes/points/points.js'
 //Create menu from dataBase
 const projectsMenu = new ProjectsMenu ({container: 'projects_Container'})
 projectsMenu.renderProjectsMenu()
+
 //Create menu from dataBase
 
+import { ProjectsService } from './classes/projectsService/projectsService.js'
 
+const projectsService = new ProjectsService()
 
+console.log(projectsService.getProjectsById('62e50c5747789d530a369a4f') , 'getProjects')
 
 
 
@@ -27,8 +31,8 @@ newClass.id = '111111'
 console.log(newClass.id + ' data') */
 
  
-
-let points = new Points ({
+/* 
+ let points = new Points ({
   projectName : "CAT_S1_LOS_A030_202012_202112_Epsg_4326_wgs_84", 
   type : "vector", 
   pathTiles : "http://seinterferdev01:8080/data/CAT_S1_LOS_A030_202012_202112_Epsg_4326_wgs_84-f-pf-pk-o/{z}/{x}/{y}.pbf", 
@@ -42,13 +46,12 @@ let points = new Points ({
   valueVelMax : 15
   })
 
-points.renderPoints() 
-
+points.renderPoints()  */
+/*
 points.hidePoints()
 points = null
-console.log(points)
+console.log(points) */
 
- 
 
 
 

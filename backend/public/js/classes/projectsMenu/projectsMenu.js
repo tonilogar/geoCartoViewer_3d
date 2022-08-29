@@ -7,7 +7,6 @@ const projectsService = new ProjectsService()
 class ProjectsMenu {
   constructor({ container }) {
     this.container = container
-    
   }
 
   changeElement(s) {
