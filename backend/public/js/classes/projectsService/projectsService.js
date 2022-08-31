@@ -10,7 +10,6 @@
     const response = await fetch(this.URI)
     /* console.log(response, ' response') */
     this.projectsDataBase = await response.json()
-    console.log(typeof(this.projectsDataBase), 'dddd')
     return this.projectsDataBase
   }
 

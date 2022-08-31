@@ -9,18 +9,21 @@ class ProjectsMenu {
   constructor() {
     this.dataBase
     this.signal
+    
   }
 
   changeElement(s) {
     if (s[s.selectedIndex].value !== 'Select project') {
-      console.log(s[s.selectedIndex].value + ' value')// get value
-      console.log(s[s.selectedIndex].id + ' id') // get id
-      s.value = 'Select project' 
+      //console.log(s[s.selectedIndex].value + ' value')// get value
+      //console.log(s[s.selectedIndex].id + ' id') // get id
       this.signal= s[s.selectedIndex].id
-      console.log(this.signal + ' this.signal') // get id
+      s.value = 'Select project' 
     }
   }
  
+  showData() {
+    return this.signal
+  }
   async renderProjectsMenu() {
     this.dataBase = await projectsService.getProjects()
     //console.log(data, 'data')
