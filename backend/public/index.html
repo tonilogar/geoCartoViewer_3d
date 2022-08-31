@@ -40,12 +40,25 @@
       top: 200px;
       left: 200px;
     }
+    .boton{
+      width: 100px;
+      height: 30px;
+    }
     .userInput {
       width: 100px;
       height: 30px;
       position: absolute;
       top: 200px;
       left: 300px;
+    }
+    .basicWC_Container {
+      position: absolute;
+      top: 300px;
+      left: 300px;
+      background-color: red;
+      width: 300px;
+      height: 300px;
+      display: block;
     }
   </style>
 </head>
@@ -87,8 +100,26 @@
  
   
   
-  <div class="basicWC_Container" id="basicWC_Container" ></div>
-  <div class="projects_Container" id="projects_Container" ></div>
+  <div class="basicWC_Container" id="basicWC_Container" >
+    <ul class="bcUl">
+      <details class=bcDetails>
+        <sumary class=bcSumary>sumary text</sumary>
+        <li class="bcLi">
+          Li text
+          <select class="bcSelect">
+            <option class="bcOption_01">bcOption_01</option>
+            <option class="bcOption_02">bcOption_02</option>
+            <option class="bcOption_03">bcOption_03</option>
+            <option class="bcOption_04">bcOption_04</option>
+          </select>  
+        </li>
+      </details>
+    </ul>
+  </div>
+  <div class="projects_Container" id="projects_Container" >
+    <button class="boton"></button>
+    <div class="pepe"></div>
+  </div>
   <div class="background_Container" id="background_Container"></div>
   <div class="raster_Container" id="raster_Container"></div>
   <div class="vector_Container" id="vector_Container"></div>

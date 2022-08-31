@@ -28,6 +28,9 @@ class ProjectsMenu {
     //console.log(projects, 'projects')
     const projectsContainer = document.getElementById('projects_Container')
     projectsContainer.innerHTML = ''
+    /* const boton = document.createElement('button')
+    boton.setAttribute('class', 'boton')
+    projectsContainer.appendChild(boton) */
     projects.forEach(element => {
 
       const ul = document.createElement('ul')
