@@ -20,7 +20,7 @@ user-menu {
   top: 5px;
   right: 5px;
   width: 200px;
-  height: 30px;
+  
 } 
 
 .mapboxgl-ctrl-geocoder--icon-search {
@@ -44,8 +44,8 @@ user-menu {
   width: 50px !important;
   max-width: 200px !important;
   min-width: 200px !important;
-  max-height: 30px !important;
-  min-height: 30px !important;
+  max-height: 40px !important;
+  min-height: 40px !important;
   padding: 0px 0px 0px 30px!important;
 }
 

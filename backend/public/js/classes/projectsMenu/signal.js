@@ -7,8 +7,6 @@ export const changeElement = (s) => {
     s.value = 'Select project'
     iden = s[s.selectedIndex].id
     console.log(iden + ' iden')
-    
   }
-
 }
 

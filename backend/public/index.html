@@ -20,6 +20,8 @@
     href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
     type="text/css" />
   <!-- Mapbox libraries -->
+  <!-- redux libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.js"></script>
   <!--The googleChart library.-->
   <script src="https://www.gstatic.com/charts/loader.js"></script>
   <!-- Jquery libraries -->
@@ -28,15 +30,37 @@
 
   <title>ICGC cartographic viewer</title>
 
+  
   <script defer type="module" src="./js/main.js"></script>
-
+  <style>
+    .addUser {
+      width: 100px;
+      height: 30px;
+      position: absolute;
+      top: 200px;
+      left: 200px;
+    }
+    .userInput {
+      width: 100px;
+      height: 30px;
+      position: absolute;
+      top: 200px;
+      left: 300px;
+    }
+  </style>
 </head>
 
 <body>
+  
   <div id='map' class='map'></div>
+  <input type="text" class="userInput"/>
+  <button class="addUser" >Add user</button>
+  <ul class="list"></ul>
   <!-- <testb-wcomponent></testb-wcomponent> -->
+  <projects-menu-wc container=".projects_Container"></projects-menu-wc>
   <!--  Section left -->
-  <b-wcomponent img="./images/addProject.svg"
+  <b-wcomponent class="addProject"
+                img="./images/addProject.svg"
                 title="Add_project"
                 ptop="5px"
                 pleft="5px"
@@ -61,6 +85,8 @@
                 container=".vector_Container">
   </b-wcomponent><!-- button add vector -->
  
+  
+  
   <div class="basicWC_Container" id="basicWC_Container" ></div>
   <div class="projects_Container" id="projects_Container" ></div>
   <div class="background_Container" id="background_Container"></div>

@@ -2,22 +2,24 @@
 
   constructor() {
     this.URI = `http://localhost:4000/api/projects`;
-    this.id
+    this.projectById
+    this.projectsDataBase
   }
 
   async getProjects() {
     const response = await fetch(this.URI)
     /* console.log(response, ' response') */
-    const projects = await response.json()
-    return projects
+    this.projectsDataBase = await response.json()
+    console.log(typeof(this.projectsDataBase), 'dddd')
+    return this.projectsDataBase
   }
 
   async getProjectsById(id) {
-    this.id = id
-    const response = await fetch(`http://localhost:4000/api/projects/${this.id}`)
+    this.projectById = id
+    const response = await fetch(`http://localhost:4000/api/projects/${this.projectById}`)
     /* console.log(response, ' response') */
-    const projects = await response.json()
-    return projects
+    this.projectById = await response.json()
+    return this.projectById
   }
 
 }
