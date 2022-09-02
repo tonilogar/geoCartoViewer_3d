@@ -10,52 +10,74 @@ const projectsMenu = new ProjectsMenu()
 projectsMenu.renderProjectsMenu()
 
 const projectsService = new ProjectsService()
-async  function catchProjects() {
-  const pro = await projectsService.getProjects()
-  console.log(pro[0].subTitleProject, 'hi pro')
-  console.log(pro, 'hi projects')
-  return pro
-}
 
-catchProjects()
 
 setTimeout(() => {
+  var matches = document.querySelectorAll('.select');
+    console.log(matches, ' matches')
   document.querySelector('.select').addEventListener("change", (e) => {
-  async  function catchProjectById(id) {
-    const pro = await projectsService.getProjectsById(id)
-    console.log(pro.legend, ' hi legend')
+    console.log(e, ' event')
+    console.log(projectsMenu.showData(), "change")//ident number
+    async function catchProjectById(id) {
+      const project = await projectsService.getProjectsById(id)
+      //console.log(pro.dataProject[1][0], ' data Project idProject')
+      //console.log(pro.dataProject[1][1], ' data Project pathMbTiles')
 
-    pro.dataProject.forEach(element => {
-      console.log(element, ' element')
-      element.forEach(element => {
-        console.log(element, ' element_01')
-      })
-      
-    })
-    const points = new Points({
-      projectName: "CAT_S1_UD_A030D110_201601_202112_Epsg_4326_wgs_84",
-      type: "vector",
-      pathTiles: "http://seinterferdev01:8080/data/CAT_S1_UD_A030D110_201601_202112_Epsg_4326_wgs_84-f-pf-pk-o/{z}/{x}/{y}.pbf",
-      minZoom: 0,
-      maxZoom: 14,
-      projectId: "CAT_S1_UD_A030D110_201601_202112_Epsg_4326_wgs_84",
-      typeVector: "circle",
-      visibility: "visible",
-      size: 6,
-      valueVelMin: -15,
-      valueVelMax: 15
-    })
-    points.renderPoints()
-}
-
-catchProjectById('62e50c5747789d530a369a4f')
+      project.dataProject.forEach(element => {
+        console.log(element[0], ' element')
+        const points = new Points({
+          projectName: element[0],
+          type: "vector",
+          pathTiles: element[1],
+          minZoom: 0,
+          maxZoom: 14,
+          projectId: element[0],
+          typeVector: "circle",
+          visibility: "visible",
+          size: 6,
+          valueVelMin: -15,
+          valueVelMax: 15
+        })
+        points.renderPoints()
+      }) 
+    }
+    catchProjectById(projectsMenu.showData())
   })
-}, 700) 
+}, 1000)
 
 
- 
+const points = new Points({
+  projectName: "CAT_S1_LOS_A030_201601_202112_Epsg_4326_wgs_84",
+  type: "vector",
+  pathTiles: "http://seinterferdev01:8080/data/CAT_S1_LOS_A030_201601_202112_Epsg_4326_wgs_84-f-pf-pk-o/{z}/{x}/{y}.pbf",
+  minZoom: 0,
+  maxZoom: 14,
+  projectId: "CAT_S1_LOS_A030_201601_202112_Epsg_4326_wgs_84",
+  typeVector: "circle",
+  visibility: "visible",
+  size: 6,
+  valueVelMin: -15,
+  valueVelMax: 15
+})
+const points1 = new Points({
+  projectName: "CAT_S1_LOS_A132_201601_202112_Epsg_4326_wgs_84",
+  type: "vector",
+  pathTiles: "http://seinterferdev01:8080/data/CAT_S1_LOS_A132_201601_202112_Epsg_4326_wgs_84-f-pf-pk-o/{z}/{x}/{y}.pbf",
+  minZoom: 0,
+  maxZoom: 14,
+  projectId: "CAT_S1_LOS_A132_201601_202112_Epsg_4326_wgs_84",
+  typeVector: "circle",
+  visibility: "visible",
+  size: 6,
+  valueVelMin: -15,
+  valueVelMax: 15
+})
 
- 
+//points.renderPoints()
+//points1.renderPoints()
+
+
+
 
 
 //Redux////////////////////////////////////////////////////////////

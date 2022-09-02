@@ -14,8 +14,8 @@ class ProjectsMenu {
 
   changeElement(s) {
     if (s[s.selectedIndex].value !== 'Select project') {
-      //console.log(s[s.selectedIndex].value + ' value')// get value
-      //console.log(s[s.selectedIndex].id + ' id') // get id
+      console.log(s[s.selectedIndex].value + ' value')// get value
+      console.log(s[s.selectedIndex].id + ' id') // get id
       this.signal= s[s.selectedIndex].id
       s.value = 'Select project' 
     }

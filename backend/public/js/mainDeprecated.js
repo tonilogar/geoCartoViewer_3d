@@ -140,3 +140,13 @@ setTimeout(() => {
 } 
 
  */
+
+
+async function catchProjects() {
+  const pro = await projectsService.getProjects()
+  console.log(pro[0].subTitleProject, 'hi pro')
+  console.log(pro, 'hi projects')
+  return pro
+}
+
+//catchProjects()
