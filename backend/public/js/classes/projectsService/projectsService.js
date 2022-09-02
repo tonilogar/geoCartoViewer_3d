@@ -1,9 +1,11 @@
-  class ProjectsService {
+class ProjectsService {
 
   constructor() {
     this.URI = `http://localhost:4000/api/projects`;
     this.projectById
+    this.projectsDataBaseById
     this.projectsDataBase
+    this.pepe
   }
 
   async getProjects() {
@@ -15,10 +17,22 @@
 
   async getProjectsById(id) {
     this.projectById = id
-    const response = await fetch(`http://localhost:4000/api/projects/${this.projectById}`)
+    const response = await fetch(this.URI + '/' + this.projectById)
     /* console.log(response, ' response') */
-    this.projectById = await response.json()
-    return this.projectById
+    this.projectsDataBaseById = await response.json()
+    return this.projectsDataBaseById
+  }
+
+  async getPro() {
+    const URL = 'http://localhost:4000/api/projects'
+    await fetch(URL)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data[1].subTitleProject, ' data[0].titleProject')
+        console.log(data, ' data')
+        this.pepe = data
+        return data[1].subTitleProject
+      })
   }
 
 }

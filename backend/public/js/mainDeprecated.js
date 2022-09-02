@@ -91,7 +91,52 @@ console.log(points) */
 
 
 
+/* const URL = 'http://localhost:4000/api/projects'
+fetch(URL)
+.then(res => res.json())
+.then(data => {
+  console.log(data[0].titleProject, ' data[0].titleProject')
+}) */
 
 
 
+setTimeout(() => {
+  const changeProject = document.querySelector('.select')
+  changeProject.addEventListener("change", (e) => {
+  console.log(projectsMenu.showData(), "change")
+  })
+}, 500)
 
+
+/* window.onload = async () => {
+  const changeProject = document.querySelector('.select')
+  changeProject.addEventListener("change", (e) => {
+    console.log(projectsMenu.showData(), "change")
+    const projectsService = new ProjectsService()
+    
+    const objectPoint = projectsService.getProjectsById(projectsMenu.showData())
+    
+    console.log(objectPoint, ' objectPoint')
+    
+    
+
+
+    const points = new Points({
+      projectName: "CAT_S1_UD_A030D110_201601_202112_Epsg_4326_wgs_84",
+      type: "vector",
+      pathTiles: "http://seinterferdev01:8080/data/CAT_S1_UD_A030D110_201601_202112_Epsg_4326_wgs_84-f-pf-pk-o/{z}/{x}/{y}.pbf",
+      minZoom: 0,
+      maxZoom: 14,
+      projectId: "CAT_S1_UD_A030D110_201601_202112_Epsg_4326_wgs_84",
+      typeVector: "circle",
+      visibility: "visible",
+      size: 6,
+      valueVelMin: -15,
+      valueVelMax: 15
+    })
+
+    points.renderPoints()
+  })
+} 
+
+ */
