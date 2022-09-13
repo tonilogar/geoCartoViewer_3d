@@ -1,0 +1,15 @@
+
+html, body {
+  font-size: 62.5%;
+  /* background-color:var(--backgroundColorHeader); */  
+  overflow: hidden;   
+}
+.map {
+  width: 100vw;
+  height: 100vh;
+}
+
+.mapboxgl-ctrl-logo, .mapboxgl-ctrl-bottom-right {
+  display: none !important;
+}
+

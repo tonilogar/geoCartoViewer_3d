@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .layers_Container {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  top: 170px;
+  right: 50px;
+  background-color: var(--colorSoftGrey);
+  display: block;
+}
+
+.chart__Div {
+  height: 100%;
+  background-color: blueviolet;
+}
+.chart__Div__Title {
+  height: 25px;
+  background: green;
+  display: grid;
+  justify-items:right;
+  align-items: center;
+}
+.chart__Div__Title_Close {
+  width: 25px;
+  height: 25px;
+  background-color: red;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  justify-self: end;
+  align-self: end;
+}
+.xx {
+  width: 25px;
+  height: 25px;
+  background-color: red;
+  font-size: 25px;
+  font-weight: bolder;
+  
+}
+
+.xx:hover {
+  cursor: pointer;
+}
+
+.chart__Div__Title_Close span {
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+.chart__Div__Title_Close span:hover {
+  cursor: pointer;
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="projectContainer">
+    <ul>
+      <details>
+        <sumary>Subsidences</sumary>
+        <li>catalunya 2015
+          <select class="select">
+            <option value="option_01">option_01</option>
+            <option value="option_02">option_02</option>
+            <option value="option_02">option_02</option>
+          </select>
+        </li>
+        <li>Catalunya 2016
+          <select class="select">
+            <option value="option_01">option_01</option>
+            <option value="option_02">option_02</option>
+            <option value="option_02">option_02</option>
+          </select>
+        </li>
+        <li>Catalunya 2017
+          <select class="select">
+            <option value="option_01">option_01</option>
+            <option value="option_02">option_02</option>
+            <option value="option_02">option_02</option>
+          </select>
+        </li>
+      </details>
+    </ul>
+    <ul>
+      <details>
+        <sumary>Lidar</sumary>
+        <li>catalunya 2015
+          <select class="select">
+            <option value="option_01">option_01</option>
+            <option value="option_02">option_02</option>
+            <option value="option_02">option_02</option>
+          </select>
+        </li>
+        <li>Catalunya 2016
+          <select class="select">
+            <option value="option_01">option_01</option>
+            <option value="option_02">option_02</option>
+            <option value="option_02">option_02</option>
+          </select>
+        </li>
+        <li>Catalunya 2017
+          <select class="select">
+            <option value="option_01">option_01</option>
+            <option value="option_02">option_02</option>
+            <option value="option_02">option_02</option>
+          </select>
+        </li>
+      </details>
+    </ul>
+  </div>
+
+  <div class="example-parent">
+    <div class="example-origin">
+      <div
+        id="draggable-1"
+        class="example-draggable"
+      >
+        draggable
+      </div>
+    </div>
+  
+    <div
+      class="example-dropzone"
+    >
+      dropzone
+    </div>
+  </div>
+
+
+
+  <div class="layers_Container">
+
+    <div class="chart__Div">
+      <div class='chart__Div__Title' >
+        <div class='chart__Div__Title_Close' id='chart__Div__Title_Close' onclick='closeX()'><span>X</span></div>
+      </div>
+      <div class='chart__Div__View' id='chart__Div__View'>
+        <div id='layer_ASC_15' class='layer_ASC_15'> <input onclick="check()" type="checkbox" id='layer_ASC_15_Input'
+          class='layer_ASC_15_Input' checked> <a id='layer_ASC_15_A' class='layer_ASC_15_A'
+          onclick="mainLayer_2021_Asc()">Catalunya 2021 ASC </a ><span class='xx' onclick="closeLayer_2021_Asc()">X</span></div>
+  
+        </div>
+      </div>
+
+    </div>
+  <script>
+    window.onload = function () {
+
+      var options = document.querySelectorAll('.select');
+      
+
+      for (var i = 0; i < options.length; i++) {
+
+        options[i].addEventListener('change', function () {
+          console.log('change option')
+        });
+
+      }
+    }
+  </script>
+</body>
+
+</html>
+
+

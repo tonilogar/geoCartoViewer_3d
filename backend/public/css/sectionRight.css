@@ -14,13 +14,62 @@
 
 .layers_Container {
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 500px;
+  height: 500px;
   top: 170px;
   right: 50px;
   background-color: var(--colorSoftGrey);
-  display: none;
+  display: block;
 }
+
+.chart__Div {
+  height: 100%;
+  background-color: blueviolet;
+}
+.chart__Div__Title {
+  height: 25px;
+  background: green;
+  display: grid;
+  justify-items:right;
+  align-items: center;
+}
+.chart__Div__Title_Close {
+  width: 25px;
+  height: 25px;
+  background-color: red;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  justify-self: end;
+  align-self: end;
+}
+.xx {
+  width: 25px;
+  height: 25px;
+  background-color: red;
+  font-size: 25px;
+  font-weight: bolder;
+  
+}
+
+.xx:hover {
+  cursor: pointer;
+}
+
+.chart__Div__Title_Close span {
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+.chart__Div__Title_Close span:hover {
+  cursor: pointer;
+}
+
+
+
+
+
+
 .legends_Container {
   position: absolute;
   width: 100px;
@@ -28,5 +77,9 @@
   top: 215px;
   right: 50px;
   background-color: var(--colorSoftGrey);
-  display: none;
+  display:none;
 }
+
+
+
+

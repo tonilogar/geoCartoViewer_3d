@@ -14,6 +14,7 @@ class Points {
     this.size = size
     this.valueVelMin = valueVelMin
     this.valueVelMax = valueVelMax
+    this.renderPoints()
   }
   
   renderPoints() {

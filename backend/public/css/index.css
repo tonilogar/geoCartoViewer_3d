@@ -25,9 +25,7 @@ html, body {
   height: 100vh;
 }
 
-
 .mapboxgl-ctrl-logo, .mapboxgl-ctrl-bottom-right {
   display: none !important;
 }
-
 

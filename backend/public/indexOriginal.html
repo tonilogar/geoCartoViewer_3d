@@ -69,14 +69,10 @@
 <body>
 
   <div id='map' class='map'></div>
-  <!-- <my-element projectname="CAT_PAPIOL_S1_EW_A132D110_02" 
-              pathtiles="http://seinterferdev01:8080/data/CAT_PAPIOL_S1_EW_A132D110_02/{z}/{x}/{y}.pbf" 
-              projectid="CAT_PAPIOL_S1_EW_A132D110_02" 
-              visibility="none" >
-  </my-element> -->
+
   <input type="text" class="userInput" />
   <button class="addUser">Add user</button>
-  <ul class="list"></ul> -->
+  <ul class="list"></ul>
   <!-- <testb-wcomponent></testb-wcomponent> -->
   <projects-menu-wc container=".projects_Container"></projects-menu-wc>
   <!--  Section left -->
@@ -112,31 +108,29 @@
   </b-wcomponent><!-- button layers -->
   <b-wcomponent img="./images/legends.svg" title="Info" ptop="215px" pright="5px" container=".legends_Container">
   </b-wcomponent><!-- button info -->
-  <!--  <div class="layers_Container">
+  <div class="layers_Container">
 
-   <div class="chart__Div">
-      <div class='chart__Div__Title'>
+    <div class="chart__Div">
+      <div class='chart__Div__Title' >
         <div class='chart__Div__Title_Close' id='chart__Div__Title_Close' onclick='closeX()'><span>X</span></div>
       </div>
       <div class='chart__Div__View' id='chart__Div__View'>
         <div id='layer_ASC_15' class='layer_ASC_15'> <input onclick="check()" type="checkbox" id='layer_ASC_15_Input'
-            class='layer_ASC_15_Input' checked> <a id='layer_ASC_15_A' class='layer_ASC_15_A'
-            onclick="mainLayer_2021_Asc()">Catalunya 2021 ASC </a><span class='xx'
-            onclick="closeLayer_2021_Asc()">X</span></div>
-
+          class='layer_ASC_15_Input' checked> <a id='layer_ASC_15_A' class='layer_ASC_15_A'
+          onclick="mainLayer_2021_Asc()">Catalunya 2021 ASC </a ><span class='xx' onclick="closeLayer_2021_Asc()">X</span></div>
+  
+        </div>
       </div>
-    </div> 
 
-  </div>-->
-  <div class="legends_Container"></div>
-  <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-  <!--  Section coordinates zoom degreee -->
-  <div class="coordinates_Container"></div>
-  <div class="zoomDegree_Container"></div>
-  <div class="copyCoor_Container"></div>
-  <div class="cameraHeight_Container"></div>
-  <!--  Section coordinates  zoom degreee -->
-
+    </div>
+    <div class="legends_Container"></div>
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!--  Section coordinates zoom degreee -->
+    <div class="coordinates_Container"></div>
+    <div class="zoomDegree_Container"></div>
+    <div class="copyCoor_Container"></div>
+    <div class="cameraHeight_Container"></div>
+    <!--  Section coordinates  zoom degreee -->
 
 
 
@@ -145,9 +139,10 @@
 
 
 
-  <script async src="./js/mapbox.js"></script>
-  <!-- <script async src="./js/pointsTest.js"></script> -->
-  <!-- <script async src="./js/chartTest.js"></script> -->
+
+    <script async src="./js/mapbox.js"></script>
+    <!-- <script async src="./js/pointsTest.js"></script> -->
+    <!-- <script async src="./js/chartTest.js"></script> -->
 
 
 </body>

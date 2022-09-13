@@ -1,13 +1,12 @@
+import { Points } from './classes/points/points.js'
 
-class SubsidencesProject extends HTMLElement {
+class WCPoints extends HTMLElement {
   constructor() {
     super()
     this.attachShadow({ mode: "open" })
-    this.showHide = true
-    this.container = this.getAttribute('container')
   }
   static get observedAttributes() {
-    return ['projectName', 'title', 'container', 'ptop', 'pright', 'pbottom', 'pleft'];
+    return ['img', 'title', 'container', 'ptop', 'pright', 'pbottom', 'pleft'];
   }
   attributeChangedCallback(attr, oldVal, newVal) {
     if (oldVal !== newVal) {
@@ -19,7 +18,7 @@ class SubsidencesProject extends HTMLElement {
     const template = document.createElement("template")
     template.innerHTML = /*html */`
       <div class='open' title=${this.title} >
-        <img src=${this.img} />
+      
       </div>
       ${this.getStyles()}
     `
@@ -31,18 +30,7 @@ class SubsidencesProject extends HTMLElement {
       this.clickMenu();
   }
 
-  clickMenu() {
-    if (this.showHide) {
-      document.querySelector(this.container).style.display = 'block'
-      this.shadowRoot.querySelector('.open').style.border = '5px solid  var(--colorSoftGreen)'
-      this.showHide = false
-    }
-    else {
-      document.querySelector(this.container).style.display = 'none'
-      this.shadowRoot.querySelector('.open').style.border = '5px solid var(--colorSoftGrey)'
-      this.showHide = true
-    }
-  }
+  
   getStyles() {
     return /*html */ `
     <style>
@@ -66,4 +54,4 @@ class SubsidencesProject extends HTMLElement {
   }
 }
 
-customElements.define('subsidences-project', SubsidencesProject)
+customElements.define('wc-points', WCPoints)

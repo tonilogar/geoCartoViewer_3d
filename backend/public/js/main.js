@@ -1,6 +1,6 @@
 //import "./mapbox.js" 
 import "./webComponents/basicWebComponent.js"
-import "./webComponents/subsidencesProject.js"
+import "./webComponents/my-element.js"
 import { ProjectsMenu } from './classes/projectsMenu/projectsMenu.js'
 import { Points } from './classes/points/points.js'
 import { ProjectsService } from './classes/projectsService/projectsService.js'
@@ -9,72 +9,95 @@ import { ProjectsService } from './classes/projectsService/projectsService.js'
 const projectsMenu = new ProjectsMenu()
 projectsMenu.renderProjectsMenu()
 
-const projectsService = new ProjectsService()
+/* const component = document.createElement('b-wcomponent')
+component.setAttribute('class', 'classComponent')
+component.setAttribute('title', 'wcomponent')
+component.setAttribute('ptop', '50px')
+component.setAttribute('pright', '50px')
+component.setAttribute('container', 'background_Container')
+document.body.appendChild(component) */
 
 
-setTimeout(() => {
-  var matches = document.querySelectorAll('.select');
-    console.log(matches, ' matches')
-  document.querySelector('.select').addEventListener("change", (e) => {
-    console.log(e, ' event')
-    console.log(projectsMenu.showData(), "change")//ident number
-    async function catchProjectById(id) {
-      const project = await projectsService.getProjectsById(id)
-      //console.log(pro.dataProject[1][0], ' data Project idProject')
-      //console.log(pro.dataProject[1][1], ' data Project pathMbTiles')
-
-      project.dataProject.forEach(element => {
-        console.log(element[0], ' element')
-        const points = new Points({
-          projectName: element[0],
-          type: "vector",
-          pathTiles: element[1],
-          minZoom: 0,
-          maxZoom: 14,
-          projectId: element[0],
-          typeVector: "circle",
-          visibility: "visible",
-          size: 6,
-          valueVelMin: -15,
-          valueVelMax: 15
-        })
-        points.renderPoints()
-      }) 
-    }
-    catchProjectById(projectsMenu.showData())
-  })
-}, 1000)
 
 
-const points = new Points({
-  projectName: "CAT_S1_LOS_A030_201601_202112_Epsg_4326_wgs_84",
+const projectsArray = []
+const layersArray = []
+const legensArray = []
+
+/* const points1 = new Points({
+  projectName: "CAT_PAPIOL_S1_EW_A132D110_02",
   type: "vector",
-  pathTiles: "http://seinterferdev01:8080/data/CAT_S1_LOS_A030_201601_202112_Epsg_4326_wgs_84-f-pf-pk-o/{z}/{x}/{y}.pbf",
+  pathTiles: "http://seinterferdev01:8080/data/CAT_PAPIOL_S1_EW_A132D110_02/{z}/{x}/{y}.pbf",
   minZoom: 0,
   maxZoom: 14,
-  projectId: "CAT_S1_LOS_A030_201601_202112_Epsg_4326_wgs_84",
+  projectId: "CAT_PAPIOL_S1_EW_A132D110_02",
   typeVector: "circle",
   visibility: "visible",
   size: 6,
   valueVelMin: -15,
   valueVelMax: 15
-})
-const points1 = new Points({
-  projectName: "CAT_S1_LOS_A132_201601_202112_Epsg_4326_wgs_84",
-  type: "vector",
-  pathTiles: "http://seinterferdev01:8080/data/CAT_S1_LOS_A132_201601_202112_Epsg_4326_wgs_84-f-pf-pk-o/{z}/{x}/{y}.pbf",
-  minZoom: 0,
-  maxZoom: 14,
-  projectId: "CAT_S1_LOS_A132_201601_202112_Epsg_4326_wgs_84",
-  typeVector: "circle",
-  visibility: "visible",
-  size: 6,
-  valueVelMin: -15,
-  valueVelMax: 15
-})
+})  */
 
-//points.renderPoints()
 //points1.renderPoints()
+
+window.onload = () => {
+  const projectsService = new ProjectsService()
+  const options = document.querySelectorAll('.select')
+  console.log(options.length, 'options')
+  for (var i = 0; i < options.length; i++) {
+    options[i].addEventListener("change", (e) => {
+      async function catchProjectById(id) {
+        const project = await projectsService.getProjectsById(id)
+        console.log(project, ' project')
+        console.log(project.titleProject+project.subTitleProject, ' project')
+        project.dataProject.forEach(element => {
+          console.log(projectsArray, ' projectsArray')
+          if (projectsArray.includes(element[0])) {
+            console.log('No add element to array')
+          }
+          else {
+            projectsArray.push(element[0])
+            console.log('Add element to array')
+
+            const pointcomponent = document.createElement('my-element')
+            pointcomponent.setAttribute('projectName', element[0])
+            pointcomponent.setAttribute('pathTiles',  element[1])
+            pointcomponent.setAttribute('projectId', element[0])
+            pointcomponent.setAttribute('visibility', "visible")
+            
+            document.body.appendChild(pointcomponent)
+           
+           /*  const points = new Points({
+              projectName: element[0],
+              type: "vector",
+              pathTiles: element[1],
+              minZoom: 0,
+              maxZoom: 14,
+              projectId: element[0],
+              typeVector: "circle",
+              visibility: "visible",
+              size: 6,
+              valueVelMin: -15,
+              valueVelMax: 15
+            }) */
+            
+          }
+
+        })
+      }
+      catchProjectById(projectsMenu.showData())
+    })
+  }
+  
+  document.querySelector('.Sentinel_2').style.display = 'none'
+  document.querySelector('.Photovoltaic').style.display = 'none'
+  document.querySelector('.Solarthermal').style.display = 'none'
+  document.querySelector('.Heat_island').style.display = 'none'
+  //sentinel_2.disabled = true
+
+} 
+
+
 
 
 
