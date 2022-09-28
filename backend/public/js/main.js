@@ -1,4 +1,4 @@
-//import "./mapbox.js" 
+//import "./mapbox.js" Sentinel_2
 import "./webComponents/basicWebComponent.js"
 import "./webComponents/my-element.js"
 import { ProjectsMenu } from './classes/projectsMenu/projectsMenu.js'
@@ -9,13 +9,13 @@ import { ProjectsService } from './classes/projectsService/projectsService.js'
 const projectsMenu = new ProjectsMenu()
 projectsMenu.renderProjectsMenu()
 
-/* const component = document.createElement('b-wcomponent')
+const component = document.createElement('b-wcomponent')
 component.setAttribute('class', 'classComponent')
 component.setAttribute('title', 'wcomponent')
 component.setAttribute('ptop', '50px')
 component.setAttribute('pright', '50px')
 component.setAttribute('container', 'background_Container')
-document.body.appendChild(component) */
+document.body.appendChild(component) 
 
 
 
@@ -67,20 +67,6 @@ window.onload = () => {
             
             document.body.appendChild(pointcomponent)
            
-           /*  const points = new Points({
-              projectName: element[0],
-              type: "vector",
-              pathTiles: element[1],
-              minZoom: 0,
-              maxZoom: 14,
-              projectId: element[0],
-              typeVector: "circle",
-              visibility: "visible",
-              size: 6,
-              valueVelMin: -15,
-              valueVelMax: 15
-            }) */
-            
           }
 
         })
