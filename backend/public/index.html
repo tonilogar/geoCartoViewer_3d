@@ -33,51 +33,16 @@
 
   <!--  <script defer type="module" src="./js/main.js"></script> -->
   <style>
-    .addUser {
-      width: 100px;
-      height: 30px;
-      position: absolute;
-      top: 200px;
-      left: 200px;
-    }
-
-    .boton {
-      width: 100px;
-      height: 30px;
-    }
-
-    .userInput {
-      width: 100px;
-      height: 30px;
-      position: absolute;
-      top: 200px;
-      left: 300px;
-    }
-
-    .basicWC_Container {
-      position: absolute;
-      top: 300px;
-      left: 300px;
-      background-color: red;
-      width: 300px;
-      height: 300px;
-      display: block;
-    }
+   
+    
   </style>
 </head>
 
 <body>
 
   <div id='map' class='map'></div>
-  <!-- <my-element projectname="CAT_PAPIOL_S1_EW_A132D110_02" 
-              pathtiles="http://seinterferdev01:8080/data/CAT_PAPIOL_S1_EW_A132D110_02/{z}/{x}/{y}.pbf" 
-              projectid="CAT_PAPIOL_S1_EW_A132D110_02" 
-              visibility="none" >
-  </my-element> -->
-  <input type="text" class="userInput" />
-  <button class="addUser">Add user</button>
-  <ul class="list"></ul> -->
-  <!-- <testb-wcomponent></testb-wcomponent> -->
+  
+  
   <projects-menu-wc container=".projects_Container"></projects-menu-wc>
   <!--  Section left -->
   <b-wcomponent class="addProject" img="./images/addProject.svg" title="Add_project" ptop="5px" pleft="5px"
@@ -112,22 +77,20 @@
   </b-wcomponent><!-- button layers -->
   <b-wcomponent img="./images/legends.svg" title="Info" ptop="215px" pright="5px" container=".legends_Container">
   </b-wcomponent><!-- button info -->
-  <!--  <div class="layers_Container">
 
-   <div class="chart__Div">
-      <div class='chart__Div__Title'>
-        <div class='chart__Div__Title_Close' id='chart__Div__Title_Close' onclick='closeX()'><span>X</span></div>
+  <div class="layers_Container">
+    <div class="layersWindowTitle">
+      <div class="layersWindowTitleTitle">Layers</div>
+      <div class="layersWindowTitleClose">
+        <p>X</p>
       </div>
-      <div class='chart__Div__View' id='chart__Div__View'>
-        <div id='layer_ASC_15' class='layer_ASC_15'> <input onclick="check()" type="checkbox" id='layer_ASC_15_Input'
-            class='layer_ASC_15_Input' checked> <a id='layer_ASC_15_A' class='layer_ASC_15_A'
-            onclick="mainLayer_2021_Asc()">Catalunya 2021 ASC </a><span class='xx'
-            onclick="closeLayer_2021_Asc()">X</span></div>
+    </div>
+    <div class="layersWindowData">
+      <wc-layer class="catalonia"></wc-layer>
+    </div>
+  </div>
 
-      </div>
-    </div> 
 
-  </div>-->
   <div class="legends_Container"></div>
   <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!--  Section coordinates zoom degreee -->
@@ -151,7 +114,7 @@
 
 
 </body>
-<script defer type="module" src="./js/main.js"></script>
-<!-- <script defer type="module" src="./js/mainTestWebComponents.js"></script> -->
+<!-- <script defer type="module" src="./js/main.js"></script> -->
+<script defer type="module" src="./js/mainTestWebComponents.js"></script>
 
 </html>

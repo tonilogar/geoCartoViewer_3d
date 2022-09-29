@@ -1,7 +1,7 @@
 
 import { Points } from '../classes/points/points.js'
 
-class myElement extends HTMLElement {
+class WcPoints extends HTMLElement {
   constructor() {
     super()
     //this.attachShadow({ mode: "open" })
@@ -40,4 +40,4 @@ class myElement extends HTMLElement {
   
   
 }
-customElements.define("my-element", myElement)
+customElements.define("wc-points", WcPoints)

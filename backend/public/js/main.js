@@ -1,22 +1,21 @@
 //import "./mapbox.js" Sentinel_2
 import "./webComponents/basicWebComponent.js"
-import "./webComponents/my-element.js"
+import "./webComponents/wc-points.js"
 import { ProjectsMenu } from './classes/projectsMenu/projectsMenu.js'
-import { Points } from './classes/points/points.js'
 import { ProjectsService } from './classes/projectsService/projectsService.js'
 
 //Create menu from dataBase
 const projectsMenu = new ProjectsMenu()
 projectsMenu.renderProjectsMenu()
 
-const component = document.createElement('b-wcomponent')
+/* const component = document.createElement('b-wcomponent')
 component.setAttribute('class', 'classComponent')
 component.setAttribute('title', 'wcomponent')
 component.setAttribute('ptop', '50px')
 component.setAttribute('pright', '50px')
 component.setAttribute('container', 'background_Container')
 document.body.appendChild(component) 
-
+ */
 
 
 
@@ -59,7 +58,7 @@ window.onload = () => {
             projectsArray.push(element[0])
             console.log('Add element to array')
 
-            const pointcomponent = document.createElement('my-element')
+            const pointcomponent = document.createElement('wc-points')
             pointcomponent.setAttribute('projectName', element[0])
             pointcomponent.setAttribute('pathTiles',  element[1])
             pointcomponent.setAttribute('projectId', element[0])
