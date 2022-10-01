@@ -14,12 +14,10 @@
 
 .layers_Container {
   position: absolute;
-  width: 500px;
-  height: 500px;
   top: 170px;
   right: 50px;
   background-color: var(--colorSoftGrey);
-  display: block;
+  display: none;
 }
 .layers_Container p { 
   font: message-box;

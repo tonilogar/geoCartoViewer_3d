@@ -47,13 +47,14 @@ window.onload = () => {
           console.log('No add layer to array')
         }
         else {
-          const data = document.querySelector('.layersWindowData')
+          const layersWindowData = document.querySelector('.layersWindowData')
           layersArray.push(layerName)
           console.log(layerName, 'Add layer to array')
           const component = document.createElement('wc-layer')
-          component.setAttribute('pepe', 'layerName')
-          component.setAttribute('title', layerName)
-          data.appendChild(component)
+          component.setAttribute('layername', layerName)
+          component.setAttribute('class', layerName)
+          layersWindowData.appendChild(component)
+          document.querySelector('.layers_Container').style.display = "block"
         }
         //Add layer to arrayLayers
         //console.log(project.titleProject+project.subTitleProject, ' project')

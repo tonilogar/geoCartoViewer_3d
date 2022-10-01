@@ -21,7 +21,6 @@ class wcLayer extends HTMLElement {
   removeLayer() {
     console.log('remove layer')
     this.shadowRoot.querySelector('.layersWindowDataElement').remove()
-    this.shadowRoot.querySelector('.layersWindowDataElement')='null'
   }
 
   showHideLayer() {
@@ -110,19 +109,17 @@ class wcLayer extends HTMLElement {
   connectedCallback() {
     this.render()
     this.layerName = this.shadowRoot.querySelector('.layersWindowDataElementTitle')
-    this.layerName.onclick = () => this.mainLayer()
+    this.layerName.addEventListener('click', this.mainLayer.bind(this))
 
     this.layerRemove = this.shadowRoot.querySelector('.layersWindowDataElementClose')
-    this.layerRemove.onclick = () => this.removeLayer()
+    this.layerRemove.addEventListener('click', this.removeLayer.bind(this))
 
     this.layershowHide = this.shadowRoot.querySelector('.layersWindowDataElementInput')
-    this.layershowHide.onclick = () => this.showHideLayer()
-    }
-    disconnectedCallback() {
-      this.layerName.onclick = () => this.mainLayer()
-      this.layerRemove.onclick = () => this.removeLayer()
-      this.layershowHide.onclick = () => this.showHideLayer()
-    }
+    this.layershowHide.addEventListener('click', this.showHideLayer.bind(this))
+    
+
+    
+  }
 }
 
 customElements.define('wc-layer', wcLayer)
