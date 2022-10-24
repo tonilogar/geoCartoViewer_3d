@@ -6,6 +6,8 @@
   --colorSoftGrey: #ccc;
   --colorSoftGreen: #33b73ca9;
   --backgroundButtons: #fff;
+  --orangeIcgc: rgb(255, 140, 23);
+  --yellowIcgc: rgb(255, 214, 0);
 }
 * {
   box-sizing: border-box;

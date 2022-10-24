@@ -5,8 +5,6 @@ class wcLayer extends HTMLElement {
     this.attachShadow({ mode: 'open' })
     this.layername = this.getAttribute('layername')
     this.infoname = this.getAttribute('infoname')
-    console.log( this.layername,  'this.layername')
-    console.log(this.infoname, 'this.infoname')
   }
   static get observedAttributes() {
     return ['layername', 'infoname'];
@@ -45,17 +43,16 @@ class wcLayer extends HTMLElement {
     const template = document.createElement('template')
     template.innerHTML = /*html */`
     <div class='layersWindowDataElement'>
+      <img class='layersWindowDataElementInfo' src="./images/legends.svg" alt="Project info">
       <input  type='checkbox' id='layersWindowDataElementInput' class='layersWindowDataElementInput' checked>
       <div class='layersWindowDataElementTitle' >
         <p>${this.layername}</p>
       </div>
       <div class='layersWindowDataElementClose' >
         <p>X</p>
+      </div>
     </div>
-    <div class='containerLegends'>
-      <img class='legend' src='${this.layername}' alt="Project info"></div>
-    </div>
-    
+    <div class='containerLegends'>Legend</div>
       ${this.getStyles()}
     `
     return template
@@ -64,61 +61,67 @@ class wcLayer extends HTMLElement {
   getStyles() {
     return /*html */ `
     <style>
-      p, input {
-        padding: 0px;
-        margin: 0px;
-      }
-      p {
-        font: message-box;
-        font-size: 14px;
-        cursor: pointer;
-      }
       
       .layersWindowDataElement {
         display: flex;
         height: 30px;
-       
+        padding: 2px;
+        /* background-color: blue; */
         border-style: ridge;
       }
-      
+      .layersWindowDataElement p {
+        font: message-box;
+        font-weight: bold;
+        font-size: 20px;
+        padding: 0px;
+        margin: 0px;
+        cursor: pointer;
+      }
+      .layersWindowDataElementInfo {
+        background-color: white;
+        width: 28px;
+        height: 28px;
+      }
       .layersWindowDataElementInfo:hover {
         background-color: red;
         cursor: pointer;
       }
       .layersWindowDataElementInput {
-        width: 20px;
-        height: 20px;
-        margin-top: 3px;
+        width: 28px;
+        height: 28px;
       }
       .layersWindowDataElementTitle {
           width: 100%;
-          height: 20px;
+          height: 25px;
           background-color: grey;
           border-style: ridge;
           flex-wrap: wrap;
         }
+          .layersWindowDataElementTitle p{
+            padding-top: 2px;
+            padding-left: 8px;
+          }
 
         .layersWindowDataElementClose {
-          width: 20px;
-          height: 20px;
-          background-color: rgb(255, 214, 0);
-          margin-top: 3px;
+          width: 28px;
+          height: 28px;
+          background-color: red;
+          margin-left: auto;
         }
+
           .layersWindowDataElementClose p {
-            margin-top: 2px;
-            margin-left: 3px;
+            padding-top: 4px;
+            padding-left: 6px;
           }
       .containerLegends {
         position: absolute;
-        right: 0px;
-        top: 600px;
-        background-color: white;
+        right: 5px;
+        top: 100px;
+        width: 280px;
+        height: 280px;
+        background-color: red;
         display: block;
-        border-style: ridge;
-      }
-      .legend {
-        width: 350px;
-      }       
+      }    
       </style>
     `
   }

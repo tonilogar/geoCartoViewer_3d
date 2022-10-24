@@ -1,10 +1,10 @@
 .open {
   position: absolute;
   margin-bottom: 5px;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   background-color:var(--backgroundButtons);
-  border: 5px solid var(--colorSoftGrey);
+  border: 2px solid var(--colorSoftGrey);
 }
 
 .open:hover{

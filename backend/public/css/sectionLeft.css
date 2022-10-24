@@ -1,7 +1,7 @@
 .projects_Container{
   position: absolute;
   top: 5px;
-  left: 50px;
+  left: 40px;
   min-width: 110px;
   max-height: 500px;
   background-color: var(--colorSoftGrey);
@@ -20,13 +20,13 @@
   margin: 0px;
   padding-left: 5px;
 }
-
+ 
 .background_Container{
   position: absolute;
   width: 100px;
   height: 100px;
-  top: 50px;
-  left: 50px;
+  top: 40px;
+  left: 40px;
   background-color: var(--colorSoftGrey);
   display: none;
 } 
@@ -34,8 +34,8 @@
   position: absolute;
   width: 100px;
   height: 100px;
-  top: 95px;
-  left: 50px;
+  top: 75px;
+  left: 40px;
   background-color: var(--colorSoftGrey);
   display: none;
 } 
@@ -43,8 +43,8 @@
   position: absolute;
   width: 100px;
   height: 100px;
-  top: 140px;
-  left: 50px;
+  top: 110px;
+  left: 40px;
   background-color: var(--colorSoftGrey);
   display: none;
 } 

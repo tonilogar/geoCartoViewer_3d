@@ -143,8 +143,8 @@ function closeX(){
         
         // Set chart options
         let options = {'title': "id: " + code +espacio+ "vel: " + vel +espacio+   "autoCorr: " + autoCorr +espacio+   "stDev: " + stDev,
-        'width':1000,
-        'height':400,     
+        'width':700,
+        'height':300,     
         lineWidth: 0, 
         pointSize: 4,
         pointShape: 'square',

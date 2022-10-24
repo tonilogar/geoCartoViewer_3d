@@ -1,0 +1,31 @@
+
+.chart__Div {
+  position: absolute;
+  left: 225px;
+  top: 5px;
+  background: rgba(255, 255, 255, 0.6);
+  display: none;   
+}
+.chart__Div__Title {
+  width: 700px;
+  height: 30px;
+  background: rgb(255, 140, 23);
+  display: grid;
+  justify-items:right;
+  align-items: center;
+}
+.chart__Div__Title_Close {
+  width: 30px;
+  height: 30px;
+  background-color: rgb(255, 214, 0);
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+.chart__Div__Title_Close span {
+  font-size: 40px;
+  font-size: 20px;
+}
+.chart__Div__Title_Close span:hover {
+  cursor: pointer;
+}

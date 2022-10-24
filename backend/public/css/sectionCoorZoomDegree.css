@@ -1,51 +1,105 @@
+/* geocoder_Container////////////////////////// */
+.geocoder_Container{
+  position: absolute;
+  bottom: 75px;
+  left: 5px;
+  
+} 
+
+.mapboxgl-ctrl-geocoder--icon-search {
+  position: absolute !important;
+  top: 0px !important;
+  right: 0px !important;
+  height: 30px !important;
+  margin-left: 0px !important;
+}
+
+.mapboxgl-ctrl-geocoder {
+  max-height: 30px !important;
+  max-width: 205px !important;
+  min-width: 205px !important;
+  padding: 0px 0px 10px 0px!important;
+  margin: 0px !important; 
+  width: 205px !important;
+} 
+.mapboxgl-ctrl-geocoder--input {
+  width: 50px !important;
+  height: 30px;
+  max-width: 220px !important;
+  min-height: 30px !important;
+  max-height: 30px !important;
+  min-width: 200px !important;
+  padding: 0px 0px 0px 30px!important;
+}  
+
+.mapboxgl-ctrl-geocoder--icon {
+  margin:  0px 0px 0px -8px !important;
+}
+/* geocoder_Container////////////////////////// */
+/*coordinates<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 .copyCoor_Container {
   position: absolute;
   bottom: 45px;
-  right: 5px;
-  width: 210px;
+  left: 5px;
+  width: 270px;
   height: 25px;
   padding: 5px;
-  background-color: var(--colorSoftGrey);
+  background-color: white;
   z-index: 100;
 }
 .coordinates_Container{
   position: absolute;
   bottom: 25px;
-  right: 5px;
-  width: 210px;
+  left: 5px;
+  width: 270px;
   height: 25px;
   padding: 5px;
-  background-color: var(--colorSoftGrey);
+  background-color: white;
   z-index: 50;
 } 
 .zoomDegree_Container {
   position: absolute;
   bottom: 5px;
-  right: 5px;
-  width: 210px;
+  left: 5px;
+  width: 270px;
   height: 25px;
   padding: 5px;
-  background-color: var(--colorSoftGrey);
+  background-color: white;
 }
-
-/*CameraHeight <<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+/*coordinates<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+/*CameraHeight magnetic nord and geolocation<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 .cameraHeight_Container {
   position: absolute;
+  margin: 0px;
+  padding: 0px;
   bottom: 5px;
-  left: 5px;
-  width: 70px;
-  height: 30px;
+  left: 220px;
   background-color:var(--backgroundButtons); 
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .mapboxgl-ctrl-scale {
-  background-color:var(--backgroundButtons)!important; 
+  margin: 0px!important;
   font-size: 1.5rem !important;
   border: none!important;
   padding: 0px!important;
-  width: 60px!important;
-  margin-left: 10px;
+  padding-bottom: 2px!important;
+  width: 50px!important; 
+  background-color:rgba(240, 248, 255, 0)!important;
 }
-/*CameraHeight <<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+.geolocate_Container{
+  position: absolute;
+  bottom: 75px;
+  left: 245px;
+} 
+.NavigationControl_Container{
+  position: absolute;
+  bottom: 75px;
+  left: 215px;
+  background-color: var(--colorSoftGrey);
+}
+.mapboxgl-ctrl-zoom-in, .mapboxgl-ctrl-zoom-out {
+  display: none!important;
+}
+/*CameraHeight magnetic nord and geolocation<<<<<<<<<<<<<<<<<<<<<<<<<<<< */

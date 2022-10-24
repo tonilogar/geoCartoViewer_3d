@@ -66,30 +66,29 @@ map.on('load', function () {
   map.on('mousemove', (e) => {
     let lat = e.lngLat.lat.toFixed(4)
     let lng = e.lngLat.lng.toFixed(4)
-    document.querySelector('.coordinates_Container').innerHTML = `Lat: ${lat} Long: ${lng}`
+    document.querySelector('.coordinates_Container').innerHTML = `Latitude: ${lat} Longitude: ${lng}`
   })
   // Show coordinates /////////////
   // Show zoom degree /////////////
-  document.querySelector('.zoomDegree_Container').innerHTML = `Zoom: 7.70 Degree: 00 º`
+  document.querySelector('.zoomDegree_Container').innerHTML = `Zoom: 7.70 Degree: 0   º  Scale:`
   map.on('move', () => {
     let zoom = map.getZoom().toFixed(2)
     let degree = map.getPitch().toFixed(0)
-    document.querySelector('.zoomDegree_Container').innerHTML = `Zoom: ${zoom} Degree: ${degree} º`
+    document.querySelector('.zoomDegree_Container').innerHTML = `Zoom: ${zoom} Degree: ${degree}  º  Scale:`
   })
   // Show zoom degree /////////////
   // Copy coordinates /////////////
-  document.querySelector('.copyCoor_Container').innerHTML = `Double click copy Lat Long`
+  document.querySelector('.copyCoor_Container').innerHTML = `Double click copy Latitude Longitude`
   map.on('dblclick', function (e) {
     let lat = e.lngLat.lat.toFixed(4)
     let lng = e.lngLat.lng.toFixed(4)
-    document.querySelector('.copyCoor_Container').innerHTML = `Lat: ${lat} Long: ${lng}`
+    document.querySelector('.copyCoor_Container').innerHTML = `Latitude: ${lat} Longitude: ${lng}`
   })
   // Copy coordinates /////////////
   // Camera heigth ///////////////
   let scale = new mapboxgl.ScaleControl({
     width: 80,
-    unit: 'metric'
-    
+    unit: 'metric' 
   })
   document.querySelector('.cameraHeight_Container').appendChild(scale.onAdd(map))
   // Camera heigth //////////////

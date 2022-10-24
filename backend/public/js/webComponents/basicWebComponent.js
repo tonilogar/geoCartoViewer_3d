@@ -7,11 +7,12 @@ class BWComponent extends HTMLElement {
     this.container = this.getAttribute('container')
   }
   static get observedAttributes() {
-    return ['img', 'title', 'container', 'ptop', 'pright', 'pbottom', 'pleft'];
+    return ['img', 'title', 'container', 'ptop', 'pright', 'pbottom', 'pleft', 'pwidth', 'pheight'];
   }
+  
   attributeChangedCallback(attr, oldVal, newVal) {
     if (oldVal !== newVal) {
-      this[attr] = newVal
+      this[attr] = newVal 
     }
   }
 
@@ -34,12 +35,12 @@ class BWComponent extends HTMLElement {
   clickMenu() {
     if (this.showHide) {
       document.querySelector(this.container).style.display = 'block'
-      this.shadowRoot.querySelector('.open').style.border = '5px solid  var(--colorSoftGreen)'
+      this.shadowRoot.querySelector('.open').style.border = '2px solid  var(--orangeIcgc)'
       this.showHide = false
     }
     else {
       document.querySelector(this.container).style.display = 'none'
-      this.shadowRoot.querySelector('.open').style.border = '5px solid var(--colorSoftGrey)'
+      this.shadowRoot.querySelector('.open').style.border = '2px solid var(--colorSoftGrey)'
       this.showHide = true
     }
   }
@@ -50,8 +51,10 @@ class BWComponent extends HTMLElement {
        .open {
           top: ${this.ptop};
           right: ${this.pright};
-          bottom: ${this.pleft};
-          left: ${this.pbottom};
+          bottom: ${this.pbottom};
+          left: ${this.pleft};
+          width:  ${this.pwidth};
+          height:  ${this.height};
         }
       </style>
     `
