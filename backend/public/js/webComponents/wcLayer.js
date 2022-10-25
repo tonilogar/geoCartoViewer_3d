@@ -1,15 +1,14 @@
-
+import "./wc-points.js"
 class wcLayer extends HTMLElement {
   constructor() {
     super()
     this.attachShadow({ mode: 'open' })
     this.layername = this.getAttribute('layername')
     this.infoname = this.getAttribute('infoname')
-    console.log( this.layername,  'this.layername')
-    console.log(this.infoname, 'this.infoname')
+    this.mbtilesdata = this.getAttribute(['mbtilesdata'])
   }
   static get observedAttributes() {
-    return ['layername', 'infoname'];
+    return ['layername', 'infoname', ['mbtilesdata']]
   }
   attributeChangedCallback(attr, oldVal, newVal) {
     if (oldVal !== newVal) {
@@ -22,18 +21,49 @@ class wcLayer extends HTMLElement {
   }
 
   removeLayer() {
-    console.log('remove layer')
+    //Get the mbtilesdata atribute and transform string in array use ',' for cut the string
+    const arr = this.mbtilesdata.split(',')
+    console.log(arr)
+    for (var i = 0; i < arr.length; i++) {
+      //only use odd elements
+      if (i % 2 == 0) {
+        console.log(arr[i], 'element')
+        map.setLayoutProperty(arr[i], 'visibility', 'none')
+        //this.shadowRoot.querySelector(arr[i]).remove()
+      }
+    }
+
     this.shadowRoot.querySelector('.layersWindowDataElement').remove()
-    this.shadowRoot.querySelector('.layersWindowDataElement') = 'null'
+    /* this.shadowRoot.querySelector('.layersWindowDataElement') = 'null' */
   }
 
   showHideLayer() {
     console.log('show hide layer')
     if (this.shadowRoot.querySelector('.layersWindowDataElementInput').checked) {
       console.log('check')
+      const arr = this.mbtilesdata.split(',')
+      console.log(arr)
+      for (var i = 0; i < arr.length; i++) {
+        //only use odd elements
+        if (i % 2 == 0) {
+          console.log(arr[i], 'element')
+          map.setLayoutProperty(arr[i], 'visibility', 'visible')
+          //this.shadowRoot.querySelector(arr[i]).remove()
+        }
+      }
     }
     else {
       console.log('no check')
+      const arr = this.mbtilesdata.split(',')
+      console.log(arr)
+      for (var i = 0; i < arr.length; i++) {
+        //only use odd elements
+        if (i % 2 == 0) {
+          console.log(arr[i], 'element')
+          map.setLayoutProperty(arr[i], 'visibility', 'none')
+          //this.shadowRoot.querySelector(arr[i]).remove()
+        }
+      }
     }
 
   }
@@ -44,7 +74,7 @@ class wcLayer extends HTMLElement {
   getTemplate() {
     const template = document.createElement('template')
     template.innerHTML = /*html */`
-    <div class='layersWindowDataElement'>
+    <div class='layersWindowDataElement' >
       <input  type='checkbox' id='layersWindowDataElementInput' class='layersWindowDataElementInput' checked>
       <div class='layersWindowDataElementTitle' >
         <p>${this.layername}</p>
@@ -53,7 +83,7 @@ class wcLayer extends HTMLElement {
         <p>X</p>
     </div>
     <div class='containerLegends'>
-      <img class='legend' src='${this.layername}' alt="Project info"></div>
+      <img class='legend' src='${this.infoname}' alt="Project info"></div>
     </div>
     
       ${this.getStyles()}
@@ -77,7 +107,6 @@ class wcLayer extends HTMLElement {
       .layersWindowDataElement {
         display: flex;
         height: 30px;
-       
         border-style: ridge;
       }
       
@@ -111,7 +140,7 @@ class wcLayer extends HTMLElement {
       .containerLegends {
         position: absolute;
         right: 0px;
-        top: 600px;
+        top: 100%;
         background-color: white;
         display: block;
         border-style: ridge;
@@ -126,21 +155,43 @@ class wcLayer extends HTMLElement {
     this.shadowRoot.append(this.getTemplate().content.cloneNode(true))
   }
   connectedCallback() {
+
+
     this.render()
-    this.layerName = this.shadowRoot.querySelector('.layersWindowDataElementTitle')
-    this.layerName.onclick = () => this.mainLayer()
+    /* const pointComponent = document.createElement('wc-points')
 
-    this.layerRemove = this.shadowRoot.querySelector('.layersWindowDataElementClose')
-    this.layerRemove.onclick = () => this.removeLayer()
+    const arr = this.mbtilesdata.split(',')
+    console.log(arr, ' array points')
+    for (var i = 0; i < arr.length; i++) {
+      //only use odd elements
+      if (i % 2 == 0) {
+        console.log(arr[i], 'add mbtiles body inpar')
+        pointComponent.setAttribute('class', arr[i])
+        pointComponent.setAttribute('projectName', arr[i])
+        pointComponent.setAttribute('projectId', arr[i])
+        pointComponent.setAttribute('visibility', "visible")
+        //this.shadowRoot.querySelector(arr[i]).remove()
+      }
+      else {
+        console.log(arr[i], 'add mbtiles body par')
+        pointComponent.setAttribute('pathTiles', arr[i])
+      }
+      console.log('add points')
+      document.body.appendChild(pointComponent)
+    } */
 
-    this.layershowHide = this.shadowRoot.querySelector('.layersWindowDataElementInput')
-    this.layershowHide.onclick = () => this.showHideLayer()
+    
+
+    this.shadowRoot.querySelector('.layersWindowDataElementTitle').onclick = () => this.mainLayer()
+    this.shadowRoot.querySelector('.layersWindowDataElementClose').onclick = () => this.removeLayer()
+    this.shadowRoot.querySelector('.layersWindowDataElementInput').onclick = () => this.showHideLayer()
   }
   disconnectedCallback() {
-    this.layerName.onclick = () => this.mainLayer()
-    this.layerRemove.onclick = () => this.removeLayer()
-    this.layershowHide.onclick = () => this.showHideLayer()
+    this.shadowRoot.querySelector('.layersWindowDataElementTitle').onclick = () => this.mainLayer()
+    this.shadowRoot.querySelector('.layersWindowDataElementClose').onclick = () => this.removeLayer()
+    this.shadowRoot.querySelector('.layersWindowDataElementInput').onclick = () => this.showHideLayer()
   }
+
 }
 
 customElements.define('wc-layer', wcLayer)

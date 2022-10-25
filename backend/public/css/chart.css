@@ -7,7 +7,7 @@
   display: none;   
 }
 .chart__Div__Title {
-  width: 700px;
+  width: 604px;
   height: 30px;
   background: rgb(255, 140, 23);
   display: grid;
@@ -28,4 +28,7 @@
 }
 .chart__Div__Title_Close span:hover {
   cursor: pointer;
+}
+.chart__Div__View {
+  border-style: ridge;
 }

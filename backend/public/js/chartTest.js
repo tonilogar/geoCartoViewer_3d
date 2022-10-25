@@ -115,9 +115,7 @@ function closeX(){
     }
     // Close graphic window ////////// 
     
-    function dragWindow() {
-        document.getElementById('chart__Div').style.draggable;
-      }
+    
     
     // Add google chart  //////////
     // Load the Visualization API and the corechart package.
@@ -143,8 +141,8 @@ function closeX(){
         
         // Set chart options
         let options = {'title': "id: " + code +espacio+ "vel: " + vel +espacio+   "autoCorr: " + autoCorr +espacio+   "stDev: " + stDev,
-        'width':700,
-        'height':300,     
+        'width':600,
+        'height':200,     
         lineWidth: 0, 
         pointSize: 4,
         pointShape: 'square',
