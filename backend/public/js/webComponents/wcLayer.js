@@ -15,12 +15,9 @@ class wcLayer extends HTMLElement {
       this[attr] = newVal
     }
   }
-  mainLayer() {
-    console.log('main layer')
-    this.shadowRoot.querySelector('.layersWindowDataElementTitle').style.backgroundColor = 'green'
-  }
+  
 
-  removeLayer() {
+  removeLayer(s) {
     //Get the mbtilesdata atribute and transform string in array use ',' for cut the string
     const arr = this.mbtilesdata.split(',')
     console.log(arr)
@@ -35,6 +32,19 @@ class wcLayer extends HTMLElement {
 
     this.shadowRoot.querySelector('.layersWindowDataElement').remove()
     /* this.shadowRoot.querySelector('.layersWindowDataElement') = 'null' */
+    console.log(s, ' zzzzzzzzzzzzzzz')
+  }
+  mainLayer() {
+    console.log('main layer')
+    this.shadowRoot.querySelector('.legend').remove()
+    this.shadowRoot.querySelector('.layersWindowDataElementTitle').style.backgroundColor = 'green'
+    const containerL = this.shadowRoot.querySelector('.containerLegends')
+    const img = document.createElement('img')
+    img.setAttribute('class', 'legend')
+    img.setAttribute('src', this.infoname)
+    img.setAttribute('alt', 'Project info')
+    containerL.appendChild(img)
+    
   }
 
   showHideLayer() {
@@ -80,7 +90,7 @@ class wcLayer extends HTMLElement {
         <p>${this.layername}</p>
       </div>
       <div class='layersWindowDataElementClose' >
-        <p>X</p>
+        <p class='layerClose' >X</p>
     </div>
     <div class='containerLegends'>
       <img class='legend' src='${this.infoname}' alt="Project info"></div>
@@ -106,8 +116,9 @@ class wcLayer extends HTMLElement {
       
       .layersWindowDataElement {
         display: flex;
-        height: 30px;
+        height: 25px;
         border-style: ridge;
+        border-bottom: none;
       }
       
       .layersWindowDataElementInfo:hover {
@@ -131,7 +142,7 @@ class wcLayer extends HTMLElement {
           width: 20px;
           height: 20px;
           background-color: rgb(255, 214, 0);
-          margin-top: 3px;
+          margin-top: 2px;
         }
           .layersWindowDataElementClose p {
             margin-top: 2px;
@@ -183,12 +194,12 @@ class wcLayer extends HTMLElement {
     
 
     this.shadowRoot.querySelector('.layersWindowDataElementTitle').onclick = () => this.mainLayer()
-    this.shadowRoot.querySelector('.layersWindowDataElementClose').onclick = () => this.removeLayer()
+    this.shadowRoot.querySelector('.layersWindowDataElementClose').onclick = (e) => this.removeLayer(e.target)
     this.shadowRoot.querySelector('.layersWindowDataElementInput').onclick = () => this.showHideLayer()
   }
   disconnectedCallback() {
     this.shadowRoot.querySelector('.layersWindowDataElementTitle').onclick = () => this.mainLayer()
-    this.shadowRoot.querySelector('.layersWindowDataElementClose').onclick = () => this.removeLayer()
+    this.shadowRoot.querySelector('.layersWindowDataElementClose').onclick = (e) => this.removeLayer(e.target)
     this.shadowRoot.querySelector('.layersWindowDataElementInput').onclick = () => this.showHideLayer()
   }
 

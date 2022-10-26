@@ -33,13 +33,7 @@ class BWComponentTest extends HTMLElement {
   }
 
   clickMenu() {
-    console.log('click test ', typeof(this.arraydata))
-    let arr = this.arraydata.split(','); 
-    //dividir la cadena de texto por una coma
-    console.log(arr)
-    arr.forEach(element => {
-      console.log(element, 'element')
-    })
+    console.log('click test')
   }
   getStyles() {
     return /*html */ `

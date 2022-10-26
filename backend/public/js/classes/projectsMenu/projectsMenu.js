@@ -1,7 +1,5 @@
 import { ProjectsService } from '../projectsService/projectsService.js'
 import { formatData } from './formatterData.js'
-//import {changeElement} from './signal.js'
-import { Points } from '../../classes/points/points.js'
 const projectsService = new ProjectsService()
 
 
