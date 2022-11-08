@@ -1,4 +1,6 @@
 
+export let idProjectDelete
+
 class wcLayer extends HTMLElement {
   constructor() {
     super()
@@ -23,7 +25,9 @@ class wcLayer extends HTMLElement {
   removeLayer(s) {
     //Get the mbtilesdata atribute and transform string in array use ',' for cut the string
     const arr = this.mbtilesdata.split(',')
-    //console.log(arr)
+    console.log(arr)
+    console.log('this.iddatabase ',this.iddatabase)
+    idProjectDelete=this.iddatabase
     for (var i = 0; i < arr.length; i++) {
       //only use odd elements
       if (i % 2 == 0) {
