@@ -6,18 +6,16 @@ class wcLayer extends HTMLElement {
     this.layername = this.getAttribute('layername')
     this.infoname = this.getAttribute('infoname')
     this.mbtilesdata = this.getAttribute('mbtilesdata')
-    this.iddatabase = this.getAttribute('iddatabase')
     
   }
   static get observedAttributes() {
-    return ['layername', 'infoname', 'mbtilesdata', 'iddatabase' ]
+    return ['layername', 'infoname', 'mbtilesdata']
   }
   attributeChangedCallback(attr, oldVal, newVal) {
     if (oldVal !== newVal) {
       this[attr] = newVal
     }
   }
-  
   
 
   removeLayer(s) {
@@ -38,7 +36,7 @@ class wcLayer extends HTMLElement {
     
     //this.shadowRoot.querySelector('.layersWindowDataElement').style.display = "none"
     /* this.shadowRoot.querySelector('.layersWindowDataElement') = 'null' */
-    console.log('this.iddatabase', this.iddatabase)
+    
   }
   mainLayer(s) {
     //console.log('main layer ', s)
@@ -185,7 +183,22 @@ class wcLayer extends HTMLElement {
     this.shadowRoot.querySelector('.layersWindowDataElementInput').onclick = () => this.showHideLayer()
     /* this.shadowRoot.querySelector(".layersWindowDataElementClose").addEventListener("click", this) */
   }
-
+ /*  handleEvent(event) {
+    if (event.type === "click") {
+      const MessageEvent = new CustomEvent("message", {
+        detail: { from: "Manz", message: this.layername },
+        bubbles: true,
+        composed: true
+      })
+      const LayerMain = new CustomEvent("main", {
+        detail: { from: "Manz", main: this.layername },
+        bubbles: true,
+        composed: true
+      })
+      this.dispatchEvent(MessageEvent)
+      this.dispatchEvent(LayerMain )
+    }
+  } */
   disconnectedCallback() {
     this.shadowRoot.querySelector('.layersWindowDataElementTitle').onclick = (e) => this.mainLayer(e.target)
     this.shadowRoot.querySelector('.layersWindowDataElementClose').onclick = (e) => this.removeLayer(e.target)

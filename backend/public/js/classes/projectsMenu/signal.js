@@ -1,12 +1,10 @@
-var iden
-export const changeElement = (s) => {
+document.addEventListener('click', (e) => {
+  console.log('Clic en ', e.target)
+  if (e.target.matches('wc-layer')) {
+    console.log('hi')
+    //document.querySelector(classd).remove()
 
-  if (s[s.selectedIndex].value !== 'Select project') {
-    console.log(s[s.selectedIndex].value + ' value')// get value
-    console.log(s[s.selectedIndex].id + ' id') // get id
-    s.value = 'Select project'
-    iden = s[s.selectedIndex].id
-    console.log(iden + ' iden')
   }
-}
+})
+
 

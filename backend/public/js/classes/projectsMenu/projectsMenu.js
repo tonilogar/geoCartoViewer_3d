@@ -8,6 +8,7 @@ class ProjectsMenu {
     this.dataBase
     this.signal
     
+  
   }
 
   changeElement(s) {
@@ -20,6 +21,7 @@ class ProjectsMenu {
   }
  
   showData() {
+    
     return this.signal
   }
   async renderProjectsMenu() {
@@ -106,7 +108,10 @@ class ProjectsMenu {
       }
     })
     //return projects
-    
+    document.querySelector('.Sentinel_2').style.display = 'none'
+    document.querySelector('.Photovoltaic').style.display = 'none'
+    document.querySelector('.Solarthermal').style.display = 'none'
+    document.querySelector('.Heat_island').style.display = 'none'
   }
 }
 

@@ -3,7 +3,7 @@
   position: absolute;
   bottom: 75px;
   left: 5px;
-  
+  border-radius:0px!important;
 } 
 
 .mapboxgl-ctrl-geocoder--icon-search {
@@ -21,6 +21,7 @@
   padding: 0px 0px 10px 0px!important;
   margin: 0px !important; 
   width: 205px !important;
+  border-radius:0px!important;
 } 
 .mapboxgl-ctrl-geocoder--input {
   width: 50px !important;
@@ -92,7 +93,11 @@
   position: absolute;
   bottom: 75px;
   left: 245px;
+  border-radius:0px!important;
 } 
+.mapboxgl-ctrl, .mapboxgl-ctrl-group {
+  border-radius:0px!important;
+}
 .NavigationControl_Container{
   position: absolute;
   bottom: 75px;

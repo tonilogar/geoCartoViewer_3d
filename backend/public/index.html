@@ -32,26 +32,33 @@
   <title>cartographic and geological tools</title>
 
 
-  <!--  <script defer type="module" src="./js/main.js"></script> -->
+ 
   <style>
-   .containerTest {
-    position: absolute;
-    top: 200px;
-    left:100px;
-    width: 300px;
-    height: 300px;
-    background-color: red;
-   }
-    
+    .button1 {
+      position: absolute;
+      top: 200px;
+      left: 200px;
+      width: 100px;
+      height: 100px;
+      
+    }
+
+    .element {
+      width: 30px;
+      height: 30px;
+      background-color: blue;
+      margin: 3px;
+    }
   </style>
+  
 </head>
 
 <body>
 
   <div id='map' class='map'></div>
-  
 
-<!--   <b-wcomponent-test class="bWcomponentTest" img="./images/addProject.svg" ptop="100px" pleft="100px" arraydata=["Saab", "Volvo", "BMW"]>
+
+  <!--   <b-wcomponent-test class="bWcomponentTest" img="./images/addProject.svg" ptop="100px" pleft="100px" arraydata=["Saab", "Volvo", "BMW"]>
   </b-wcomponent-test> -->
 
 
@@ -61,24 +68,28 @@
   <b-wcomponent class="addProject" img="./images/addProject.svg" title="Add_project" ptop="5px" pleft="5px"
     container=".projects_Container">
   </b-wcomponent>
-  <div class="projects_Container" id="projects_Container" ></div>
-  
+  <div class="projects_Container" id="projects_Container"></div>
+
   <!-- <b-wcomponent img="./images/changeBackground.svg" title="Background" ptop="40px" pleft="5px"
     container=".background_Container">
     <div class="background_Container" id="background_Container"></div>
   </b-wcomponent> -->
-  
-  <div class="layers_Container" >
+
+  <div class="layers_Container">
     <div class="layersWindowTitle">
       <div class="layersWindowTitleTitle">Layers</div>
       <div class="layersWindowTitleClose">
-        <p onclick='showHideLayers()'> < </p>
-      </div> 
+        <p onclick='showHideLayers()'>
+          &lt; </p>
+      </div>
     </div>
     <div class="layersWindowData"></div>
+    <div class="containerLegends">
+      <!-- <img class='legend project' src=" " alt="legend project"> -->
+    </div>
   </div>
-<!-- <div class='containerTest'></div> -->
   
+
   <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!--  Section top -->
   <!-- <user-menu>
@@ -90,25 +101,25 @@
   <!--  Section right -->
   <div class="geolocate_Container"></div>
   <div class="NavigationControl_Container"></div>
-  
-  
+
+
   <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!--  Section coordinates zoom degreee -->
-  
+
   <div class="geocoder_Container"></div>
   <div class="copyCoor_Container"></div>
   <div class="coordinates_Container"></div>
   <div class="zoomDegree_Container"></div>
   <div class="cameraHeight_Container"></div>
   <!--  Section coordinates  zoom degreee -->
-  <!-- section__Chart <<<<<<<<<<<<<<<<<<<<<<<<<<<<-->  
+  <!-- section__Chart <<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
   <div class="chart__Div" id="chart__Div">
     <div class="chart__Div__Title" id="chart__Div__Title">
-      <div class="chart__Div__Title_Close" id="chart__Div__Title_Close" onclick="closeX()"><span>X</span></div>   
-    </div>  
+      <div class="chart__Div__Title_Close" id="chart__Div__Title_Close" onclick="closeX()"><span>X</span></div>
+    </div>
     <div class="chart__Div__View" id="chart__Div__View"></div>
   </div>
-  <!-- section__Chart <<<<<<<<<<<<<<<<<<<<<<<<<<<<-->  
+  <!-- section__Chart <<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
 
 
 
@@ -117,25 +128,35 @@
 
   <script>
     const showHideLayers = () => {
-        if (document.querySelector('.layersWindowData').style.display == 'block') {
-          document.querySelector('.layersWindowData').style.display = 'none'
-        }
-        else {
-          document.querySelector('.layersWindowData').style.display = 'block'
-          console.log('ShowLayers')
-        }
-  
+      if (document.querySelector('.layersWindowData').style.display == 'block') {
+        document.querySelector('.layersWindowData').style.display = 'none'
+        document.querySelector('.containerLegends').style.display = 'none'
       }
-  
+      else {
+        document.querySelector('.layersWindowData').style.display = 'block'
+        document.querySelector('.containerLegends').style.display = 'block'
+        console.log('ShowLayers')
+      }
+
+    }
+    /* document.addEventListener("message", this)
+    function handleEvent(event) {
+      if (event.type === "message") {
+        const data = event.detail
+        console.log('event message ', data.message)
+
+      }
+    } */
   </script>
 
   <script async src="./js/mapbox.js"></script>
   <!-- <script async src="./js/pointsTest.js"></script> -->
   <script async src="./js/chartTest.js"></script>
+  <script async src="./js/signals.js"></script>
+  <script defer type="module" src="./js/mainTestWebComponentsOriginal.js"></script>
 
 
 </body>
-<!-- <script defer type="module" src="./js/main.js"></script> -->
-<script defer type="module" src="./js/mainTestWebComponents.js"></script>
+
 
 </html>
