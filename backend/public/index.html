@@ -36,14 +36,17 @@
   <style>
     .button1 {
       position: absolute;
-      top: 200px;
-      left: 200px;
+      top: 100px;
+      left: 100px;
       width: 100px;
       height: 100px;
       
     }
 
-    .element {
+    .divDelete {
+      position: absolute;
+      top: 200px;
+      left: 200px;
       width: 30px;
       height: 30px;
       background-color: blue;
@@ -56,8 +59,8 @@
 <body>
 
   <div id='map' class='map'></div>
-
-
+  <div class='divDelete' ></div>
+<button class="button1" onclick="deletePoints()">button</button>
   <!--   <b-wcomponent-test class="bWcomponentTest" img="./images/addProject.svg" ptop="100px" pleft="100px" arraydata=["Saab", "Volvo", "BMW"]>
   </b-wcomponent-test> -->
 
@@ -127,6 +130,11 @@
 
 
   <script>
+    const deletePoints = () => {
+      document.querySelector('.divDelete').remove()
+    }
+
+
     const showHideLayers = () => {
       if (document.querySelector('.layersWindowData').style.display == 'block') {
         document.querySelector('.layersWindowData').style.display = 'none'
@@ -139,20 +147,11 @@
       }
 
     }
-    /* document.addEventListener("message", this)
-    function handleEvent(event) {
-      if (event.type === "message") {
-        const data = event.detail
-        console.log('event message ', data.message)
-
-      }
-    } */
+   
   </script>
 
   <script async src="./js/mapbox.js"></script>
-  <!-- <script async src="./js/pointsTest.js"></script> -->
   <script async src="./js/chartTest.js"></script>
-  <!-- <script async src="./js/signals.js"></script> -->
   <script defer type="module" src="./js/mainTestWebComponentsOriginalTest.js"></script>
 
 
