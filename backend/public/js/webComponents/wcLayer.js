@@ -1,5 +1,6 @@
 
 export let idProjectDelete
+export let arrayIdProjectDelete=[]
 
 class wcLayer extends HTMLElement {
   constructor() {
@@ -33,16 +34,16 @@ class wcLayer extends HTMLElement {
       if (i % 2 == 0) {
         console.log(arr[i], 'element')
         map.setLayoutProperty(arr[i], 'visibility', 'none')
-        //this.shadowRoot.querySelector('.legend').style.display = "none"
-        //this.shadowRoot.querySelector(arr[i]).remove()
       }
     }
+    const classRemove = '.' + this.iddatabase
     this.shadowRoot.querySelector('.containerLegends').remove()
     this.shadowRoot.querySelector('.layersWindowDataElement').remove()
-    
-    //this.shadowRoot.querySelector('.layersWindowDataElement').style.display = "none"
-    /* this.shadowRoot.querySelector('.layersWindowDataElement') = 'null' */
-    console.log('this.iddatabase', this.iddatabase)
+    let filteredwcLayersArray = []
+    if (arrayIdProjectDelete.includes(idProjectDelete)) {
+      filteredwcLayersArray = arrayIdProjectDelete.filter((item) => item !== idProjectDelete)
+      arrayIdProjectDelete = filteredwcLayersArray
+    } 
   }
   mainLayer(s) {
     //console.log('main layer ', s)

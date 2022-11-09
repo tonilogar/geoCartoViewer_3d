@@ -17,9 +17,9 @@ projectsMenu.renderProjectsMenu()
 
 
 window.onload = () => {
-
+  console.log('init aplication')
   let wcLayersArray = []
-  console.log('let wcLayersArray = []', wcLayersArray)
+  console.log('wcLayersArray Init aplication', wcLayersArray)
   //console.log( ' idProjectDelete', idProjectDelete)
   const projectsService = new ProjectsService()
   const options = document.querySelectorAll('.select')
@@ -27,12 +27,13 @@ window.onload = () => {
   for (var i = 0; i < options.length; i++) {
     //console.log(options[i], ' options[i]')
     options[i].addEventListener("change", (e) => {
+      console.log('before catchProjectById(id)', wcLayersArray)
       async function catchProjectById(id) {
         //console.log('idDataBase ', id)
         const project = await projectsService.getProjectsById(id)
         //Add layer to arrayLayers
         const layerName = project.titleProject + ' ' + project.subTitleProject
-        console.log('before if', wcLayersArray)
+
         if (wcLayersArray.includes(id)) {
           console.log('No add layer to array')
         }
@@ -65,22 +66,23 @@ window.onload = () => {
             //console.log('element[0] ', element[0], 'element[1]', element[1])
             //Add points/////////////////////////////////////////
           })
-          console.log(' wcLayersArray antes ', wcLayersArray)
-          let filteredwcLayersArray = []
-          if (wcLayersArray.includes(idProjectDelete)) {
-            filteredwcLayersArray = wcLayersArray.filter((item) => item !== idProjectDelete)
-            console.log('delete id')
-            wcLayersArray = filteredwcLayersArray
-          }
 
-          console.log(' wcLayersArray despues ', wcLayersArray)
-          console.log(' filteredwcLayersArray despues ', filteredwcLayersArray)
         }
 
       }
 
       catchProjectById(projectsMenu.showData())
 
+      console.log(' wcLayersArray antes ', wcLayersArray)
+      let filteredwcLayersArray = []
+      if (wcLayersArray.includes(idProjectDelete)) {
+        filteredwcLayersArray = wcLayersArray.filter((item) => item !== idProjectDelete)
+        console.log('delete id')
+        wcLayersArray = filteredwcLayersArray
+      }
+
+      console.log(' wcLayersArray despues ', wcLayersArray)
+      console.log(' filteredwcLayersArray despues ', filteredwcLayersArray)
 
     })
 

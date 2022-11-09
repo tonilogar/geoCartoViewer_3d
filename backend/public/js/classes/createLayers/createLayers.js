@@ -1,63 +1,58 @@
-class Points {
-  constructor({projectName, type}) {
-    this.projectName = projectName
-    this.type = type
-    this.pathTiles = pathTiles
-    this.minZoom = minZoom
-    this.maxZoom = maxZoom
-    this.projectId = projectId
-    this.typeVector = typeVector
-    this.visibility = visibility
-    this.size = size
-    this.valueVelMin = valueVelMin
-    this.valueVelMax = valueVelMax
-    this.renderPoints()
-  }
-  
-  renderPoints() {
-     map.addSource(this.projectName, {
-      "type": this.type,
-      "tiles": [this.pathTiles],
-      "minzoom": this.minZoom,
-      "maxzoom": this.maxZoom
-    })
-     map.addLayer({
-      "id": this.projectId,
-      "source": this.projectName,
-      "source-layer": this.projectName,
-      "type": this.typeVector,
-      "layout": {
-        "visibility": this.visibility
-      },
-      'paint': {
-        "circle-radius": this.size,
-        "circle-color": [
-          "case",
-          ["<", ["get", "VEL"], this.valueVelMin], "rgba(226,26,28, 1)",
-          [">=", ["get", "VEL"], this.valueVelMin] && ["<=", ["get", "VEL"], -12], "rgba(239,117,16, 1)",
-          [">=", ["get", "VEL"], -12] && ["<=", ["get", "VEL"], -9], "rgba(250,209,5, 1)",
-          [">=", ["get", "VEL"], -9] && ["<=", ["get", "VEL"], -6], "rgba(255,243,24, 1)",
-          [">=", ["get", "VEL"], -6] && ["<=", ["get", "VEL"], -3], "rgba(174,255,0, 1)",
-          /* [">=", ["get", "VEL"], -3]  && ["<=", ["get", "VEL"], 3], "rgba(4,255,0, 1)", */
-          [">=", ["get", "VEL"], 3] && ["<=", ["get", "VEL"], 6], "rgba(2,255,130, 1)",
-          [">=", ["get", "VEL"], 6] && ["<=", ["get", "VEL"], 9], "rgba(1,255,203, 1)",
-          [">=", ["get", "VEL"], 9] && ["<=", ["get", "VEL"], 12], "rgba(1,210,251, 1)",
-          [">=", ["get", "VEL"], 12] && ["<=", ["get", "VEL"], this.valueVelMax], "rgba(0,121,246, 1)",
-          [">", ["get", "VEL"], this.valueVelMax], "rgba(1,32,244, 1)",
-          "rgba(4,255,0, 1)" //Range between -3 y 3 
-        ]
-      }
-    }
-    )
-    /* console.log(map) */
-    //this.hidePoints()
+import { ProjectsService } from '../projectsService/projectsService.js'
+import { idProjectDelete, arrayIdProjectDelete } from '../../webComponents/wcLayer.js'
+import '../../webComponents/wc-points.js'
+const projectsService = new ProjectsService()
+
+
+class CreateLayersContainer {
+  constructor() { 
   }
 
-  hidePoints() {
-    map.setLayoutProperty(this.projectName,    'visibility', 'none')
-    console.log(map)
+  addLayerArray(id) {
+    arrayIdProjectDelete.push(id)
   }
+
   
+  async renderLayersContainer(id) {
+    const project = await projectsService.getProjectsById(id)
+    //Add layer to arrayLayers
+    const layerName = project.titleProject + ' ' + project.subTitleProject
+    const _layerName= layerName.replace(/\s+/g, '')
+    if (arrayIdProjectDelete.includes(id)) {
+      console.log('No add layer to array')
+    }
+    else {
+      const layersWindowData = document.querySelector('.layersWindowData')
+      this.addLayerArray(id)
+      const layerComponent = document.createElement('wc-layer')
+      layerComponent.setAttribute('iddatabase', id)
+      layerComponent.setAttribute('layername', layerName)
+      layerComponent.setAttribute('infoname', project.legend)
+      layerComponent.setAttribute('mbtilesdata', project.dataProject)
+      layerComponent.setAttribute('class', _layerName)
+      layerComponent.setAttribute('id', id)
+      layersWindowData.appendChild(layerComponent)
+      document.querySelector('.layers_Container').style.display = "block"
+      document.querySelector('.layersWindowData').style.display = "block"
+
+      project.dataProject.forEach(element => {
+        //Add points///////////////////////////////////////////////
+        const pointComponent = document.createElement('wc-points')
+        pointComponent.setAttribute('class', 'wc-points')
+        pointComponent.setAttribute('projectName', element[0])
+        pointComponent.setAttribute('pathTiles', element[1])
+        pointComponent.setAttribute('projectId', element[0])
+        pointComponent.setAttribute('visibility', "visible")
+        document.body.appendChild(pointComponent)
+
+        //Add points/////////////////////////////////////////
+      })
+      
+    }
+    
+  }
 
 }
-export { Points } 
+
+
+export { CreateLayersContainer }
