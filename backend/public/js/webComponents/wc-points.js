@@ -9,6 +9,7 @@ class WcPoints extends HTMLElement {
     this.pathtiles = this.getAttribute('pathtiles')
     this.projectid = this.getAttribute('projectid')
     this.visibility = this.getAttribute('visibility')
+    
   }
   static get observedAttributes() {
     return ['projectname', 'pathtiles', 'projectid', 'visibility'];
@@ -35,7 +36,7 @@ class WcPoints extends HTMLElement {
    map.setLayoutProperty(this.projectname, 'visibility', 'visible') 
     //points1.renderPoints()
     
-    
+    //console.log(' projectid ', this.projectid, 'projectname ', this.projectname)
   }
   
   

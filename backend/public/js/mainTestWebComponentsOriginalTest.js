@@ -15,16 +15,12 @@ const createLayersContainer = new CreateLayersContainer()
 
 
 
-
 window.onload = () => {
 
   const options = document.querySelectorAll('.select')
   for (var i = 0; i < options.length; i++) {
     options[i].addEventListener("change", (e) => {
-      console.log('Select project ')
       createLayersContainer.renderLayersContainer(projectsMenu.showData())
-      console.log('createLayersContainer.wcLayersArray ', createLayersContainer.wcLayersArray)
-      
     })
     
   }
