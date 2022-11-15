@@ -1,7 +1,7 @@
 class ProjectsService {
 
   constructor() {
-    this.URI = `http://localhost:4000/api/projects`;
+    this.URI = `http://sedinsar01/geocartoviewer_3d/api/projects`;
     this.projectById
     this.projectsDataBaseById
     this.projectsDataBase
@@ -24,7 +24,7 @@ class ProjectsService {
   }
 
   async getPro() {
-    const URL = 'http://localhost:4000/api/projects'
+    const URL = 'http://sedinsar01/geocartoviewer_3d/api/projects'
     await fetch(URL)
       .then(res => res.json())
       .then(data => {
