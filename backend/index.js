@@ -18,7 +18,7 @@ require('./database');
 
 
 // Settings
-app.set('port', process.env.PORT || 3000) // Choose number port
+app.set('port', process.env.PORT || 4000) // Choose number port
 
 // middlewares
 app.use(morgan('dev'))
