@@ -29,7 +29,7 @@ class ProjectsService {
       .then(res => res.json())
       .then(data => {
         console.log(data[1].subTitleProject, ' data[0].titleProject')
-        console.log(data, ' data')
+        //console.log(data, ' data')
         this.pepe = data
         return data[1].subTitleProject
       })
