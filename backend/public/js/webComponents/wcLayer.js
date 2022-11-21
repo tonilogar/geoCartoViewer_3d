@@ -22,16 +22,6 @@ class wcLayer extends HTMLElement {
     }
   }
 
-  /* paintMainLayer() {
-    console.log('into paintMainLayer ')
-    arrayMainLayerProject.forEach(element => {
-      console.log('element ', element)
-      const el = this.shadowRoot.querySelector('.'+element)
-      console.log('el ', el)
-      this.shadowRoot.querySelector('.'+element).style.backgroundColor = 'red'
-       })
-    
-  } */
 
   removeLayer(s) {
     //Get the mbtilesdata atribute and transform string in array use ',' for cut the string
@@ -94,6 +84,7 @@ class wcLayer extends HTMLElement {
           map.setPaintProperty(arr[i],    'circle-radius', 6)
         }
       }
+      this.shadowRoot.querySelector('.legend').style.display = "block"
     }
     else {
       document.body.querySelector('.layer' + this.layerNameTrim).style.backgroundColor = 'rgba(255, 255, 255, 0)'
@@ -107,6 +98,7 @@ class wcLayer extends HTMLElement {
           map.setPaintProperty(arr[i],    'circle-radius', 3)
         }
       }
+      this.shadowRoot.querySelector('.legend').style.display = "none"
     }
     console.log('this.layerNameTrim ', this.layerNameTrim)
     
