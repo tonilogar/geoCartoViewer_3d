@@ -32,7 +32,7 @@
   <title>cartographic and geological tools</title>
 
 
- 
+
   <style>
     /* .button1 {
       position: absolute;
@@ -67,41 +67,25 @@
       
     } */
   </style>
-  
+
 </head>
 
 <body>
 
   <div id='map' class='map'></div>
- <!--  <div class='divDelete' ></div> -->
-<!-- <button class="button1" onclick="deletePoints()">button</button> -->
-  <!--   <b-wcomponent-test class="bWcomponentTest" img="./images/addProject.svg" ptop="100px" pleft="100px" arraydata=["Saab", "Volvo", "BMW"]>
-  </b-wcomponent-test> -->
+  <!--  <div class='divDelete' ></div> -->
 
-<!-- <div class="divcon"></div>
 
-<script>
-  const divc = document.body.querySelector('.divcon')
-  const layerComponent = document.createElement('wc-layer')
-  layerComponent.setAttribute('iddatabase', 'iddatabase')
-      layerComponent.setAttribute('layername', 'layername')
-      layerComponent.setAttribute('infoname', 'infoname')
-      layerComponent.setAttribute('mbtilesdata', 'mbtilesdata')
-      layerComponent.setAttribute('class', 'wclayer')
-      layerComponent.setAttribute('id', 'id')
-      //layerComponent.style.backgroundColor='green'
-      divc.appendChild(layerComponent)
-</script> -->
-  <!--  Section left -->
   <b-wcomponent class="addProject" img="./images/addProject.svg" title="Add_project" ptop="5px" pleft="5px"
     container=".projects_Container">
   </b-wcomponent>
   <div class="projects_Container" id="projects_Container"></div>
 
-  <!-- <b-wcomponent img="./images/changeBackground.svg" title="Background" ptop="40px" pleft="5px"
+  <b-wcomponent class="addBackground" img="./images/changeBackground.svg" title="Add_background" ptop="40px" pleft="5px"
     container=".background_Container">
-    <div class="background_Container" id="background_Container"></div>
-  </b-wcomponent> -->
+  </b-wcomponent>
+  <div class="background_Container" id="projects_Container"></div>
+  <!--  Section left -->
 
   <div class="layers_Container">
     <div class="layersWindowTitle">
@@ -114,7 +98,7 @@
     <div class="layersWindowData"></div>
     <div class="containerLegends"></div>
   </div>
-  
+
 
   <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!--  Section top -->
@@ -171,7 +155,7 @@
       }
 
     }
-   
+
   </script>
 
   <script async src="./js/mapbox.js"></script>

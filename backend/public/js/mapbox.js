@@ -6,7 +6,7 @@ const zoom = 7.9
 //Create imageMap
 const map = new mapboxgl.Map({
   container: 'map',
-  style: 'https://geoserveis.icgc.cat/contextmaps/hibrid.json',
+  style: 'https://geoserveis.icgc.cat/contextmaps/icgc_orto_hibrida.json',
   center: [lng, lat],
   maxZoom: 25,
   minZoom: 1.65,

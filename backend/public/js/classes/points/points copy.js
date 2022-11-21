@@ -1,6 +1,6 @@
 class Points {
   constructor({projectName, type, pathTiles, 
-               minZoom, maxZoom,  
+               minZoom, maxZoom, projectId, 
                typeVector, visibility, size, 
                valueVelMin, valueVelMax}) {
     this.projectName = projectName
@@ -8,11 +8,13 @@ class Points {
     this.pathTiles = pathTiles
     this.minZoom = minZoom
     this.maxZoom = maxZoom
+    this.projectId = projectId
     this.typeVector = typeVector
     this.visibility = visibility
     this.size = size
     this.valueVelMin = valueVelMin
     this.valueVelMax = valueVelMax
+    this.renderPoints()
   }
   
   renderPoints() {
@@ -23,6 +25,7 @@ class Points {
       "maxzoom": this.maxZoom
     })
      map.addLayer({
+      "id": this.projectId,
       "source": this.projectName,
       "source-layer": this.projectName,
       "type": this.typeVector,

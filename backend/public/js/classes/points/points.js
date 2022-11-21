@@ -37,15 +37,15 @@ class Points {
         "circle-color": [
           "case",
           ["<", ["get", "VEL"], this.valueVelMin], "rgba(226,26,28, 1)",
-          [">=", ["get", "VEL"], this.valueVelMin] && ["<=", ["get", "VEL"], -12], "rgba(239,117,16, 1)",
-          [">=", ["get", "VEL"], -12] && ["<=", ["get", "VEL"], -9], "rgba(250,209,5, 1)",
-          [">=", ["get", "VEL"], -9] && ["<=", ["get", "VEL"], -6], "rgba(255,243,24, 1)",
-          [">=", ["get", "VEL"], -6] && ["<=", ["get", "VEL"], -3], "rgba(174,255,0, 1)",
+          [">=", ["get", "VEL"], this.valueVelMin] && ["<=", ["get", "VEL"], this.valueVelMin -3], "rgba(239,117,16, 1)",
+          [">=", ["get", "VEL"], this.valueVelMin -3] && ["<=", ["get", "VEL"], this.valueVelMin -6], "rgba(250,209,5, 1)",
+          [">=", ["get", "VEL"], this.valueVelMin -6] && ["<=", ["get", "VEL"], this.valueVelMin -9], "rgba(255,243,24, 1)",
+          [">=", ["get", "VEL"], this.valueVelMin -9] && ["<=", ["get", "VEL"], this.valueVelMin -12], "rgba(174,255,0, 1)",
           /* [">=", ["get", "VEL"], -3]  && ["<=", ["get", "VEL"], 3], "rgba(4,255,0, 1)", */
-          [">=", ["get", "VEL"], 3] && ["<=", ["get", "VEL"], 6], "rgba(2,255,130, 1)",
-          [">=", ["get", "VEL"], 6] && ["<=", ["get", "VEL"], 9], "rgba(1,255,203, 1)",
-          [">=", ["get", "VEL"], 9] && ["<=", ["get", "VEL"], 12], "rgba(1,210,251, 1)",
-          [">=", ["get", "VEL"], 12] && ["<=", ["get", "VEL"], this.valueVelMax], "rgba(0,121,246, 1)",
+          [">=", ["get", "VEL"], this.valueVelMax -12] && ["<=", ["get", "VEL"], this.valueVelMax -9], "rgba(2,255,130, 1)",
+          [">=", ["get", "VEL"], this.valueVelMax -9] && ["<=", ["get", "VEL"], this.valueVelMax -6], "rgba(1,255,203, 1)",
+          [">=", ["get", "VEL"], this.valueVelMax -6] && ["<=", ["get", "VEL"], this.valueVelMax -3], "rgba(1,210,251, 1)",
+          [">=", ["get", "VEL"], this.valueVelMax -3] && ["<=", ["get", "VEL"], this.valueVelMax], "rgba(0,121,246, 1)",
           [">", ["get", "VEL"], this.valueVelMax], "rgba(1,32,244, 1)",
           "rgba(4,255,0, 1)" //Range between -3 y 3 
         ]

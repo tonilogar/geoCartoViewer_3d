@@ -2,10 +2,16 @@ class ProjectsService {
 
   constructor() {
     this.URI = `http://localhost:4000/api/projects`
+    
     this.projectById
     this.projectsDataBaseById
     this.projectsDataBase
-    this.pepe
+
+    this.URIBACKGROUND = `http://localhost:4000/api/backgrounds`
+    this.backgroundById
+    this.backgroundsDataBaseById
+    this.backgroundsDataBase
+    
   }
 
   async getProjects() {
@@ -23,7 +29,23 @@ class ProjectsService {
     return this.projectsDataBaseById
   }
 
-  async getPro() {
+  async getBackground() {
+    const response = await fetch(this.URIBACKGROUND)
+    /* console.log(response, ' response') */
+    this.backgroundsDataBase = await response.json()
+    return this.backgroundsDataBase
+  }
+
+  async getBackgroundById(background) {
+    this.backgroundById = background
+    const response = await fetch(this.URIBACKGROUND + '/' + this.backgroundById)
+    /* console.log(response, ' response') */
+    this.backgroundsDataBaseById = await response.json()
+    return this.backgroundsDataBaseById
+  }
+
+
+  /* async getPro() {
     const URL = `http://localhost:4000/api/projects`
     await fetch(URL)
       .then(res => res.json())
@@ -33,7 +55,7 @@ class ProjectsService {
         this.pepe = data
         return data[1].subTitleProject
       })
-  }
+  } */
 
 }
 

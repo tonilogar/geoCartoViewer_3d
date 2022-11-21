@@ -36,6 +36,7 @@ app.use(cors())
 // Routes
 app.use('/api/projects', require('./routes/projects')) // Cuando entre en el navegador me mostrara los datos de el metodo get de routes/projects.js me muestre 
                                                        // http://localhost:4000/api/projects en esta direccion vere los datos que me manda el metodo get
+app.use('/api/backgrounds', require('./routes/backgrounds'))
 app.use('/api/users', require('./routes/users'))
 // Static files
 app.use(express.static(path.join(__dirname, 'public')))// En la direccion http://localhost:4000 me mostrara los ficheros estaticos index.html etc..
@@ -46,3 +47,5 @@ app.use(express.static(path.join(__dirname, 'public')))// En la direccion http:/
 app.listen(app.get('port'), () => {
   console.log('Server on port ' + app.get('port'))
 })
+
+

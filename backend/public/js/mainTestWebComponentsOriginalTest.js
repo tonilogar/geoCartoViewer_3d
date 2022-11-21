@@ -10,10 +10,13 @@ import './webComponents/wcLayer.js'
 //import "./signals.js" 
 import { ProjectsMenu } from './classes/projectsMenu/projectsMenu.js'
 import { CreateLayersContainer } from './classes/createLayers/createLayers.js'
+import { CreateBackgroundsMenu } from './classes/createBackgroundMenu/createBackgroundMenu.js'
 
 
 const projectsMenu = new ProjectsMenu()
 const createLayersContainer = new CreateLayersContainer()
+const createBackgroundsMenu = new CreateBackgroundsMenu()
+createBackgroundsMenu.renderBackgroundMenu()
 
 
 
@@ -36,7 +39,7 @@ function selectProject(){
 //map.setStyle('http://betaserver.icgc.cat/vectortiles/estils/redtopoestil.json')
 //map.setStyle('http://betaserver.icgc.cat/vectortiles/estils/bt5m_nice.json')
 //map.setStyle('http://betaserver.icgc.cat/vectortiles/estils/altimbt5m.json')
-//map.setStyle('https://geoserveis.icgc.cat/contextmaps/icgc_geologic_riscos.json')
+
 
 
 /* window.onload = () => {

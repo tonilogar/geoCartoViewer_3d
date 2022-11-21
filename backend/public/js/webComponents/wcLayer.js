@@ -102,7 +102,6 @@ class wcLayer extends HTMLElement {
     }
     console.log('this.layerNameTrim ', this.layerNameTrim)
     
-    
   }
 
   showHideLayer() {
