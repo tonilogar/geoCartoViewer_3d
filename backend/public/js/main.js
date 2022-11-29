@@ -40,7 +40,7 @@ window.onload = () => {
           
           // replace() usando una expresión Regex para reemplazar espacios en blanco
           createClass = layerName.replace(/\s+/g, '')  // > "Textodeejemplo"
-
+text
           console.log(createClass, ' createClass')
           console.log(wcLayersArray, ' wcLayersArray')
 

@@ -1,2 +1,4 @@
 MONGODB_URI=mongodb://localhost/dataBaseProjects
+MONGODB_URI=mongodb://localhost/basicJavascriptMongodb
+MONGODB_URI=mongodb+srv://tonilogar:Zaratustra_27@cluster0.tnyvv.mongodb.net/dataBase
 PORT=4000

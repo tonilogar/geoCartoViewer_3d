@@ -25,14 +25,12 @@
   position: absolute;
   top: 40px;
   left: 40px;
-  width: 110px;
-  height: 500px;
-  /* min-width: 110px;
-  max-height: 500px; */
+  width: 228px;
+  max-height: 500px;
   background-color: var(--colorSoftGrey);
   overflow-y: scroll;
   scroll-behavior: smooth;
-  display: block;
+  display: none;
 } 
 
 
