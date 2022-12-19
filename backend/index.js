@@ -34,6 +34,16 @@ app.use(express.json())
 app.use(cors())
 
 // Routes
+
+//test
+app.get('/api/route/test',(req,res)=> {
+  const data = {
+    'user':'Antonio',
+    'project':'subsidences'
+  }
+  res.json(data)
+})
+//test
 app.use('/api/projects', require('./routes/projects')) // Cuando entre en el navegador me mostrara los datos de el metodo get de routes/projects.js me muestre 
                                                        // http://localhost:4000/api/projects en esta direccion vere los datos que me manda el metodo get
 app.use('/api/backgrounds', require('./routes/backgrounds'))
