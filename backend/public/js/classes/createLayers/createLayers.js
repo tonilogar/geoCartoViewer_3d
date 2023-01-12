@@ -6,6 +6,7 @@ const projectsService = new ProjectsService()
 
 class CreateLayersContainer {
   constructor() {
+    this.dataBase
   }
 
   addLayerArray(id) {
@@ -15,11 +16,11 @@ class CreateLayersContainer {
     arrayMainLayerProject.push(lName)
   }
 
-  
+
   async renderLayersContainer(id) {
-    const project = await projectsService.getProjectsById(id)
+    this.dataBase = await projectsService.getProjectsById(id)
     //Add layer to arrayLayers
-    const layerName = project.titleProject + ' ' + project.subTitleProject
+    const layerName = this.dataBase.titleProject + ' ' + this.dataBase.subTitleProject
     const _layerName = layerName.replace(/\s+/g, '')
     if (arrayIdProjectDelete.includes(id)) {
       console.log('No add layer to array')
@@ -31,14 +32,14 @@ class CreateLayersContainer {
       console.log('arrayMainLayerProject ', arrayMainLayerProject, '_layerName ', _layerName)
 
       const containerWcLayer = document.createElement('div')
-      containerWcLayer.setAttribute('class', 'layer'+_layerName)
+      containerWcLayer.setAttribute('class', 'layer' + _layerName)
       containerWcLayer.style.backgroundColor = 'rgba(255, 255, 255, 0)'
       containerWcLayer.style.margin = "2px"
       const layerComponent = document.createElement('wc-layer')
       layerComponent.setAttribute('iddatabase', id)
       layerComponent.setAttribute('layername', layerName)
-      layerComponent.setAttribute('infoname', project.legend)
-      layerComponent.setAttribute('mbtilesdata', project.dataProject)
+      layerComponent.setAttribute('infoname', this.dataBase.legend)
+      layerComponent.setAttribute('mbtilesdata', this.dataBase.dataProject)
       layerComponent.setAttribute('class', 'wc-layer')
       layerComponent.setAttribute('id', id)
       //layerComponent.style.backgroundColor='green'
@@ -47,7 +48,7 @@ class CreateLayersContainer {
       document.querySelector('.layers_Container').style.display = "block"
       document.querySelector('.layersWindowData').style.display = "block"
       arrayMainLayerProject.forEach(element => {
-        document.body.querySelector('.layer'+element).style.backgroundColor = 'rgba(255, 255, 255, 0)'
+        document.body.querySelector('.layer' + element).style.backgroundColor = 'rgba(255, 255, 255, 0)'
       })
       containerWcLayer.style.backgroundColor = "green"
 
@@ -56,7 +57,7 @@ class CreateLayersContainer {
       createDiv.setAttribute('class', 'div-Delete')
       document.body.appendChild(createDiv)
 
-      project.dataProject.forEach(element => {
+      this.dataBase.dataProject.forEach(element => {
         //Add points///////////////////////////////////////////////
         const pointComponent = document.createElement('wc-points')
         pointComponent.setAttribute('class', 'wc-points')

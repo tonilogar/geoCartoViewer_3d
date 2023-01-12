@@ -16,16 +16,19 @@ class ProjectsService {
 
   async getProjects() {
     const response = await fetch(this.URI)
-    /* console.log(response, ' response') */
+    console.log(response, ' getProjects')
     this.projectsDataBase = await response.json()
+    console.log(this.projectsDataBase, ' this.projectsDataBase')
     return this.projectsDataBase
+    
   }
 
   async getProjectsById(id) {
     this.projectById = id
     const response = await fetch(this.URI + '/' + this.projectById)
-    /* console.log(response, ' response') */
+    console.log(response, ' getProjectsById')
     this.projectsDataBaseById = await response.json()
+    console.log(this.projectsDataBaseById, ' this.projectsDataBaseById')
     return this.projectsDataBaseById
   }
 

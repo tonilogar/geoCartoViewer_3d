@@ -14,7 +14,7 @@
   <link rel="shourtcut icon" href="./images/logoIcgcCutOpt.svg" type="image/x-icon">
   <!-- Mapbox libraries -->
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
-<script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
   <script
     src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
   <link rel="stylesheet"
@@ -84,7 +84,7 @@
   <b-wcomponent class="addBackground" img="./images/changeBackground.svg" title="Add_background" ptop="40px" pleft="5px"
     container=".background_Container">
   </b-wcomponent>
-  <div class="background_Container" id="projects_Container"></div>
+  <div class="background_Container" id="background_Container"></div>
   <!--  Section left -->
 
   <div class="layers_Container">
@@ -138,7 +138,6 @@
 
   <script>
     const deletePoints = () => {
-      /* document.querySelector('.div-Delete').remove() */
       document.querySelector('.wc-points').remove()
     }
 

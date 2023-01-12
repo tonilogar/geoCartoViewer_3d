@@ -26,7 +26,7 @@ class ProjectsMenu {
   }
   async renderProjectsMenu() {
     this.dataBase = await projectsService.getProjects()
-    //console.log(data, 'data')
+    //console.log(this.dataBase, 'data')
     const projects = formatData(this.dataBase)
     //console.log(projects, 'projects')
     const projectsContainer = document.getElementById('projects_Container')

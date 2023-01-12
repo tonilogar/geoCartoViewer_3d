@@ -5,7 +5,11 @@
   left: 5px;
   border-radius:0px!important;
 } 
-
+.mapboxgl-ctrl-geocoder .suggestions {
+  position: relative !important;
+  bottom: 375px !important;
+  border-radius:0px!important;
+}
 .mapboxgl-ctrl-geocoder--icon-search {
   position: absolute !important;
   top: 0px !important;
